@@ -1,0 +1,41 @@
+
+<div class="container-fluid">
+  <div class="row main-content bg-success text-center">
+    <div class="col-md-4 text-center company__info">
+      <!-- <span class="company__logo"><h2><span class="fa fa-android"></span></h2></span> -->
+      <img src="assets/medicalSign.png" width="150px" height="150px" alt="image">
+    </div>
+    <div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+      <div class="container-fluid">
+        <div class="row">
+          <h2>Παρακαλώ συμπληρώστε τα στοιχεία σας.</h2>
+        </div>
+        <div class="">
+          <form control="" class="form-group" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
+            <div class="row alert alert-danger" *ngIf="error">
+              <p>{{ error }}</p>
+            </div>
+            <div class="row">
+              <input type="text" name="username" id="username" class="form__input form-control" ngModel placeholder="Όνομα χρήστη" required>
+            </div>
+            <div class="row">
+              <span class="fa fa-lock"></span>
+              <input type="password" name="password" id="password" class="form__input form-control" ngModel placeholder="Κωδικός" required>
+            </div>
+            <div class="">
+              <input type="checkbox" name="remember_me" id="remember_me" class="">
+              <label for="remember_me">Να με θυμάσαι!</label>
+            </div>
+            <div class="">
+              <input type="submit" value="Είσοδος" class="btn" [disabled]="!authForm.valid">
+            </div>
+          </form>
+        </div>
+        <div class="">
+          <p>Δεν έχεις λογαριασμό; <a href="https://www.idika.gr/contact" target="_blank">Απέκτησε τώρα!</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
