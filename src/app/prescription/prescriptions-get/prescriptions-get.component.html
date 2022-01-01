@@ -1,0 +1,140 @@
+<div class="row">
+  <div class="col-12">
+    <app-header></app-header>
+  </div>
+  <div class="col-12">
+    <br>
+    <br>
+    <h2 style="color: #107dd0; display:inline;">Λίστα Συνταγών</h2>
+    <br>
+    <br>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box clearfix">
+			<div class="table-responsive">
+				<table class="table user-list">
+					<thead>
+						<tr style="display: block;">
+							<th style="min-width: 280px;"><span>Στοιχεία Ασθενή</span></th>
+							<th><span>Ημερομηνία</span></th>
+							<th class="text-center"><span>Κατάσταση</span></th>
+							<th><span>Ασφάλιση</span></th>
+							<th>&nbsp;</th>
+						</tr>
+					</thead>
+					<tbody>
+            <ng-container *ngIf="!isFetching && prescriptions.item.length >= 0">
+              <ng-container *ngFor="let prescription of prescriptions.item">
+						    <tr id="list-item">
+                  <td style="min-width: 280px;">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                    <a href="" (click)="editPrescription(prescription.barcode)" class="user-link">{{prescription.patientInfo.firstName + ' ' + prescription.patientInfo.lastName}}</a>
+                    <span class="user-subhead"><span style="font-weight: 700; padding-right: 10px;">ΑΜΚΑ: </span>{{prescription.patientInfo.amka}}</span>
+                  </td>
+                  <td>
+                    {{prescription.issueDate}}
+                  </td>
+                  <td class="text-center">
+                    <span *ngIf="prescription.status.status === 'ΑΚΥΡΩΜΕΝΗ'" class="label label-danger">{{prescription.status.status}}</span>
+                    <span *ngIf="prescription.status.status === 'ΣΥΝΤΑΓΟΓΡΑΦΗΜΕΝΗ'" class="label label-success">{{prescription.status.status}}</span>
+                    <span *ngIf="prescription.status.status === 'ΟΛΟΚΛΗΡΩΜΕΝΗ'" class="label label-success">{{prescription.status.status}}</span>
+                  </td>
+                  <td>
+                    <span>{{prescription.patientInfo.socialInsuranceShortName}}</span>
+                  </td>
+                  <td class="" style="width: 25%;">
+                    <span (click)="editPrescription(prescription.barcode)" class="table-link col-md-1">
+                      <span class="fa-stack">
+                        <i class="fa fa-square fa-stack-2x" style="color: blue;"></i>
+                        <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                      </span>
+                    </span>
+                    <ng-container *ngIf="prescription.status.status != 'ΑΚΥΡΩΜΕΝΗ' && prescription.status.status != 'ΟΛΟΚΛΗΡΩΜΕΝΗ'">
+                      <span class="table-link col-md-1" (click)="editPrescription(prescription.barcode)">
+                        <span class="fa-stack">
+                          <i class="fa fa-square fa-stack-2x"></i>
+                          <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                        </span>
+                      </span>
+                      <span class="table-link danger col-md-1" (click)="openConfirmDeleteModal(prescription.barcode)">
+                        <span class="fa-stack">
+                          <i class="fa fa-square fa-stack-2x" style="color: red;"></i>
+                          <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                        </span>
+                      </span>
+                    </ng-container>
+                  </td>
+						    </tr>
+              </ng-container>
+            </ng-container>
+					</tbody>
+				</table>
+			</div>
+			<!-- <ul class="pagination pull-right">
+				<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+			</ul> -->
+		</div>
+	</div>
+</div>
+</div>
+   <!-- <table class="table" style="color: #107dd0">
+      <thead>
+      <tr style="color: #eb201e">
+        <th scope="col">ΑΜΚΑ Ασθενή</th>
+        <th scope="col">Ονοματεπώνυμο</th>
+        <th scope="col">Ημερομηνία</th>
+        <th scope="col">Κατάσταση</th>
+        <th scope="col">Δράση</th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngIf="!isFetching && prescriptions.item.length >= 0">
+        <ng-container *ngFor="let prescription of prescriptions.item">
+          <tr>
+            <td>{{prescription.patientInfo.amka}}</td>
+            <td>{{prescription.patientInfo.firstName + ' ' + prescription.patientInfo.lastName}}</td>
+            <td>{{prescription.issueDate}}</td>
+            <td>{{prescription.status.status}}</td>
+            <td>
+              <button (click)="viewPrescriptionDetails(prescription.barcode)" class="btn btn-success" style="
+              margin-right: 24px; margin-top: 5px; margin-bottom: 5px;">
+                Δείτε<br>Περισσότερα
+              </button>
+              <br>
+              <ng-container
+                *ngIf="prescription.status.status != 'ΑΚΥΡΩΜΕΝΗ' && prescription.status.status != 'ΟΛΟΚΛΗΡΩΜΕΝΗ'">
+                <button (click)="editPrescription(prescription.barcode)" class="btn btn-info" style="
+                    margin-right: 24px; margin-top: 5px; margin-bottom: 5px;">
+                  Επεξεργασία
+                </button>
+                <br>
+              </ng-container>
+              <ng-container
+                *ngIf="prescription.status.status != 'ΑΚΥΡΩΜΕΝΗ' && prescription.status.status != 'ΟΛΟΚΛΗΡΩΜΕΝΗ'">
+                <button (click)="openConfirmDeleteModal(prescription.barcode)" class="btn btn-danger" style="
+                    margin-right: 24px; margin-top: 5px; margin-bottom: 5px;">
+                  Ακύρωση
+                </button>
+                <br>
+              </ng-container>
+            </td>
+          </tr>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="isFetching">
+        <div>
+          <app-spinner class="main-loader"></app-spinner>
+        </div>
+      </ng-container>
+      </tbody>
+    </table> -->
+  </div>
+</div>
