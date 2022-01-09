@@ -33,4 +33,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.doctorSub.unsubscribe();
   }
+  handleMenu(event: Event) {
+    // console.log('clicked');
+    var target = event.target as HTMLInputElement;
+    var element = target.parentElement;
+    element.classList.add('active');
+    // console.log(element);
+  }
 }
