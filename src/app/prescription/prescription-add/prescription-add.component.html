@@ -1,9 +1,27 @@
-<div class="row">
-  <div class="col-12">
+
+  <div>
     <app-header></app-header>
-  </div>
-  <div class="col-12">
-    <div class="col-10">
+    <!-- Page Content Holder -->
+    <div id="content">
+      <nav class="navbar navbar-default" style="padding: 0; text-align: left;">
+          <div class="container-fluid" style="padding: 0;">
+              <div class="navbar-header">
+                  <button type="button" id="sidebarCollapse" (click)="handleClick($event)" class="btn btn-info navbar-btn">
+                    <i class="fa fa-bars"></i>
+                    
+                      <!-- <span class="glyphicon glyphicon-align-justify"></span> -->
+                      <!-- <span>Toggle Sidebar</span> -->
+                  </button>
+              </div>
+
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-right">
+                      <li><a href="#">Page</a></li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+      
       <br>
       <br>
       <h3 style="color: #107dd0;">Δημιουργία Συνταγής</h3>
@@ -48,7 +66,7 @@
         <div class="form-group">
           <label for="medicine-name" style="color: #107dd0;">Αναζητήστε Φάρμακα Βάσει του Ονόματος Φαρμάκου: </label>
           <input [(ngModel)]="prescriptionData.medicineName" name="medicine-name" id="medicine-name"
-                 class="form-control" type="text" placeholder="Όνομα Φαρμάκου" required #r1="ngModel"/>
+                class="form-control" type="text" placeholder="Όνομα Φαρμάκου" required #r1="ngModel"/>
           <div style="color: red; font-size: 13px;" *ngIf="!r1.valid && r1.touched">Παρακαλώ συμπληρώστε αυτό το
             πεδίο!
           </div>
@@ -113,7 +131,7 @@
         <div class="form-group">
           <label for="icd10-title" style="color: #107dd0;">Αναζητήστε ICD-10 Βάσει του Τίτλου ICD-10: </label>
           <input [(ngModel)]="prescriptionData.icd10title" name="icd10-title" id="icd10-title" class="form-control"
-                 type="text" placeholder="ICD-10 Τίτλος" required #r2="ngModel"/>
+                type="text" placeholder="ICD-10 Τίτλος" required #r2="ngModel"/>
           <div style="color: red; font-size: 13px;" *ngIf="!r2.valid && r2.touched">Παρακαλώ συμπληρώστε αυτό το
             πεδίο!
           </div>
@@ -124,7 +142,7 @@
             <label for="icd10-description" style="color: #107dd0;">Αναζητήστε ICD-10 Βάσει της Περιγραφής
               ICD-10: </label>
             <input [(ngModel)]="prescriptionData.icd10description" name="icd10-description" id="icd10-description"
-                   class="form-control" type="text" placeholder="ICD-10 Περιγραφή"/>
+                  class="form-control" type="text" placeholder="ICD-10 Περιγραφή"/>
           </div>
         </ng-container>
 
@@ -163,7 +181,7 @@
         <div class="form-group">
           <label for="disease-name" style="color: #107dd0;">Αναζητήστε Ασθένεια: </label>
           <input [(ngModel)]="prescriptionData.diseaseName" name="disease-name" id="disease-name" class="form-control"
-                 type="text" placeholder="Ασθένεια" required #r4="ngModel"/>
+                type="text" placeholder="Ασθένεια" required #r4="ngModel"/>
           <div style="color: red; font-size: 13px;" *ngIf="!r4.valid && r4.touched">Παρακαλώ συμπληρώστε αυτό το
             πεδίο!
           </div>
@@ -252,7 +270,7 @@
           <div class="btn-group btn-group-toggle">
             <label class="btn-primary" ngbButtonLabel>
               <ng-container *ngIf="checkboxGroupForm.value.isChronicIllness === null
-               || checkboxGroupForm.value.isChronicIllness === false">
+              || checkboxGroupForm.value.isChronicIllness === false">
                 <input type="checkbox" formControlName="isChronicIllness" ngbButton> Όχι
               </ng-container>
               <ng-container *ngIf="checkboxGroupForm.value.isChronicIllness === true">
@@ -269,7 +287,7 @@
           <div class="btn-group btn-group-toggle">
             <label class="btn-primary" ngbButtonLabel>
               <ng-container *ngIf="checkboxGroupForm.value.isMonthlyPrescription === null
-               || checkboxGroupForm.value.isMonthlyPrescription === false">
+              || checkboxGroupForm.value.isMonthlyPrescription === false">
                 <input type="checkbox" formControlName="isMonthlyPrescription" ngbButton> Όχι
               </ng-container>
               <ng-container *ngIf="checkboxGroupForm.value.isMonthlyPrescription === true">
@@ -286,7 +304,7 @@
           <div class="btn-group btn-group-toggle">
             <label class="btn-primary" ngbButtonLabel>
               <ng-container *ngIf="checkboxGroupForm.value.isTwoMonthsPrescription === null
-               || checkboxGroupForm.value.isTwoMonthsPrescription === false">
+              || checkboxGroupForm.value.isTwoMonthsPrescription === false">
                 <input type="checkbox" formControlName="isTwoMonthsPrescription" ngbButton> Όχι
               </ng-container>
               <ng-container *ngIf="checkboxGroupForm.value.isTwoMonthsPrescription === true">
@@ -305,7 +323,7 @@
           <div class="btn-group btn-group-toggle">
             <label class="btn-primary" ngbButtonLabel>
               <ng-container *ngIf="checkboxGroupForm.value.isPrescribedByBrandNameMedicine === null
-               || checkboxGroupForm.value.isPrescribedByBrandNameMedicine === false">
+              || checkboxGroupForm.value.isPrescribedByBrandNameMedicine === false">
                 <input type="checkbox" formControlName="isPrescribedByBrandNameMedicine" ngbButton> Όχι
               </ng-container>
               <ng-container *ngIf="checkboxGroupForm.value.isPrescribedByBrandNameMedicine === true">
@@ -317,7 +335,7 @@
         <br>
 
         <ng-container *ngIf="checkboxGroupForm.value.isPrescribedByBrandNameMedicine !== null
-               && checkboxGroupForm.value.isPrescribedByBrandNameMedicine === true">
+              && checkboxGroupForm.value.isPrescribedByBrandNameMedicine === true">
           <div ngbDropdown class="d-inline-block">
             <label for="dropdownBasic5" style="color: #107dd0;">
               Επιλογή Λόγου Συνταγογράφησης με Βάση την Εμπορική Ονομασία του Φαρμάκου:
@@ -351,8 +369,3 @@
           Δημιουργήστε την<br>Συνταγή
         </button>
       </form>
-      <br>
-      <br>
-    </div>
-  </div>
-</div>

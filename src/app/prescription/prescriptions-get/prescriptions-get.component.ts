@@ -61,4 +61,14 @@ export class PrescriptionsGetComponent implements OnInit {
       console.log(err);
     });
   }
+  handleClick(event: Event) {
+    document.querySelector('#sidebar, #content').classList.toggle('active');
+    if (document.querySelector('#sidebar').classList.contains('active')) {
+      document.querySelector<HTMLElement>('#content').classList.add('full-width');
+      document.querySelector('#sidebarCollapse').classList.add('replace-button');
+    } else {
+      document.querySelector<HTMLElement>('#content').classList.remove('full-width');
+      document.querySelector('#sidebarCollapse').classList.remove('replace-button');
+    }
+  }
 }

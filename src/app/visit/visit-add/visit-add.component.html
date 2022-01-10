@@ -1,39 +1,52 @@
-<div class="row">
-  <div class="col-12">
-    <app-header></app-header>
-  </div>
-  <div class="col-12">
-    <div class="col-10">
+<div>
+  <app-header></app-header>
+  <!-- Page Content Holder -->
+  <div id="content">
+    <nav class="navbar navbar-default" style="padding: 0; text-align: left;">
+      <div class="container-fluid" style="padding: 0;">
+          <div class="navbar-header">
+              <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                <i class="fa fa-bars"></i>
+              </button>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#">Page</a></li>
+              </ul>
+          </div>
+      </div>
+    </nav>
+    <div>
       <br>
       <br>
-      <h3 style="color: #107dd0;">Δημιουργία Επίσκεψης</h3>
+      <h3 style="color: #566089;">Δημιουργία Επίσκεψης</h3>
       <hr>
       <form #f="ngForm">
         <div class="form-group">
-          <label for="visit-reason" style="color: #107dd0;">Λόγος Επίσκεψης: </label>
+          <label for="visit-reason" style="color: #566089;">Λόγος Επίσκεψης: </label>
           <input [(ngModel)]="visitData.reason" name="visit-reason" id="visit-reason" class="form-control" type="text"
-                 placeholder="Λόγος Επίσκεψης" required #r1="ngModel"/>
+                  placeholder="Λόγος Επίσκεψης" required #r1="ngModel"/>
           <div style="color: red; font-size: 13px;" *ngIf="!r1.valid && r1.touched">Παρακαλώ συμπληρώστε αυτό το
             πεδίο!
           </div>
         </div>
 
         <div class="form-group">
-          <label for="visit-comments" style="color: #107dd0;">Σχόλια Επίσκεψης: </label>
+          <label for="visit-comments" style="color: #566089;">Σχόλια Επίσκεψης: </label>
           <textarea [(ngModel)]="visitData.comments" name="visit-comments" id="visit-comments" class="form-control"
                     type="text" rows="3" placeholder="Σχόλια Επίσκεψης"></textarea>
         </div>
 
         <div class="form-group">
-          <label for="patient-amka" style="color: #107dd0;">ΑΜΚΑ Ασθενή: </label>
+          <label for="patient-amka" style="color: #566089;">ΑΜΚΑ Ασθενή: </label>
           <input [(ngModel)]="visitData.patientAmka" name="patient-amka" id="patient-amka" class="form-control"
-                 type="text" placeholder="ΑΜΚΑ Ασθενή" (focusout)="getPatient(visitData.patientAmka)" required
-                 #r2="ngModel"/>
+                  type="text" placeholder="ΑΜΚΑ Ασθενή" (focusout)="getPatient(visitData.patientAmka)" required
+                  #r2="ngModel"/>
           <div style="color: red; font-size: 13px;" *ngIf="!r2.valid && r2.touched">Παρακαλώ συμπληρώστε αυτό το
             πεδίο!
           </div>
           <ng-container *ngIf="visit.patient.amka != null">
-            <div style="color: #107dd0;">
+            <div style="color: #566089;">
               Στοιχεία Ασθενή:
               <ul>
                 <li>{{visit.patient.firstName + ' ' + visit.patient.lastName}}</li>
@@ -45,7 +58,7 @@
           </ng-container>
         </div>
 
-        <label for="dropdownBasic1" style="color: #107dd0;">Επιλογή Μονάδας Συνταγογράφησης: </label>
+        <label for="dropdownBasic1" style="color: #566089;">Επιλογή Μονάδας Συνταγογράφησης: </label>
         <br>
         <div ngbDropdown class="d-inline-block">
           <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
