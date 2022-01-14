@@ -1,6 +1,9 @@
 .personal-info {
     border: 1px black;
 }
+.card-body > h5 {
+    text-align: center;
+}
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
