@@ -1,6 +1,37 @@
 .personal-info {
     border: 1px black;
 }
+.card-body > h5 {
+    text-align: center;
+}
+.rounded-circle {
+    border: 3px solid #507093;
+}
+.navbar-default {
+    margin-left: -16px;
+    margin-top: -28px;
+    text-align: left;
+}
+.container-fluid {
+    padding: 0;
+}
+.list-group-item span {
+    margin-left: 10px;
+}
+.list-group li:hover {
+    background-color: #d6e6f3;
+    cursor: pointer;
+}
+.card-body > h5 {
+    font-size: 25px;
+    padding-bottom: 25px;
+    padding-top: 10px;
+    text-shadow: 0 0 3px #507093;
+    font-weight: 700;
+}
+.card {
+    margin-top: 13px;
+}
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
@@ -38,9 +69,15 @@
     #content.active {
         width: calc(100% - 250px);
     }
+    .list-group-item i {
+        font-size: 25px;
+    }
 }
 @media (min-width: 961px) {
     #sidebarCollapse {
         display: none;
+    }
+    .list-group-item i {
+        font-size: 30px;
     }
 }
