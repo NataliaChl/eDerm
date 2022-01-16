@@ -22,7 +22,6 @@ export class DoctorInfoComponent implements OnInit {
     this.isFetching = true;
     this.rest.getDoctorInfoMe().subscribe((data: any) => {
       this.doctor = data;
-      console.log(data);
       this.isFetching = false;
     });
   }

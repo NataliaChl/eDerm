@@ -19,9 +19,463 @@
 .replace-button {
     margin-left: 220px !important;
 }
+  
+.tb {
+    display: table;
+    width: 100%;
+}
+
+.td {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#amka-input,
+#submit-button {
+    color: #fff;
+    font-family: Nunito;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-color: transparent;
+    width: 100%;
+}
+#submit-button {
+    position: relative;
+    display: block;
+    cursor: pointer;
+}
+#submit-button span {
+    position: absolute;
+    display: block;
+    background-color: transparent;
+    border-radius: 10px;
+    transform: rotateZ(52deg);
+    transition: 0.5s ease all;
+}
+  
+#submit-button span:before,
+#submit-button span:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+    border-radius: 10px;
+    transform: rotateZ(0);
+    transition: 0.5s ease all;
+}
+#amka-input {
+    width: 100%;
+    line-height: 1;
+}
+#cover {
+    padding: 18px;
+    background-color: #ccd3f3;
+    border-radius: 20px;
+    box-shadow: 5px 5px 35px #919bbf;
+    border: 0.5px #6283a3 solid;
+}
+form {
+    height: 96px;
+}
+#s-cover {
+    width: 1px;
+    padding-left: 35px;
+}
+#s-circle {
+    position: relative;
+    left: 0;
+    margin-top: 0;
+    border-width: 15px;
+    background-color: transparent;
+    border-radius: 50%;
+    transition: 0.5s ease all;
+}
+#s-cover:hover #s-circle {
+    top: -1px;
+    border-width: 0;
+    background-color: #fff;
+    border-radius: 10px;
+}
+#s-cover:hover button span:before {
+    bottom: 11px;
+    transform: rotateZ(52deg);
+}
+#s-cover:hover button span:after {
+    bottom: -11px;
+    transform: rotateZ(-52deg);
+}
+#s-cover:hover button span:before,
+#s-cover:hover button span:after {
+    background-color: #fff;
+}
+.patient-info > h5 {
+    text-align: center;
+}
+.patient-info {
+    margin-top: 10%;
+}
+.navbar-default {
+    margin-left: -16px;
+    margin-top: -28px;
+    text-align: left;
+}
+.container-fluid {
+    padding: 0;
+}
+.list-group-item span {
+    margin-left: 10px;
+}
+.list-group li:hover {
+    background-color: #d6e6f3;
+    cursor: pointer;
+}
+.patient-info > h5 {
+    font-size: 25px;
+    padding-bottom: 25px;
+    padding-top: 10px;
+    text-shadow: 0 0 3px #507093;
+    font-weight: 700;
+}
+.card {
+    margin-top: 16%;
+    box-shadow: #b2d0ef 0px 1px 2px 0px, #c6d6e7 0px 1px 12px 5px;
+}
+.alert-danger p {
+    width: 100%;
+    overflow: auto;
+}
+.alert-danger  {
+    margin-top: 40px;
+}
+.alert-danger svg {
+    width: 100%;
+}
+.fa-angle-down {
+    font-size:24px;
+    color:#721C24;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+input:focus, textarea:focus, select:focus, button:focus {
+    outline: none;
+}
+.hidden {
+    display: none;
+}
+
+
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
+/* control the page in several devices */
+@media (max-width: 480px) {
+    #s-cover button {
+        display: none;
+    }
+    #s-cover .fa-search {
+        font-size: 30px;
+        color: white;
+        transform: rotate(90deg);
+        margin-top: -3px;
+        margin-right: -12px;    
+    }
+    #s-cover {
+        padding-left: 8px !important;
+    }
+    #cover {
+        height: 54px;
+    }
+    #cover .tb:first-child {
+        margin-top: -6px;
+    }
+    #amka-input {
+        font-size: 24px;
+    }
+    #s-circle {
+        border: 5px solid #fff;
+        top: -9px;
+        width: 35px;
+        height: 35px;
+    }
+    #submit-button {
+        width: 68px;
+    }
+    #submit-button span {
+        top: 13px;
+        left: 2px;
+        width: 55px;
+        height: 11px;
+    }
+    #submit-button span:before,
+    #submit-button span:after {
+        width: 33px;
+        height: 7px;
+    }
+    #s-cover:hover #s-circle {
+        top: -1px;
+        width: 67px;
+        height: 15px;
+    }
+    #s-cover:hover button span:before,
+    #s-cover:hover button span:after {
+        right: -6px;
+        width: 40px;
+    }
+    #s-cover:hover span {
+        top: 50%;
+        left: 56px;
+        width: 25px;
+        margin-top: -9px;
+        transform: rotateZ(0);
+    }
+    .amka-search {
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 30px;
+    }
+    .card h5:first-child {
+        padding: 10px;
+        text-align: center;
+        text-shadow: 0 1px 5px rgb(45 123 207 / 50%);
+        font-weight: 600;
+        font-size: 18px;
+        margin-top: 10px;
+    }
+    .card li h6 {
+        font-size: 14px;
+    }
+    .card li span.text-secondary {
+        font-size: 13px;
+    }
+    .alert-danger p {
+        font-size: 14px;
+    }
+}
+/* @media (min-width: 481px) {
+    #cover {
+        height: 65px;
+    }
+    #amka-input {
+        font-size: 30px;
+    }
+    #s-circle {
+        border: 5px solid #fff;
+        top: -9px;
+        width: 35px;
+        height: 35px;
+    }
+    #submit-button {
+        width: 68px;
+    }
+    #submit-button span {
+        top: 13px;
+        left: 2px;
+        width: 55px;
+        height: 11px;
+    }
+    #submit-button span:before,
+    #submit-button span:after {
+        width: 33px;
+        height: 7px;
+    }
+    #s-cover:hover #s-circle {
+        top: -1px;
+        width: 67px;
+        height: 15px;
+    }
+    #s-cover:hover button span:before,
+    #s-cover:hover button span:after {
+        right: -6px;
+        width: 40px;
+    }
+} */
+@media (min-width: 481px) and (max-width: 900px) {
+    #s-cover .fa-search {
+        display: none;
+    }
+    #cover {
+        height: 68px;
+    }
+    #amka-input {
+        font-size: 30px;
+    }
+    #s-circle {
+        border: 5px solid #fff;
+        top: -9px;
+        width: 35px;
+        height: 35px;
+    }
+    #submit-button {
+        width: 50px;
+    }
+    #submit-button span {
+        top: 22px;
+        left: 12px;
+        width: 37px;
+        height: 7px;
+    }
+    #submit-button span:before,
+    #submit-button span:after {
+        width: 26px;
+        height: 5px;
+    }
+    #s-cover:hover #s-circle {
+        top: -6px;
+        width: 44px;
+        height: 5px;
+    }
+    #s-cover:hover button span:before,
+    #s-cover:hover button span:after {
+        right: 29px;
+        width: 26px;
+    }
+    #s-cover:hover span {
+        top: 50%;
+        left: 52px;
+        width: 24px;
+        margin-top: -10px;
+        transform: rotateZ(0);
+    }
+    .amka-search {
+        padding-top: 35px;
+    }
+    .card h5:first-child {
+        padding: 15px;
+        text-align: center;
+        text-shadow: 0 1px 5px rgb(45 123 207 / 50%);
+        font-weight: 600;
+        font-size: 22px;
+    }
+    .card li h6 {
+        font-size: 17px;
+    }
+    .card li span.text-secondary {
+        font-size: 16px;
+    }
+    .alert-danger p {
+        font-size: 17px;
+    }
+}
+@media (min-width: 901px) {
+    #s-cover .fa-search {
+        display: none;
+    }
+    #cover {
+        height: 78px;
+    }
+    #amka-input {
+        font-size: 35px;
+    }
+    #s-circle {
+        border: 7px solid #fff;
+        top: -8px;
+        width: 40px;
+        height: 40px;
+    }
+    #submit-button {
+        width: 67px;
+    }
+    #submit-button span {
+        top: 25px;
+        left: 13px;
+        width: 46px;
+        height: 11px;
+    }
+    #submit-button span:before,
+    #submit-button span:after {
+        width: 33px;
+        height: 8px;
+    }
+    #s-cover:hover #s-circle {
+        top: -1px;
+        width: 47px;
+        height: 8px;
+    }
+    #s-cover:hover button span:before,
+    #s-cover:hover button span:after {
+        right: 28px;
+        width: 33px;
+    }
+    #s-cover:hover span {
+        top: 50%;
+        left: 56px;
+        width: 25px;
+        margin-top: -9px;
+        transform: rotateZ(0);
+    }
+    .amka-search {
+        padding-top: 45px;
+    }
+    .card h5:first-child {
+        padding: 20px;
+        text-align: center;
+        text-shadow: 0 1px 5px rgb(45 123 207 / 50%);
+        font-weight: 600;
+        font-size: 24px;
+    }
+    .card li h6 {
+        font-size: 20px;
+    }
+    .card li span.text-secondary {
+        font-size: 18px;
+    }
+    .alert-danger p {
+        font-size: 18px;
+    }
+}
+/* @media (min-width: 901px) {
+    #cover {
+        height: 95px;
+    }
+    #amka-input {
+        font-size: 50px;
+    }
+    #s-circle {
+        border: 15px solid #fff;
+        top: -14px;
+        width: 55px;
+        height: 55px;
+    }
+    #submit-button {
+        width: 84px;
+    }
+    #submit-button span {
+        top: 30px;
+        left: 15px;
+        width: 60px;
+        height: 15px;
+    }
+    #submit-button span:before,
+    #submit-button span:after {
+        width: 45px;
+        height: 15px;
+    }
+    #s-cover:hover #s-circle {
+        top: -1px;
+        width: 67px;
+        height: 15px;
+    }
+    #s-cover:hover button span:before,
+    #s-cover:hover button span:after {
+        right: -6px;
+        width: 40px;
+    }
+} */
+
+
+
+
+
 @media (max-width: 960px) {
     #sidebar {
         margin-left: -250px;

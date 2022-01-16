@@ -1,23 +1,81 @@
 
+<div>
   <app-header></app-header>
-  <!-- Page Content Holder -->
-  <div id="content">
-    <nav class="navbar navbar-default" style="padding: 0; text-align: left;">
-        <div class="container-fluid" style="padding: 0;">
+    <!-- Page Content Holder -->
+    <div id="content">
+        <nav class="navbar navbar-default">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                  <i class="fa fa-bars"></i>
-                  
-                    <!-- <span class="glyphicon glyphicon-align-justify"></span> -->
-                    <!-- <span>Toggle Sidebar</span> -->
+                    <i class="fa fa-bars"></i>
                 </button>
             </div>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Page</a></li>
-                </ul>
-            </div>
         </div>
-    </nav>
-<p>amka-search works!</p>
+        </nav>
+        <div class="amka-search col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2">
+            <div id="cover">
+                <div class="tb">
+                    <div class="td">
+                        <input id="amka-input" [(ngModel)]="amka" type="number" placeholder="Αριθμός ΑΜΚΑ" required>
+                    </div>
+                    <div class="td" id="s-cover">
+                        <button id="submit-button" type="submit" (click)="getPatient(amka)">
+                            <div id="s-circle"></div>
+                        <span></span>
+                        </button>
+                        <i class="fa fa-search" (click)="getPatient(amka)"></i>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="patientResponse">
+                <div class="patient-info" class="card" *ngIf="!isFetching">
+                    <h5>Στοιχεία ασφαλισμένου</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><i class="far fa-user-circle"></i><span>Ονοματεπώνυμο:</span></h6>
+                        <span class="text-secondary">{{patientResponse.firstName}} {{patientResponse.lastName}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><i class="fa fa-calendar"></i><span>Hμερομηνία Γέννησης:</span></h6>
+                        <span class="text-secondary">{{patientResponse.birthDate | date}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><i class="far fa-address-card"></i><span>Ασφάλιση:</span></h6>
+                        <span class="text-secondary">{{patientResponse.activeInsurance[0].socialInsurance.name}} ({{patientResponse.activeInsurance[0].socialInsurance.shortName}})</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><i class="fas fa-home"></i><span>Διεύθυνση κατοικίας:</span></h6>
+                        <span class="text-secondary">{{patientResponse.address}} , {{patientResponse.postalCode}} , {{patientResponse.country.name}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><i class="far fa-envelope-open"></i><span>Τελευταία συνταγογράφηση:</span></h6>
+                        <span class="text-secondary">{{patientResponse.lastPrescriptionDate}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><i class="fas fa-phone"></i><span>Επικοινωνία:</span></h6>
+                        <span class="text-secondary">{{patientResponse.telephone}}</span>
+                        </li>
+                        <!-- <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><i class="fa fa-plus-square"></i><span>Ειδικότητα:</span></h6>
+                        <span class="text-secondary">  </span>
+                        </li> -->
+                    </ul>
+                </div>
+                <div class="alert alert-danger shadow" role="alert" style="border-left:#721C24 5px solid; border-radius: 0px">
+                    <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="fas fa-angle-down"></i>
+                    </button>
+                    <div class="row">
+                        <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="m-1 bi bi-exclamation-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                        </svg>
+                          <p class="mb-0 font-weight-light">{{patientResponse.covidVaccineMessage}}</p>
+                    </div>
+                </div>
+            </div>
+            <ng-container *ngIf="isFetching">
+                <app-spinner class="main-loader"></app-spinner>
+            </ng-container>
+        </div>
+    </div>
+</div>
