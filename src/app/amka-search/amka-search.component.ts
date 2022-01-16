@@ -8,7 +8,8 @@ import {Visit} from '../entity/visit';
   styleUrls: ['./amka-search.component.css']
 })
 export class AmkaSearchComponent implements OnInit {
-  fixedUrl: boolean;
+  // fixedUrl: boolean;
+  amka: number;
   visit: Visit;
   isFetching = false;
   patientResponse = null;
