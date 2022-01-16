@@ -12,7 +12,23 @@
             </div>
         </div>
         </nav>
+
+
+        <!-- <div (mouseover)="changeText=true" (mouseout)="changeText=false">
+            <span *ngIf="!changeText">Hide</span>
+            <span *ngIf="changeText">Show</span>
+          </div> -->
+
+
         <div class="amka-search col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2">
+            <div (mouseover)="changeText=true" (mouseout)="changeText=false" class="doc-info" role="alert">
+                <div class="row">
+                    <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="m-1 bi bi-bell-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+                    </svg>
+                      <p *ngIf="changeText" class="mb-0 font-weight-light">Μπορείτε να κάνετε αναζήτηση βάσει του αριθμού ΑΜΚΑ του ασθενή σας. Οι πληροφορίες που εμφανίζονται έχουν καταχωρηθεί στο κρατικό σύστημα.</p>
+                </div>
+            </div>
             <div id="cover">
                 <div class="tb">
                     <div class="td">
@@ -61,7 +77,7 @@
                         </li> -->
                     </ul>
                 </div>
-                <div class="alert alert-danger shadow" role="alert" style="border-left:#721C24 5px solid; border-radius: 0px">
+                <div class="alert alert-danger shadow" role="alert">
                     <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <i class="fas fa-angle-down"></i>
                     </button>

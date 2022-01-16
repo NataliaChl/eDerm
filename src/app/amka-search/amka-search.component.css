@@ -146,8 +146,10 @@ form {
     width: 100%;
     overflow: auto;
 }
-.alert-danger  {
+.alert-danger {
     margin-top: 40px;
+    border-left:#721C24 5px solid;
+    border-radius: 0px
 }
 .alert-danger svg {
     width: 100%;
@@ -260,6 +262,9 @@ input:focus, textarea:focus, select:focus, button:focus {
     .alert-danger p {
         font-size: 14px;
     }
+    .doc-info {
+        display: none;
+    }
 }
 /* @media (min-width: 481px) {
     #cover {
@@ -365,6 +370,9 @@ input:focus, textarea:focus, select:focus, button:focus {
     .alert-danger p {
         font-size: 17px;
     }
+    .doc-info {
+        display: none;
+    }
 }
 @media (min-width: 901px) {
     #s-cover .fa-search {
@@ -431,6 +439,14 @@ input:focus, textarea:focus, select:focus, button:focus {
     }
     .alert-danger p {
         font-size: 18px;
+    }
+    .doc-info {
+        color: #004085;
+        height: 65px;
+    }
+    .doc-info p {
+        font-size:18px;
+        width: 90%
     }
 }
 /* @media (min-width: 901px) {
