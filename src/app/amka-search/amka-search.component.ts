@@ -31,6 +31,9 @@ export class AmkaSearchComponent implements OnInit {
       this.isFetching = false;
     });
   }
+  closeAlert(): void {
+    document.querySelector('.font-weight-light').classList.toggle('hidden');
+  }
   
   // removeUrlString(covidMessage): void {
   //   console.log(covidMessage);

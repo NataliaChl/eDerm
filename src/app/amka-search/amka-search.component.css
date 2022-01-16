@@ -149,6 +149,13 @@ form {
 .alert-danger  {
     margin-top: 40px;
 }
+.alert-danger svg {
+    width: 100%;
+}
+.fa-angle-down {
+    font-size:24px;
+    color:#721C24;
+}
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -161,6 +168,9 @@ input[type=number] {
 }
 input:focus, textarea:focus, select:focus, button:focus {
     outline: none;
+}
+.hidden {
+    display: none;
 }
 
 
