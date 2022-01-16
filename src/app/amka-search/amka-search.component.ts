@@ -11,6 +11,7 @@ export class AmkaSearchComponent implements OnInit {
   // fixedUrl: boolean;
   amka: number;
   visit: Visit;
+  changeText: boolean;
   isFetching = false;
   patientResponse = null;
 
