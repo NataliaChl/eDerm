@@ -1,3 +1,6 @@
+
+@import url("https://unpkg.com/@webpixels/css@1.1.5/dist/index.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css");
 body{margin-top:20px;
     background-color: #e4e6e9;
     color: #41464d;
@@ -132,6 +135,85 @@ text-decoration:line-through;;
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
+/* handle tables on several devices */
+@media (max-width: 420px) {
+    #desktop-table {
+        display: none;
+    }
+    #mid-table {
+        display: none;
+    }
+    #mobile-table {
+        display: block;
+    }
+    #content {
+        padding: 10px !important;
+    }
+    .table-responsive {
+        padding: 2px;
+    }
+    .first-column {
+        padding-left: 5px;
+        padding-right: 7px;
+        width: 80%;
+    }
+    .text-end {
+        padding-left: 0;
+        width: 20%;
+    }
+    .text-end button {
+        margin-top: 17px;
+    }
+}
+@media (min-width: 421px) and (max-width: 790px) {
+    #desktop-table {
+        display: none;
+    }
+    #mobile-table {
+        display: none;
+    }
+    #mid-table {
+        display: block;
+    }
+    #content {
+        padding: 10px !important;
+    }
+    .table-responsive {
+        padding: 2px;
+    }
+    .first-column {
+        padding-left: 5px;
+        padding-right: 7px;
+        width: 80%;
+    }
+    .text-end {
+        padding-left: 0;
+        width: 20%;
+    }
+    .text-end button {
+        margin-top: 17px;
+    }
+    .mid-amka {
+        font-weight: 600;
+        font-style: italic;
+    }
+    .mid-column {
+        padding-left: 0;
+    }
+}
+
+@media (min-width: 791px) {
+    #mobile-table {
+        display: none;
+    }
+    #desktop-table {
+        display: block;
+    }
+    #mid-table {
+        display: none;
+    }
+}
+
 @media (max-width: 960px) {
     #sidebar {
         margin-left: -250px;
@@ -145,13 +227,62 @@ text-decoration:line-through;;
     #content.active {
         width: calc(100% - 250px);
     }
+    .date {
+        display: none;
+    }
 }
 @media (min-width: 961px) {
     #sidebarCollapse {
         display: none;
     }
+    .date {
+        display: block;
+    }
 }
 
 #sidebarCollapse {
     background-color: #566089;
+}
+
+#myInput {
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+/* searchbar */
+.form {
+    position: relative
+}
+
+.form .fa-search {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #9ca3af
+}
+
+.form span {
+    position: absolute;
+    right: 17px;
+    top: 13px;
+    padding: 2px;
+    border-left: 1px solid #d1d5db
+}
+
+.form-input {
+    height: 55px;
+    text-indent: 33px;
+    border-radius: 10px
+}
+.text-end button {
+    border-radius: 40%;
+    border: 1px solid #7684bf;
+    font-size: 17px;
+    margin-right: 5px;
+}
+.far.fa-trash-alt {
+    width: 19px;
+}
+tr {
+    width: 100%;
 }
