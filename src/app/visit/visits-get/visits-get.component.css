@@ -108,7 +108,14 @@ body{margin-top:20px;
 }
 
 .deleted-text{
-text-decoration:line-through;;    
+    text-decoration: line-through;;    
+}
+.page-title {
+    color: #566089;
+    display:inline;
+}
+.far.fa-trash-alt {
+    color: #fe5f5f;
 }
 
 /* ---------------------------------------------------
@@ -130,13 +137,14 @@ text-decoration:line-through;;
     width: 100% !important;
 }
 .replace-button {
-    margin-left: 220px !important;
+    margin-left: 249px !important;
 }
+
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
 /* handle tables on several devices */
-@media (max-width: 420px) {
+@media (max-width: 530px) {
     #desktop-table {
         display: none;
     }
@@ -163,9 +171,12 @@ text-decoration:line-through;;
     }
     .text-end button {
         margin-top: 17px;
+    }
+    .far.fa-trash-alt {
+        width: 19px;
     }
 }
-@media (min-width: 421px) and (max-width: 790px) {
+@media (min-width: 531px) and (max-width: 790px) {
     #desktop-table {
         display: none;
     }
@@ -192,6 +203,9 @@ text-decoration:line-through;;
     }
     .text-end button {
         margin-top: 17px;
+    }
+    .text-heading {
+        font-size: 15px;
     }
     .mid-amka {
         font-weight: 600;
@@ -199,6 +213,12 @@ text-decoration:line-through;;
     }
     .mid-column {
         padding-left: 0;
+    }
+    .far.fa-trash-alt {
+        width: 19px;
+    }
+    .thead-light tr th {
+        font-size: 16px;
     }
 }
 
@@ -211,6 +231,42 @@ text-decoration:line-through;;
     }
     #mid-table {
         display: none;
+    }
+    #myTable td {
+        width: 25%;
+    }
+    .desk-date i {
+        margin-top: 9px;
+        margin-left: 10px;
+    }
+    .desk-date .fa-calendar-alt * {
+        font-size: 15px;
+    }
+    #content {
+        padding-left: 5px;
+        padding-right: 2px;
+    }
+    .page-title {
+        font-size: 35px;
+        margin-left: 30px;
+    }
+    .amka-number {
+        font-size: 19px;
+    }
+    .text-heading {
+        font-size: 16px;
+    }
+    .badge-dot {
+        font-size: 16px;
+    }
+    .text-end button {
+       font-size: 22px;
+    }
+    .far.fa-trash-alt {
+        width: 24px;
+    }
+    .thead-light tr th {
+        font-size: 18px;
     }
 }
 
@@ -277,11 +333,7 @@ text-decoration:line-through;;
 .text-end button {
     border-radius: 40%;
     border: 1px solid #7684bf;
-    font-size: 17px;
     margin-right: 5px;
-}
-.far.fa-trash-alt {
-    width: 19px;
 }
 tr {
     width: 100%;

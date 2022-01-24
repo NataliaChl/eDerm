@@ -18,41 +18,11 @@
         </div>
     </nav>
 
-    <h2 style="color: #566089; display:inline;">Λίστα Επισκέψεων</h2>
+    <h2 class="page-title">Λίστα Επισκέψεων</h2>
     <button (click)="createVisit()" type="button" class="btn btn-primary" style="float: right;">
       Δημιουργία Επίσκεψης
     </button>
     <div class="form"> <i class="fa fa-search"></i><input id="myInput" type="text" class="form-control form-input" (keyup)="myFunction($event)" placeholder="Αναζήτηση επίσκεψης.."> </div>
-
-    <!-- <table id="myTable">
-      <tr class="header">
-        <th scope="col">ΑΜΚΑ Ασθενή</th>
-        <th scope="col">Ονοματεπώνυμο</th>
-        <th scope="col">Ημερομηνία</th>
-        <th scope="col">Κατάσταση</th>
-        <th scope="col">Δράση</th>
-      </tr>
-      <ng-container *ngIf="!isFetching && visits.item.length >= 0">
-        <ng-container *ngFor="let visit of visits.item">
-          <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Germany</td>
-          </tr>
-          <tr>
-            <td>Berglunds snabbkop</td>
-            <td>Sweden</td>
-          </tr>
-          <tr>
-            <td>Island Trading</td>
-            <td>UK</td>
-          </tr>
-          <tr>
-            <td>Koniglich Essen</td>
-            <td>Germany</td>
-          </tr>
-        </ng-container>
-      </ng-container>
-    </table> -->
 
     <div class="table-responsive col-sm-12 col-md-12 col-lg-12 col-xl-12">
       <table id="desktop-table" class="table table-hover table-nowrap">
@@ -68,7 +38,7 @@
           <ng-container *ngIf="!isFetching && visits.item.length >= 0">
             <ng-container *ngFor="let visit of visits.item">
               <tr>
-                <td>{{visit.patientInfo.amka}}</td>
+                <td class="amka-number">{{visit.patientInfo.amka}}</td>
                 <td>
                   <img alt="..." src="../../../assets/user.png" class="avatar avatar-sm rounded-circle me-2"> <a class="text-heading font-semibold" href="#">{{visit.patientInfo.firstName + ' ' + visit.patientInfo.lastName}}</a> 
                   <br><span class="desk-date"><i class="far fa-calendar-alt" style="font-size:20px"></i>    {{visit.startDate}}</span>
