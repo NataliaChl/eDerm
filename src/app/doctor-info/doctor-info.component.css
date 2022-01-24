@@ -32,6 +32,13 @@
 .card {
     margin-top: 13px;
 }
+.text-secondary {
+    color: #566089 !important;
+    font-size: 19px;
+}
+.list-group-item span {
+    font-size: 18px;
+}
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
