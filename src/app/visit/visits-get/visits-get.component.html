@@ -1,76 +1,132 @@
 <div>
   <app-header></app-header>
-  <!-- Page Content Holder -->
-  <div id="content">
-    <nav class="navbar navbar-default" style="padding: 0; text-align: left;">
-        <div class="container-fluid" style="padding: 0;">
+    <!-- Page Content Holder -->
+    <div id="content">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" id="sidebarCollapse" (click)="handleClick($event)" class="btn btn-info navbar-btn">
-                  <i class="fa fa-bars"></i>
+                <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                    <i class="fa fa-bars"></i>
                 </button>
             </div>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Page</a></li>
-                </ul>
-            </div>
         </div>
-    </nav>
-    <h2 style="color: #566089; display:inline;">Λίστα Επισκέψεων</h2>
-    <button (click)="createVisit()" type="button" class="btn btn-primary" style="float: right;">
+      </nav>
+
+    <h2 class="page-title">Λίστα Επισκέψεων</h2>
+    <button (click)="createVisit()" type="button" class="btn btn-primary" id="visit-create">
       Δημιουργία Επίσκεψης
     </button>
-    <br>
-    <br>
-    <table class="table" style="color: #107dd0">
-      <thead>
-      <tr style="color: #eb201e">
-        <th scope="col">ΑΜΚΑ Ασθενή</th>
-        <th scope="col">Ονοματεπώνυμο</th>
-        <th scope="col">Ημερομηνία</th>
-        <th scope="col">Κατάσταση</th>
-        <th scope="col">Δράση</th>
-      </tr>
-      </thead>
-      <tbody>
-      <ng-container *ngIf="!isFetching && visits.item.length >= 0">
-        <ng-container *ngFor="let visit of visits.item">
+    <div class="form desktop"><i class="fa fa-search"></i><input id="myInputDesk" type="text" class="form-control form-input" (keyup)="searchDesktop($event)" placeholder="Αναζήτηση επίσκεψης βάση αριθμού ΑΜΚΑ.."> </div>
+    <div class="form medium"><i class="fa fa-search"></i><input id="myInputMed" type="text" class="form-control form-input" (keyup)="searchMedium($event)" placeholder="Αναζήτηση επίσκεψης βάση αριθμού ΑΜΚΑ.."> </div>
+    <div class="form mobile"><i class="fa fa-search"></i><input id="myInputMob" type="text" class="form-control form-input" (keyup)="searchMobile($event)" placeholder="Αναζήτηση επίσκεψης βάση αριθμού ΑΜΚΑ.."> </div>
+
+    <div class="table-responsive col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <table id="desktop-table" class="table table-hover table-nowrap">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">ΑΜΚΑ Ασθενή</th>
+                <th scope="col">Ονοματεπώνυμο</th>
+                <th scope="col">Κατάσταση</th>
+                <th scope="col">Λεπτομέρειες</th>
+            </tr>
+        </thead>
+        <tbody id="myDeskTable">
+          <ng-container *ngIf="!isFetching && visits.item.length >= 0">
+            <ng-container *ngFor="let visit of visits.item">
+              <tr>
+                <td class="amka-number">{{visit.patientInfo.amka}}</td>
+                <td>
+                  <img alt="..." src="../../../assets/user.png" class="avatar avatar-sm rounded-circle me-2"> <a class="text-heading font-semibold" href="#">{{visit.patientInfo.firstName + ' ' + visit.patientInfo.lastName}}</a> 
+                  <br><span class="desk-date"><i class="far fa-calendar-alt" style="font-size:20px"></i>    {{visit.startDate}}</span>
+                </td>
+                <td>
+                  <span *ngIf="visit.status.status == 'Σε Εκκρεμότητα'" class="badge badge-lg badge-dot"><i class="bg-warning"></i>{{visit.status.status}}</span>
+                  <span *ngIf="visit.status.status == 'Ακυρωμένη'" class="badge badge-lg badge-dot"> <i class="bg-danger"></i>{{visit.status.status}}</span>
+                  <span *ngIf="visit.status.status == 'Ολοκληρωμένη'" class="badge badge-lg badge-dot"> <i class="bg-success"></i>{{visit.status.status}}</span>
+                </td>
+                <td class="text-end"> 
+                  <button title="Προβολή" (click)="viewVisitDetails(visit.id)"><i class="fa fa-eye"></i></button>
+                  <ng-container *ngIf="visit.status.status != 'Ακυρωμένη' && visit.status.status != 'Ολοκληρωμένη'">
+                    <button title="Επεξεργασία" (click)="editVisit(visit.id)"><i class='far fa-edit'></i></button>
+                  </ng-container>
+                  <ng-container *ngIf="visit.status.status != 'Ακυρωμένη' && visit.status.status != 'Ολοκληρωμένη'">
+                    <button title="Διαγραφή" (click)="openConfirmDeleteModal(visit.id)"><i class="far fa-trash-alt"></i></button>
+                  </ng-container>
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </tbody>
+      </table>
+
+      <table id="mid-table" class="table table-hover table-nowrap">
+        <thead class="thead-light">
+            <tr>
+              <th scope="col">Στοιχεία Ασθενή</th>
+              <th scope="col">Κατάσταση</th>
+              <th scope="col">Λεπτομέρειες</th>
+            </tr>
+        </thead>
+        <tbody id="myMedTable">
+          <ng-container *ngIf="!isFetching && visits.item.length >= 0">
+            <ng-container *ngFor="let visit of visits.item">
+              <tr>
+                <td>
+                  <img alt="..." src="../../../assets/user.png" class="avatar avatar-sm rounded-circle me-2"> <span class="text-heading font-semibold" href="#">{{visit.patientInfo.firstName + ' ' + visit.patientInfo.lastName}}</span>
+                  <br><span class="mid-amka">AMKA:</span><span class="amka">   {{visit.patientInfo.amka}}</span><br>
+                  <span><i class="far fa-calendar-alt" style="font-size:25px"></i>    {{visit.startDate}}</span>
+                </td>
+                <td class="mid-column">
+                  <span *ngIf="visit.status.status == 'Σε Εκκρεμότητα'" class="badge badge-lg badge-dot"><i class="bg-warning"></i>{{visit.status.status}}</span>
+                  <span *ngIf="visit.status.status == 'Ακυρωμένη'" class="badge badge-lg badge-dot"> <i class="bg-danger"></i>{{visit.status.status}}</span>
+                  <span *ngIf="visit.status.status == 'Ολοκληρωμένη'" class="badge badge-lg badge-dot"> <i class="bg-success"></i>{{visit.status.status}}</span>
+                </td>
+                <td class="text-end"> 
+                  <button title="Προβολή" (click)="viewVisitDetails(visit.id)"><i class="fa fa-eye"></i></button>
+                  <ng-container *ngIf="visit.status.status != 'Ακυρωμένη' && visit.status.status != 'Ολοκληρωμένη'">
+                    <button title="Επεξεργασία" (click)="editVisit(visit.id)"><i class='far fa-edit'></i></button>
+                  </ng-container>
+                  <ng-container *ngIf="visit.status.status != 'Ακυρωμένη' && visit.status.status != 'Ολοκληρωμένη'">
+                    <button title="Διαγραφή" (click)="openConfirmDeleteModal(visit.id)"><i class="far fa-trash-alt"></i></button>
+                  </ng-container>
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </tbody>
+      </table>
+
+
+      <table id="mobile-table" class="table table-hover table-nowrap">
+        <thead class="thead-light">
           <tr>
-            <td>{{visit.patientInfo.amka}}</td>
-            <td>{{visit.patientInfo.firstName + ' ' + visit.patientInfo.lastName}}</td>
-            <td>{{visit.startDate}}</td>
-            <td>{{visit.status.status}}</td>
-            <td>
-              <button (click)="viewVisitDetails(visit.id)" class="btn btn-success" style="
-              margin-right: 24px; margin-top: 5px; margin-bottom: 5px;">
-                Δείτε<br>Περισσότερα
-              </button>
-              <br>
-              <ng-container *ngIf="visit.status.status != 'Ακυρωμένη' && visit.status.status != 'Ολοκληρωμένη'">
-                <button (click)="editVisit(visit.id)" class="btn btn-info" style="
-                    margin-right: 24px; margin-top: 5px; margin-bottom: 5px;">
-                  Επεξεργασία
-                </button>
-                <br>
-              </ng-container>
-              <ng-container *ngIf="visit.status.status != 'Ακυρωμένη' && visit.status.status != 'Ολοκληρωμένη'">
-                <button (click)="openConfirmDeleteModal(visit.id)" class="btn btn-danger" style="
-                    margin-right: 24px; margin-top: 5px; margin-bottom: 5px;">
-                  Ακύρωση
-                </button>
-                <br>
-              </ng-container>
-            </td>
+              <th scope="col">Στοιχεία</th>
+              <th scope="col">Λεπτομέρειες</th>
           </tr>
-        </ng-container>
-      </ng-container>
-      <ng-container *ngIf="isFetching">
-        <div>
-          <app-spinner class="main-loader"></app-spinner>
-        </div>
-      </ng-container>
-      </tbody>
-    </table>
+      </thead>
+        <tbody id="myMobTable">
+          <ng-container *ngIf="!isFetching && visits.item.length >= 0">
+            <ng-container *ngFor="let visit of visits.item">
+              <tr>
+                <td class="first-column">
+                  <span *ngIf="visit.status.status == 'Σε Εκκρεμότητα'" class="badge badge-lg badge-dot"><i class="bg-warning"></i></span>
+                  <span *ngIf="visit.status.status == 'Ακυρωμένη'" class="badge badge-lg badge-dot"> <i class="bg-danger"></i></span>
+                  <span *ngIf="visit.status.status == 'Ολοκληρωμένη'" class="badge badge-lg badge-dot"> <i class="bg-success"></i></span>
+                <span class="amka">{{visit.patientInfo.amka}}</span> <br> <a class="text-heading font-semibold" href="#">{{visit.patientInfo.firstName + ' ' + visit.patientInfo.lastName}}</a><br>{{visit.startDate}}</td>
+                <td class="text-end"> 
+                  <button title="Προβολή" (click)="viewVisitDetails(visit.id)"><i class="fa fa-eye"></i></button>
+                  <ng-container *ngIf="visit.status.status != 'Ακυρωμένη' && visit.status.status != 'Ολοκληρωμένη'">
+                    <button title="Επεξεργασία" (click)="editVisit(visit.id)"><i class='far fa-edit'></i></button>
+                  </ng-container>
+                  <ng-container *ngIf="visit.status.status != 'Ακυρωμένη' && visit.status.status != 'Ολοκληρωμένη'">
+                    <button title="Διαγραφή" (click)="openConfirmDeleteModal(visit.id)"><i class="far fa-trash-alt"></i></button>
+                  </ng-container>
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

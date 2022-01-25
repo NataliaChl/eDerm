@@ -233,7 +233,7 @@ td, th {
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
-@media (max-width: 960px) {
+@media (max-width: 1110px) {
     #sidebar {
         margin-left: -250px;
     }
@@ -247,7 +247,7 @@ td, th {
         width: calc(100% - 250px);
     }
 }
-@media (min-width: 961px) {
+@media (min-width: 1111px) {
     #sidebarCollapse {
         display: none;
     }

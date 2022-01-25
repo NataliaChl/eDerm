@@ -1,3 +1,6 @@
+
+@import url("https://unpkg.com/@webpixels/css@1.1.5/dist/index.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css");
 body{margin-top:20px;
     background-color: #e4e6e9;
     color: #41464d;
@@ -105,9 +108,18 @@ body{margin-top:20px;
 }
 
 .deleted-text{
-text-decoration:line-through;;    
+    text-decoration: line-through;;    
 }
-
+.page-title {
+    color: #566089;
+    display:inline;
+}
+.far.fa-trash-alt {
+    color: #fe5f5f;
+}
+#visit-create {
+    float: right;
+}
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
@@ -129,10 +141,212 @@ text-decoration:line-through;;
 .replace-button {
     margin-left: 220px !important;
 }
+
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
-@media (max-width: 960px) {
+/* handle tables on several devices */
+@media (max-width: 578px) {
+    #desktop-table,
+    #mid-table,
+    .desktop,
+    .medium {
+        display: none;
+    }
+    #mobile-table,
+    .mobile {
+        display: block;
+    }
+    #content {
+        padding: 10px !important;
+    }
+    .table-responsive {
+        padding: 2px;
+    }
+    .first-column {
+        padding-left: 5px;
+        padding-right: 7px;
+        width: 80%;
+    }
+    .text-end {
+        padding-left: 0;
+        width: 20%;
+    }
+    .text-end button {
+        margin-top: 17px;
+        font-size: 18px;
+    }
+    .far.fa-trash-alt {
+        width: 19px;
+    }
+    .page-title {
+        font-size: 25px;
+        margin-left: 3px;
+    }
+    .mobile {
+        margin-top: 60px;
+    }
+    #visit-create {
+        width: 125px;
+        font-size: 15px;
+    }
+}
+@media (min-width: 579px) and (max-width: 860px) {
+    #desktop-table,
+    #mobile-table,
+    .desktop,
+    .mobile {
+        display: none;
+    }
+    #mid-table,
+    .medium {
+        display: block;
+    }
+    #content {
+        padding: 10px !important;
+    }
+    .table-responsive {
+        padding: 2px;
+    }
+    .first-column {
+        padding-left: 5px;
+        padding-right: 7px;
+        width: 80%;
+    }
+    .text-end {
+        padding-left: 0;
+        width: 20%;
+    }
+    .text-end button {
+        margin-top: 17px;
+        font-size: 18px;
+    }
+    .text-heading {
+        font-size: 15px;
+    }
+    .mid-amka {
+        font-weight: 600;
+        font-style: italic;
+    }
+    .mid-column {
+        padding-left: 0;
+    }
+    .far.fa-trash-alt {
+        width: 19px;
+    }
+    .thead-light tr th {
+        font-size: 16px;
+    }
+    #myMedTable tr td {
+        padding-left: 0;
+    }
+    .page-title {
+        font-size: 25px;
+        margin-left: 30px;
+    }
+}
+
+@media (min-width: 861px) {
+    #mobile-table,
+    #mid-table,
+    .medium,
+    .mobile {
+        display: none;
+    }
+    #desktop-table,
+    .desktop {
+        display: block;
+    }
+    #myDeskTable td {
+        width: 25%;
+    }
+    .desk-date i {
+        margin-top: 9px;
+        margin-left: 10px;
+    }
+    .desk-date .fa-calendar-alt * {
+        font-size: 15px;
+    }
+    #content {
+        padding-left: 5px;
+        padding-right: 2px;
+    }
+    .page-title {
+        font-size: 35px;
+        margin-left: 30px;
+    }
+    .amka-number {
+        font-size: 19px;
+    }
+    .text-heading {
+        font-size: 16px;
+    }
+    .badge-dot {
+        font-size: 18px;
+    }
+    .text-end button {
+       font-size: 22px;
+    }
+    .far.fa-trash-alt {
+        width: 24px;
+    }
+    .thead-light tr th {
+        font-size: 18px;
+    }
+    #visit-create {
+        float: right;
+    }
+}
+
+
+/* searchbar */
+.form {
+    position: relative
+}
+
+.form .fa-search {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #9ca3af
+}
+
+.form span {
+    position: absolute;
+    right: 17px;
+    top: 13px;
+    padding: 2px;
+    border-left: 1px solid #d1d5db
+}
+
+.form-input {
+    height: 55px;
+    text-indent: 33px;
+    border-radius: 10px
+}
+.text-end button {
+    border-radius: 40%;
+    border: 1px solid #7684bf;
+    margin-right: 5px;
+}
+tr {
+    width: 100%;
+}
+#sidebarCollapse {
+    background-color: #566089;
+}
+
+#myInputDesk,
+#myInputMed,
+#myInputMob {
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+@media (max-width: 1110px) {
     #sidebar {
         margin-left: -250px;
     }
@@ -146,12 +360,8 @@ text-decoration:line-through;;
         width: calc(100% - 250px);
     }
 }
-@media (min-width: 961px) {
+@media (min-width: 1111px) {
     #sidebarCollapse {
         display: none;
     }
-}
-
-#sidebarCollapse {
-    background-color: #566089;
 }
