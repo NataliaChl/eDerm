@@ -16,13 +16,13 @@
     <button (click)="createVisit()" type="button" class="btn btn-primary" id="visit-create">
       Δημιουργία Επίσκεψης
     </button>
-    <div class="form desktop"><i class="fa fa-search"></i><input id="myInputDesk" type="text" class="form-control form-input" (keyup)="searchDesktop($event)" placeholder="Αναζήτηση επίσκεψης βάση αριθμού ΑΜΚΑ.."> </div>
-    <div class="form medium"><i class="fa fa-search"></i><input id="myInputMed" type="text" class="form-control form-input" (keyup)="searchMedium($event)" placeholder="Αναζήτηση επίσκεψης βάση αριθμού ΑΜΚΑ.."> </div>
-    <div class="form mobile"><i class="fa fa-search"></i><input id="myInputMob" type="text" class="form-control form-input" (keyup)="searchMobile($event)" placeholder="Αναζήτηση επίσκεψης βάση αριθμού ΑΜΚΑ.."> </div>
+    <div class="form desktop"><i class="fa fa-search"></i><input id="myInputDesk" type="number" class="form-control form-input" (keyup)="searchDesktop($event)" placeholder="Αναζήτηση επίσκεψης βάση αριθμού ΑΜΚΑ.."> </div>
+    <div class="form medium"><i class="fa fa-search"></i><input id="myInputMed" type="number" class="form-control form-input" (keyup)="searchMedium($event)" placeholder="Αναζήτηση επίσκεψης βάση αριθμού ΑΜΚΑ.."> </div>
+    <div class="form mobile"><i class="fa fa-search"></i><input id="myInputMob" type="number" class="form-control form-input" (keyup)="searchMobile($event)" placeholder="Αναζήτηση επίσκεψης βάση αριθμού ΑΜΚΑ.."> </div>
 
     <div class="table-responsive col-sm-12 col-md-12 col-lg-12 col-xl-12">
       <table id="desktop-table" class="table table-hover table-nowrap">
-        <thead class="thead-light">
+        <thead id="desk-head" class="thead-light">
             <tr>
                 <th scope="col">ΑΜΚΑ Ασθενή</th>
                 <th scope="col">Ονοματεπώνυμο</th>
@@ -36,7 +36,7 @@
               <tr>
                 <td class="amka-number">{{visit.patientInfo.amka}}</td>
                 <td>
-                  <img alt="..." src="../../../assets/user.png" class="avatar avatar-sm rounded-circle me-2"> <a class="text-heading font-semibold" href="#">{{visit.patientInfo.firstName + ' ' + visit.patientInfo.lastName}}</a> 
+                  <img alt="..." src="../../../assets/user.png" class="avatar avatar-sm rounded-circle me-2"> <span class="text-heading font-semibold" (click)="editVisit(visit.id)">{{visit.patientInfo.firstName + ' ' + visit.patientInfo.lastName}}</span> 
                   <br><span class="desk-date"><i class="far fa-calendar-alt" style="font-size:20px"></i>    {{visit.startDate}}</span>
                 </td>
                 <td>
@@ -60,7 +60,7 @@
       </table>
 
       <table id="mid-table" class="table table-hover table-nowrap">
-        <thead class="thead-light">
+        <thead id="mid-head" class="thead-light">
             <tr>
               <th scope="col">Στοιχεία Ασθενή</th>
               <th scope="col">Κατάσταση</th>
@@ -72,7 +72,7 @@
             <ng-container *ngFor="let visit of visits.item">
               <tr>
                 <td>
-                  <img alt="..." src="../../../assets/user.png" class="avatar avatar-sm rounded-circle me-2"> <span class="text-heading font-semibold" href="#">{{visit.patientInfo.firstName + ' ' + visit.patientInfo.lastName}}</span>
+                  <img alt="..." src="../../../assets/user.png" class="avatar avatar-sm rounded-circle me-2"> <span (click)="editVisit(visit.id)" class="text-heading font-semibold">{{visit.patientInfo.firstName + ' ' + visit.patientInfo.lastName}}</span>
                   <br><span class="mid-amka">AMKA:</span><span class="amka">   {{visit.patientInfo.amka}}</span><br>
                   <span><i class="far fa-calendar-alt" style="font-size:25px"></i>    {{visit.startDate}}</span>
                 </td>
@@ -98,7 +98,7 @@
 
 
       <table id="mobile-table" class="table table-hover table-nowrap">
-        <thead class="thead-light">
+        <thead id="mob-head" class="thead-light">
           <tr>
               <th scope="col">Στοιχεία</th>
               <th scope="col">Λεπτομέρειες</th>
@@ -112,7 +112,7 @@
                   <span *ngIf="visit.status.status == 'Σε Εκκρεμότητα'" class="badge badge-lg badge-dot"><i class="bg-warning"></i></span>
                   <span *ngIf="visit.status.status == 'Ακυρωμένη'" class="badge badge-lg badge-dot"> <i class="bg-danger"></i></span>
                   <span *ngIf="visit.status.status == 'Ολοκληρωμένη'" class="badge badge-lg badge-dot"> <i class="bg-success"></i></span>
-                <span class="amka">{{visit.patientInfo.amka}}</span> <br> <a class="text-heading font-semibold" href="#">{{visit.patientInfo.firstName + ' ' + visit.patientInfo.lastName}}</a><br>{{visit.startDate}}</td>
+                  <span class="amka">{{visit.patientInfo.amka}}</span> <br> <span class="text-heading font-semibold" (click)="editVisit(visit.id)">{{visit.patientInfo.firstName + ' ' + visit.patientInfo.lastName}}</span><br>{{visit.startDate}}</td>
                 <td class="text-end"> 
                   <button title="Προβολή" (click)="viewVisitDetails(visit.id)"><i class="fa fa-eye"></i></button>
                   <ng-container *ngIf="visit.status.status != 'Ακυρωμένη' && visit.status.status != 'Ολοκληρωμένη'">
