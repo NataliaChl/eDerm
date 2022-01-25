@@ -80,7 +80,7 @@ export class VisitsGetComponent implements OnInit {
 
   searchDesktop(event: Event) {
     // Declare variables
-    var input, filter, table, tr, td, i, txtValue;
+    var input, filter, table, tr, td, i, txtValue, counter = 0;
     input = document.getElementById("myInputDesk");
     filter = input.value.toUpperCase();
     table = document.getElementById("myDeskTable");
@@ -96,17 +96,44 @@ export class VisitsGetComponent implements OnInit {
         } else {
           tr[i].style.display = "none";
         }
+        if (tr[i].style.display == 'none') {
+          counter = counter + 1;
+        } else {
+          counter = 0;
+        }
       }
     }
+    var error = document.getElementById("not-found");
+    var head = document.getElementById("desk-head");
+    if (counter == tr.length) {
+      if (error == null) {
+        const para = document.createElement("div");
+        para.innerHTML = '<div id="not-found" style="margin-top: 30px" class="alert alert-danger" role="alert">Δε βρέθηκε κανένα αποτέλεσμα</div>';
+        document.getElementById('desktop-table').appendChild(para);
+      } else {
+        error.style.display = "";
+      }
+      head.style.display = "none";
+    } else {
+        if (error != null) {
+          error.style.display = "none";
+        }
+        if (head.style.display === 'none') {
+          head.style.display = "";
+        }
+    }
   }
+
+
+
   searchMedium(event: Event) {
     // Declare variables
-    var input, filter, table, tr, td, i, txtValue, amka;
+    var input, filter, table, tr, td, i, txtValue, amka, counter = 0;
     input = document.getElementById("myInputMed");
     filter = input.value.toUpperCase();
     table = document.getElementById("myMedTable");
     tr = table.getElementsByTagName("tr");
-    console.log(input);
+ 
     // Loop through all table rows, and hide those who don't match the search query
     for (i = 0; i < tr.length; i++) {
       td = tr[i].getElementsByTagName("td")[0];
@@ -119,17 +146,41 @@ export class VisitsGetComponent implements OnInit {
         } else {
           tr[i].style.display = "none";
         }
+        if (tr[i].style.display == 'none') {
+          counter = counter + 1;
+        } else {
+          counter = 0;
+        }
       }
+    }
+    var error = document.getElementById("not-found");
+    var head = document.getElementById("mid-head");
+    if (counter == tr.length) {
+      if (error == null) {
+        const para = document.createElement("div");
+        para.innerHTML = '<div id="not-found" style="margin-top: 20px" class="alert alert-danger" role="alert">Δε βρέθηκε κανένα αποτέλεσμα</div>';
+        document.getElementById('mid-table').appendChild(para);
+      } else {
+        error.style.display = "";
+      }
+      head.style.display = "none";
+    } else {
+        if (error != null) {
+          error.style.display = "none";
+        }
+        if (head.style.display === 'none') {
+          head.style.display = "";
+        }
     }
   }
   searchMobile(event: Event) {
     // Declare variables
-    var input, filter, table, tr, td, i, txtValue, amka;
+    var input, filter, table, tr, td, i, txtValue, amka, counter = 0;
     input = document.getElementById("myInputMob");
     filter = input.value.toUpperCase();
     table = document.getElementById("myMobTable");
     tr = table.getElementsByTagName("tr");
-    console.log(input);
+
     // Loop through all table rows, and hide those who don't match the search query
     for (i = 0; i < tr.length; i++) {
       td = tr[i].getElementsByTagName("td")[0];
@@ -142,7 +193,31 @@ export class VisitsGetComponent implements OnInit {
         } else {
           tr[i].style.display = "none";
         }
+        if (tr[i].style.display == 'none') {
+          counter = counter + 1;
+        } else {
+          counter = 0;
+        }
       }
+    }
+    var error = document.getElementById("not-found");
+    var head = document.getElementById("mob-head");
+    if (counter == tr.length) {
+      if (error == null) {
+        const para = document.createElement("div");
+        para.innerHTML = '<div id="not-found" style="margin-top: 18px" class="alert alert-danger" role="alert">Δε βρέθηκε κανένα αποτέλεσμα</div>';
+        document.getElementById('mobile-table').appendChild(para);
+      } else {
+        error.style.display = "";
+      }
+      head.style.display = "none";
+    } else {
+        if (error != null) {
+          error.style.display = "none";
+        }
+        if (head.style.display === 'none') {
+          head.style.display = "";
+        }
     }
   }
 }
