@@ -22,7 +22,7 @@
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
     #sidebar {
         margin-left: -250px;
     }
@@ -36,7 +36,7 @@
         width: calc(100% - 250px);
     }
 }
-@media (min-width: 961px) {
+@media (min-width: 1111px) {
     #sidebarCollapse {
         display: none;
     }

@@ -117,7 +117,9 @@ body{margin-top:20px;
 .far.fa-trash-alt {
     color: #fe5f5f;
 }
-
+#visit-create {
+    float: right;
+}
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
@@ -137,21 +139,22 @@ body{margin-top:20px;
     width: 100% !important;
 }
 .replace-button {
-    margin-left: 249px !important;
+    margin-left: 220px !important;
 }
 
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
 /* handle tables on several devices */
-@media (max-width: 530px) {
-    #desktop-table {
+@media (max-width: 578px) {
+    #desktop-table,
+    #mid-table,
+    .desktop,
+    .medium {
         display: none;
     }
-    #mid-table {
-        display: none;
-    }
-    #mobile-table {
+    #mobile-table,
+    .mobile {
         display: block;
     }
     #content {
@@ -171,19 +174,32 @@ body{margin-top:20px;
     }
     .text-end button {
         margin-top: 17px;
+        font-size: 18px;
     }
     .far.fa-trash-alt {
         width: 19px;
     }
+    .page-title {
+        font-size: 25px;
+        margin-left: 3px;
+    }
+    .mobile {
+        margin-top: 60px;
+    }
+    #visit-create {
+        width: 125px;
+        font-size: 15px;
+    }
 }
-@media (min-width: 531px) and (max-width: 790px) {
-    #desktop-table {
+@media (min-width: 579px) and (max-width: 860px) {
+    #desktop-table,
+    #mobile-table,
+    .desktop,
+    .mobile {
         display: none;
     }
-    #mobile-table {
-        display: none;
-    }
-    #mid-table {
+    #mid-table,
+    .medium {
         display: block;
     }
     #content {
@@ -203,6 +219,7 @@ body{margin-top:20px;
     }
     .text-end button {
         margin-top: 17px;
+        font-size: 18px;
     }
     .text-heading {
         font-size: 15px;
@@ -220,19 +237,27 @@ body{margin-top:20px;
     .thead-light tr th {
         font-size: 16px;
     }
+    #myMedTable tr td {
+        padding-left: 0;
+    }
+    .page-title {
+        font-size: 25px;
+        margin-left: 30px;
+    }
 }
 
-@media (min-width: 791px) {
-    #mobile-table {
+@media (min-width: 861px) {
+    #mobile-table,
+    #mid-table,
+    .medium,
+    .mobile {
         display: none;
     }
-    #desktop-table {
+    #desktop-table,
+    .desktop {
         display: block;
     }
-    #mid-table {
-        display: none;
-    }
-    #myTable td {
+    #myDeskTable td {
         width: 25%;
     }
     .desk-date i {
@@ -257,7 +282,7 @@ body{margin-top:20px;
         font-size: 16px;
     }
     .badge-dot {
-        font-size: 16px;
+        font-size: 18px;
     }
     .text-end button {
        font-size: 22px;
@@ -268,42 +293,11 @@ body{margin-top:20px;
     .thead-light tr th {
         font-size: 18px;
     }
-}
-
-@media (max-width: 960px) {
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-    #content {
-        width: 100%;
-    }
-    #content.active {
-        width: calc(100% - 250px);
-    }
-    .date {
-        display: none;
-    }
-}
-@media (min-width: 961px) {
-    #sidebarCollapse {
-        display: none;
-    }
-    .date {
-        display: block;
+    #visit-create {
+        float: right;
     }
 }
 
-#sidebarCollapse {
-    background-color: #566089;
-}
-
-#myInput {
-    margin-bottom: 30px;
-    margin-top: 30px;
-}
 
 /* searchbar */
 .form {
@@ -337,4 +331,37 @@ body{margin-top:20px;
 }
 tr {
     width: 100%;
+}
+#sidebarCollapse {
+    background-color: #566089;
+}
+
+#myInputDesk,
+#myInputMed,
+#myInputMob {
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+@media (max-width: 1110px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #content {
+        width: 100%;
+    }
+    #content.active {
+        width: calc(100% - 250px);
+    }
+}
+@media (min-width: 1111px) {
+    #sidebarCollapse {
+        display: none;
+    }
 }

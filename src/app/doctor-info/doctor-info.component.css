@@ -39,6 +39,9 @@
 .list-group-item span {
     font-size: 18px;
 }
+#sidebarCollapse {
+    background-color: #59638d;
+}
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
@@ -63,7 +66,7 @@
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
-@media (max-width: 960px) {
+@media (max-width: 1110px) {
     #sidebar {
         margin-left: -250px;
     }
@@ -80,7 +83,7 @@
         font-size: 25px;
     }
 }
-@media (min-width: 961px) {
+@media (min-width: 1111px) {
     #sidebarCollapse {
         display: none;
     }

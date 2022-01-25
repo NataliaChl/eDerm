@@ -78,12 +78,12 @@ export class VisitsGetComponent implements OnInit {
     }
   }
 
-  myFunction(event: Event) {
+  searchDesktop(event: Event) {
     // Declare variables
     var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("myInput");
+    input = document.getElementById("myInputDesk");
     filter = input.value.toUpperCase();
-    table = document.getElementById("myTable");
+    table = document.getElementById("myDeskTable");
     tr = table.getElementsByTagName("tr");
 
     // Loop through all table rows, and hide those who don't match the search query
@@ -91,6 +91,52 @@ export class VisitsGetComponent implements OnInit {
       td = tr[i].getElementsByTagName("td")[0];
       if (td) {
         txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+  searchMedium(event: Event) {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue, amka;
+    input = document.getElementById("myInputMed");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myMedTable");
+    tr = table.getElementsByTagName("tr");
+    console.log(input);
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      amka = td.querySelector(".amka");
+      
+      if (amka) {
+        txtValue = amka.textContent || amka.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+  searchMobile(event: Event) {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue, amka;
+    input = document.getElementById("myInputMob");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myMobTable");
+    tr = table.getElementsByTagName("tr");
+    console.log(input);
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      amka = td.querySelector(".amka");
+      
+      if (amka) {
+        txtValue = amka.textContent || amka.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
           tr[i].style.display = "";
         } else {

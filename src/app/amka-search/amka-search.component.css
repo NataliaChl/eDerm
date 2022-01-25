@@ -449,50 +449,12 @@ input:focus, textarea:focus, select:focus, button:focus {
         width: 90%
     }
 }
-/* @media (min-width: 901px) {
-    #cover {
-        height: 95px;
-    }
-    #amka-input {
-        font-size: 50px;
-    }
-    #s-circle {
-        border: 15px solid #fff;
-        top: -14px;
-        width: 55px;
-        height: 55px;
-    }
-    #submit-button {
-        width: 84px;
-    }
-    #submit-button span {
-        top: 30px;
-        left: 15px;
-        width: 60px;
-        height: 15px;
-    }
-    #submit-button span:before,
-    #submit-button span:after {
-        width: 45px;
-        height: 15px;
-    }
-    #s-cover:hover #s-circle {
-        top: -1px;
-        width: 67px;
-        height: 15px;
-    }
-    #s-cover:hover button span:before,
-    #s-cover:hover button span:after {
-        right: -6px;
-        width: 40px;
-    }
-} */
+#sidebarCollapse {
+    background-color: #59638d;
+}
 
 
-
-
-
-@media (max-width: 960px) {
+@media (max-width: 1110px) {
     #sidebar {
         margin-left: -250px;
     }
@@ -506,7 +468,7 @@ input:focus, textarea:focus, select:focus, button:focus {
         width: calc(100% - 250px);
     }
 }
-@media (min-width: 961px) {
+@media (min-width: 1111px) {
     #sidebarCollapse {
         display: none;
     }
