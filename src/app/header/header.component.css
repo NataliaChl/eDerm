@@ -67,6 +67,7 @@ a, a:hover, a:focus {
 
 .sidebar-header h3 {
   text-align: center;
+  color: white;
 }
 
 #sidebar ul.components {

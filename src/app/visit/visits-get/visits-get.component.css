@@ -52,7 +52,12 @@ body{margin-top:20px;
 .replace-button {
     margin-left: 220px !important;
 }
-
+#desktop-table thead {
+	width: 100%;
+}
+#desktop-table thead th {
+	width: 30%;
+}
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
@@ -172,7 +177,7 @@ body{margin-top:20px;
         display: block;
     }
     #myDeskTable td {
-        width: 25%;
+        width: 30%;
     }
     .desk-date i {
         margin-top: 9px;
