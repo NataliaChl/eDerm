@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { SearchByPhotoComponent } from './search-by-photo/search-by-photo.component';
+import { PhotosGetComponent } from './melanoma-photos/photos-get/photos-get.component';
 
 @Injectable({
   providedIn: 'root'
