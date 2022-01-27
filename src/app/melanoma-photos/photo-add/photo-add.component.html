@@ -1,0 +1,59 @@
+<div>
+    <app-header></app-header>
+      <!-- Page Content Holder -->
+      <div id="content">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+              <div class="navbar-header">
+                  <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                      <i class="fa fa-bars"></i>
+                  </button>
+              </div>
+          </div>
+        </nav>
+
+{{imageError}}
+  
+            <p class = "center">
+              Παρακαλώ επιλέξτε μια εικόνα που θέλετε να ελεχθεί
+            </p>
+            <div class="input-group">
+              <div class="custom-file half-width">
+                <input type="file" 
+                class="custom-file-input" 
+                id="file"
+                aria-describedby="inputGroupFileAddon01"
+                (change)="handleFileInput($event.target.files)">
+                <label class="custom-file-label" for="fileToUpload">{{fileSelectedLabel()}}</label>
+                <ng-container *ngIf="isImageSaved; else elseTemplate">
+                  <img style="width: 100px" [src]="cardImageBase64" />
+              </ng-container>
+              <ng-template #elseTemplate>
+  
+                  <img style="width: 100px" src="" class="img-responsive" style="background-color:red;">
+              </ng-template>
+              </div>
+            </div>
+            <button class="btn btn-primary spacing" type="submit" [disabled] = "!fileToUpload || loading" (click) = submit()>Αξιολόγηση εικόνας</button>
+  
+            <a class="btn btn-danger" (click)="removeImage()" *ngIf="isImageSaved">Remove</a>
+            <div *ngIf = "examinedImageResponse">Το αποτέλεσμα της εξέτασης είναι {{examinedImageResponse}} </div>
+  
+    <!-- <div class="input-group">
+      <div class="custom-file half-width">
+        <input type="file" 
+        class="custom-file-input" 
+        id="file"
+        aria-describedby="inputGroupFileAddon01"
+        (change)="handleFileInput($event.target.files)">
+        <label class="custom-file-label" for="fileToUpload">{{fileSelectedLabel()}}</label>
+      </div>
+    </div>
+    <button class="btn btn-primary spacing" type="submit" [disabled] = "!fileToUpload || loading" (click) = submit()>Αξιολόγηση εικόνας</button>
+  
+    <div *ngIf = "examinedImageResponse">Το αποτέλεσμα της εξέτασης είναι {{examinedImageResponse}} </div> -->
+  
+    
+    <app-spinner class="main-loader" *ngIf = "loading"></app-spinner>
+    </div>
+</div>

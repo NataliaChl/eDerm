@@ -20,6 +20,7 @@ export class RestService {
   }
 
   endpoint = 'http://localhost:8080/https://eps.e-prescription.gr/doctorapi/api/v1/';
+  dbEndpoint = 'http://localhost:3000/';
 
   httpHeadersForJSONResponse = new HttpHeaders({
     Authorization: this.authService.doctor.value.authentication.toString(),
@@ -48,6 +49,20 @@ export class RestService {
     'Content-Type': 'application/xml',
     'api-key': properties.apiKey
   });
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+  
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+  
+      // TODO: better job of transforming error for user consumption
+      console.log(operation + 'failed:' + error.message);
+  
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
 
   private static extractData(res: Response): {} {
     return res || {};
@@ -352,4 +367,21 @@ export class RestService {
       return of(null);
     }));
   }
+
+  getDataFromJson(): Observable<any> {
+    return this.http.get(this.dbEndpoint + 'users');
+  }
+
+  postDataToJson(entry): Observable<any> {
+    return this.http.post(this.dbEndpoint + 'users' , entry).pipe(
+      tap((entry) => console.log("added:",entry)),
+      catchError(this.handleError<any>('entry')));
+  }
+
+  deleteDataFromJson(entryId): Observable<any> {
+    return this.http.delete(this.dbEndpoint + 'users/' + entryId).pipe(
+      tap((entry) => console.log("removed:",entryId)),
+      catchError(this.handleError<any>('entry')));
+  }
+  
 }

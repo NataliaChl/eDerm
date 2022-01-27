@@ -23,8 +23,11 @@ import {AuthGuard} from './auth/auth.guard';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {DoctorInfoComponent} from './doctor-info/doctor-info.component';
 import {PrescriptionEditComponent} from './prescription/prescription-edit/prescription-edit.component';
-import { SearchByPhotoComponent } from './search-by-photo/search-by-photo.component';
 import { AmkaSearchComponent } from './amka-search/amka-search.component';
+import { PhotoAddComponent } from './melanoma-photos/photo-add/photo-add.component'
+import { PhotosGetComponent } from './melanoma-photos/photos-get/photos-get.component';
+import { PhotoEditComponent } from './melanoma-photos/photo-edit/photo-edit.component';
+import { PhotoDeleteComponent } from './melanoma-photos/photo-delete/photo-delete.component';
 
 const appRoutes: Routes = [
   {
@@ -87,9 +90,15 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'search-by-photo',
-    component: SearchByPhotoComponent,
-    data: {title: 'Search By Photo'},
+    path: 'photos-get',
+    component: PhotosGetComponent,
+    data: {title: 'photos get'},
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'photo-add',
+    component: PhotoAddComponent,
+    data: {title: 'photos add'},
     canActivate: [AuthGuard]
   },
   {
@@ -130,7 +139,10 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     DoctorInfoComponent,
     PrescriptionEditComponent,
-    SearchByPhotoComponent
+    PhotoAddComponent,
+    PhotosGetComponent,
+    PhotoEditComponent,
+    PhotoDeleteComponent
   ],
   imports: [
     BrowserModule,

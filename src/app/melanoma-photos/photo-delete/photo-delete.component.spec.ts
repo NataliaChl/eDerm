@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchByPhotoComponent } from './search-by-photo.component';
+import { PhotoDeleteComponent } from './photo-delete.component';
 
-describe('SearchByPhotoComponent', () => {
-  let component: SearchByPhotoComponent;
-  let fixture: ComponentFixture<SearchByPhotoComponent>;
+describe('PhotoDeleteComponent', () => {
+  let component: PhotoDeleteComponent;
+  let fixture: ComponentFixture<PhotoDeleteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SearchByPhotoComponent ]
+      declarations: [ PhotoDeleteComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SearchByPhotoComponent);
+    fixture = TestBed.createComponent(PhotoDeleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
