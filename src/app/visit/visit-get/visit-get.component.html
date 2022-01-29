@@ -2,93 +2,104 @@
   <app-header></app-header>
   <!-- Page Content Holder -->
   <div id="content">
-    <nav class="navbar navbar-default" style="padding: 0; text-align: left;">
-        <div class="container-fluid" style="padding: 0;">
-            <div class="navbar-header">
-                <button type="button" id="sidebarCollapse" (click)="handleClick($event)" class="btn btn-info navbar-btn">
-                  <i class="fa fa-bars"></i>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Page</a></li>
-                </ul>
-            </div>
-        </div>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+          <div class="navbar-header">
+              <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                <i class="fa fa-bars"></i>
+              </button>
+          </div>
+      </div>
     </nav>
-    <div>
-      <br>
-      <br>
-      <h2 style="color: #107dd0;">
-        Επίσκεψη: {{visit.id}}
+    
+      <div class="btn-group col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2">
         <ng-container *ngIf="!isFetching && visit.status != 'cancelled'">
-          <button (click)="openConfirmDeleteModal(visit.id)" class="btn btn-danger" style="float: right;
-              margin-right: 20px;">
-            Ακύρωση
-          </button>
-        </ng-container>
-        <ng-container *ngIf="!isFetching && visit.status != 'cancelled'">
-          <button (click)="editVisit(visit.id)" class="btn btn-info" style="float: right;
-              margin-right: 20px;">
-            Επεξεργασία
-          </button>
+          <button (click)="openConfirmDeleteModal(visit.id)" class="btn delete"><i class="fa fa-trash"></i> Ακύρωση</button>
+          <button (click)="editVisit(visit.id)" class="btn edit"><i class="fas fa-pencil-alt"></i> Επεξεργασία</button>
         </ng-container>
         <ng-container *ngIf="!isFetching && canBePrescribed">
-          <button (click)="createPrescriptionForVisit(visit.id)" class="btn btn-success" style="
-          float: right; margin-right: 20px;">
-            Δημιουργία Συνταγής<br>για αυτή την Επίσκεψη
-          </button>
-        </ng-container>
-      </h2>
-      <br>
-      <hr>
-      <div class="table" style="color: #107dd0;">
-        <ng-container *ngIf="!isFetching">
-          <ul style="font-size: 24px;">
-            <li>
-              <span style="color: red;">Λόγος Επίσκεψης: </span>
-              {{visit.reason}}
-            </li>
-            <li>
-              <div style="color: red;">Σχόλια Επίσκεψης:</div>
-              {{visit.comments}}
-            </li>
-            <li>
-              <span style="color: red;">Ημερομηνία Έναρξης Επίσκεψης: </span>
-              {{visit.startDate}}
-            </li>
-            <li>
-              <span style="color: red;">Κατάσταση Επίσκεψης: </span>
-              {{visit.status}}
-            </li>
-            <li>
-              <div style="color: red;">Πληροφορίες Ασθενή:</div>
-              <ng-container *ngIf="visit.patient.amka != null">
-                <div style="font-size: 18px;">
-                  - <span style="color: red;">ΑΜΚΑ: </span> {{visit.patient.amka}} <br>
-                  - <span style="color: red;">Όνομα: </span> {{visit.patient.firstName}} <br>
-                  - <span style="color: red;">Επώνυμο: </span> {{visit.patient.lastName}} <br>
-                  - <span style="color: red;">Ημερομηνία Γέννησης: </span> {{visit.patient.birthDate | date}} <br>
-                  - <span style="color: red;">Πόλη: </span> {{visit.patient.city}}, {{visit.patient.county}} <br>
-                  - <span style="color: red;">Διεύθυνση: </span> {{visit.patient.address}} <br>
-                </div>
-              </ng-container>
-            </li>
-            <li>
-              <div style="color: red;">Στοιχεία Μονάδας Συνταγογράφησης:</div>
-              <ng-container *ngIf="visit.unit.id != null">
-                <div style="font-size: 18px;">
-                  - <span style="color: red;">ID: </span> {{visit.unit.id}} <br>
-                  - <span style="color: red;">Όνομα: </span> {{visit.unit.healthCareUnit.unitType.name}} <br>
-                  - <span style="color: red;">Περιγραφή: </span> {{visit.unit.healthCareUnit.description}} <br>
-                </div>
-              </ng-container>
-            </li>
-          </ul>
-        </ng-container>
-        <ng-container *ngIf="isFetching">
-          <app-spinner class="main-loader"></app-spinner>
+          <button (click)="createPrescriptionForVisit(visit.id)" class="btn add"><i class="fas fa-plus"></i> Δημιουργία Συνταγής</button>
         </ng-container>
       </div>
+
+      <div class="card col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2" *ngIf="!isFetching">
+        <div class="card-body">
+          <h5>Κωδικός επίσκεψης:  {{visit.id}}</h5>
+          <hr>
+          <div class="d-flex flex-column align-items-center text-center">
+            <div class="mt-3">
+              <ng-container *ngIf="!isFetching">
+                <ul class="list-group list-group-flush info-card">
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <ng-container *ngIf="visit.patient.amka != null">
+                        <h6>Στοιχεία ασθενή:</h6>
+                        <ul class="list-group list-group-flush personal-info col-sm-12 col-md-12 col-lg-12 col-xl-10 offset-xl-1">
+                          <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap amka-info">
+                            <h6 class="mb-0"><i class="far fa-address-card"></i><span>  Αριθμός ΑΜΚΑ:</span></h6>
+                            <span class="span-text">{{visit.patient.amka}}</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap amka-info">
+                            <h6 class="mb-0"><i class="far fa-user-circle"></i><span>  Ονοματεπώνυμο:</span></h6>
+                            <span class="span-text">{{visit.patient.firstName}} {{visit.patient.lastName}}</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap amka-info">
+                          <h6 class="mb-0"><i class="fa fa-calendar"></i><span>  Hμερομηνία Γέννησης:</span></h6>
+                          <span  class="span-text">{{visit.patient.birthDate | date}}</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap amka-info">
+                            <h6 class="mb-0"><i class="fas fa-home"></i><span>  Διεύθυνση κατοικίας:</span></h6>
+                            <span class="span-text">{{visit.patient.address}} {{visit.patient.city}} {{visit.patient.county}} </span>
+                          </li>
+                      </ul>
+                    </ng-container>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6>Λόγος Επίσκεψης: </h6>
+                    {{visit.reason}}
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6>Σχόλια Επίσκεψης: </h6>
+                    {{visit.comments}}
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6><i class="far fa-calendar-check"></i><span>   Ημερομηνία Έναρξης Επίσκεψης:</span></h6>
+                    <span class="span-text">{{visit.startDate}}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6>Κατάσταση Επίσκεψης: </h6>
+                    {{visit.status}}
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <ng-container *ngIf="visit.unit.id != null">
+                      <h6>Στοιχεία Μονάδας Συνταγογράφησης:</h6>
+                      <ul class="list-group list-group-flush col-sm-12 col-md-12 col-lg-9 col-xl-8 prescription-info">
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                          <h6 class="mb-0">ID:  </h6>
+                          <span class="span-text">{{visit.unit.id}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                          <h6 class="mb-0"><span>  Όνομα:</span></h6>
+                          <span class="span-text">{{visit.unit.healthCareUnit.unitType.name}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                          <h6 class="mb-0"><span>  Περιγραφή:</span></h6>
+                          <span class="span-text">{{visit.unit.healthCareUnit.description}} </span>
+                        </li>
+                      </ul>
+                    </ng-container>
+                  </li>
+                </ul>
+              </ng-container>
+              <ng-container *ngIf="isFetching">
+                <app-spinner class="main-loader"></app-spinner>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <button routerLink="/visits" class="back"><i class="fas fa-angle-left"></i></button>
+      </div>
     </div>
+    <ng-container *ngIf="isFetching">
+      <app-spinner class="main-loader"></app-spinner>
+    </ng-container>
 </div>

@@ -3,3 +3,64 @@
 input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
+
+.color-one {
+  background-color: #8fb2cbd6;
+}
+.color-two {
+  background-color: #d3c2b6d9;
+}
+.color-three {
+  background-color: #c4e5d263;
+}
+tbody {
+  background-color: white;
+}
+
+
+
+/* side menu */
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+#content {
+  background-color: #8fb2cb4a;
+  width: calc(100% - 250px);
+  padding: 40px;
+  min-height: 100vh;
+  transition: all 0.3s;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#content.active {
+  width: 100%;
+}
+.full-width {
+  width: 100% !important;
+}
+.replace-button {
+  margin-left: 220px !important;
+}
+/* ---------------------------------------------------
+  MEDIAQUERIES
+----------------------------------------------------- */
+@media (max-width: 1110px) {
+  #sidebar {
+      margin-left: -250px;
+  }
+  #sidebar.active {
+      margin-left: 0;
+  }
+  #content {
+      width: 100%;
+  }
+  #content.active {
+      width: calc(100% - 250px);
+  }
+}
+@media (min-width: 1111px) {
+  #sidebarCollapse {
+      display: none;
+  }
+}

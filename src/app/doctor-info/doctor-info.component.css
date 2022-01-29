@@ -19,7 +19,7 @@
     margin-left: 10px;
 }
 .list-group li:hover {
-    background-color: #d6e6f3;
+    background-color: #8fb2cb4a;
     cursor: pointer;
 }
 .card-body > h5 {
@@ -31,6 +31,7 @@
 }
 .card {
     margin-top: 13px;
+    box-shadow: 0px 0px 3px 3px #587a9385;
 }
 .text-secondary {
     color: #566089 !important;
