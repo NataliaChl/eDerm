@@ -47,7 +47,7 @@
                 <td class="text-end"> 
                   <button title="Προβολή" (click)="viewVisitDetails(visit.id)"><i class="fa fa-eye"></i></button>
                   <ng-container *ngIf="visit.status.status != 'Ακυρωμένη' && visit.status.status != 'Ολοκληρωμένη'">
-                    <button title="Επεξεργασία" (click)="editVisit(visit.id)"><i class='far fa-edit'></i></button>
+                    <button title="Επεξεργασία" (click)="editVisit(visit.id)"><i class="far fa-edit"></i></button>
                   </ng-container>
                   <ng-container *ngIf="visit.status.status != 'Ακυρωμένη' && visit.status.status != 'Ολοκληρωμένη'">
                     <button title="Διαγραφή" (click)="openConfirmDeleteModal(visit.id)"><i class="far fa-trash-alt"></i></button>
@@ -116,7 +116,7 @@
                 <td class="text-end"> 
                   <button title="Προβολή" (click)="viewVisitDetails(visit.id)"><i class="fa fa-eye"></i></button>
                   <ng-container *ngIf="visit.status.status != 'Ακυρωμένη' && visit.status.status != 'Ολοκληρωμένη'">
-                    <button title="Επεξεργασία" (click)="editVisit(visit.id)"><i class='far fa-edit'></i></button>
+                    <button title="Επεξεργασία" (click)="editVisit(visit.id)"><i class="far fa-edit"></i></button>
                   </ng-container>
                   <ng-container *ngIf="visit.status.status != 'Ακυρωμένη' && visit.status.status != 'Ολοκληρωμένη'">
                     <button title="Διαγραφή" (click)="openConfirmDeleteModal(visit.id)"><i class="far fa-trash-alt"></i></button>
