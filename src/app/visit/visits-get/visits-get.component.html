@@ -13,9 +13,8 @@
       </nav>
 
     <h2 class="page-title">Λίστα Επισκέψεων</h2>
-    <button (click)="createVisit()" type="button" class="btn btn-primary" id="visit-create">
-      Δημιουργία Επίσκεψης
-    </button>
+    <button (click)="createVisit()" class="btn add" id="visit-create"><i class="fas fa-plus"></i> Δημιουργία Επίσκεψης</button>
+    
     <div class="form desktop"><i class="fa fa-search"></i><input id="myInputDesk" type="number" class="form-control form-input" (keyup)="searchDesktop($event)" placeholder="Αναζήτηση επίσκεψης βάση αριθμού ΑΜΚΑ.."> </div>
     <div class="form medium"><i class="fa fa-search"></i><input id="myInputMed" type="number" class="form-control form-input" (keyup)="searchMedium($event)" placeholder="Αναζήτηση επίσκεψης βάση αριθμού ΑΜΚΑ.."> </div>
     <div class="form mobile"><i class="fa fa-search"></i><input id="myInputMob" type="number" class="form-control form-input" (keyup)="searchMobile($event)" placeholder="Αναζήτηση επίσκεψης βάση αριθμού ΑΜΚΑ.."> </div>
