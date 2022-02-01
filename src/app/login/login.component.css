@@ -1,8 +1,11 @@
 
-form{
+body {
+	background-color: #8fb2cb4a;
+}
+form {
 	padding: 0 2em;
 }
-.btn{
+.btn {
 	transition: all .5s ease;
 	width: 70%;
 	border-radius: 30px;
@@ -13,7 +16,7 @@ form{
 	margin-top: 1.5em;
 	margin-bottom: 1em;
 }
-.btn:hover, .btn:focus{
+.btn:hover, .btn:focus {
 	background-color: #75aed7;
 	color:#fff;
 }
@@ -28,8 +31,21 @@ hr {
     height: 2px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #75aed7, rgba(0, 0, 0, 0)); 
 }
+.page {
+	top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #8fb2cb4a;
+    position: absolute;
+    width: 100%;
+}
 .main {
-	margin-top: 11%;
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
 }
 .forgot-password {
 	width: 100%;
