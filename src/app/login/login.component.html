@@ -1,41 +1,35 @@
 
-<div class="container-fluid">
-  <div class="row main-content bg-success text-center">
-    <div class="col-md-4 text-center company__info">
-      <!-- <span class="company__logo"><h2><span class="fa fa-android"></span></h2></span> -->
-      <img src="assets/medicalSign.png" width="150px" height="150px" alt="image">
+<div class="col-sm-10 col-md-8 col-xl-4 col-lg-6 offset-lg-3 offset-sm-1 offset-md-2 offset-xl-4 main">
+  <aside>
+    <div *ngIf="!isLoading" class="card">
+      <article class="card-body">
+        <h4 class="card-title text-center mb-4 mt-1">Παρακαλώ συμπληρώστε τα στοιχεία σας.</h4>
+        <hr>
+        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+          <p *ngIf="error" class="text-success text-center"> {{error}} </p>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                  <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+              </div>
+              <input name="username" id="username" class="form-control" ngModel placeholder="Όνομα χρήστη" type="text" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                  <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+              </div>
+                <input id="password" name="password" class="form-control" ngModel placeholder="******" type="password" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Είσοδος" class="btn" [disabled]="!authForm.valid">
+          </div>
+          <p class="text-center forgot-password"><a href="https://www.idika.gr/contact" class="btn">Ξέχασες τον κωδικό σου ή δεν έχεις λογαριασμό;</a></p>
+        </form>
+      </article>
     </div>
-    <div class="col-md-8 col-xs-12 col-sm-12 login_form ">
-      <div class="container-fluid">
-        <div class="row">
-          <h2>Παρακαλώ συμπληρώστε τα στοιχεία σας.</h2>
-        </div>
-        <div class="">
-          <form control="" class="form-group" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
-            <div class="row alert alert-danger" *ngIf="error">
-              <p>{{ error }}</p>
-            </div>
-            <div class="row">
-              <input type="text" name="username" id="username" class="form__input form-control" ngModel placeholder="Όνομα χρήστη" required>
-            </div>
-            <div class="row">
-              <span class="fa fa-lock"></span>
-              <input type="password" name="password" id="password" class="form__input form-control" ngModel placeholder="Κωδικός" required>
-            </div>
-            <div class="">
-              <input type="checkbox" name="remember_me" id="remember_me" class="">
-              <label for="remember_me">Να με θυμάσαι!</label>
-            </div>
-            <div class="">
-              <input type="submit" value="Είσοδος" class="btn" [disabled]="!authForm.valid">
-            </div>
-          </form>
-        </div>
-        <div class="">
-          <p>Δεν έχεις λογαριασμό; <a href="https://www.idika.gr/contact" target="_blank">Απέκτησε τώρα!</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
+    <app-spinner class="main-loader" *ngIf="isLoading"></app-spinner>
+  </aside>
 </div>
-<!-- Footer -->
