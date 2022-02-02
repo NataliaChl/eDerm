@@ -1,43 +1,227 @@
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-#content {
-    width: calc(100% - 250px);
-    padding: 40px;
-    min-height: 100vh;
-    transition: all 0.3s;
-    position: absolute;
-    top: 0;
-    right: 0;
+hr { 
+    border : 0;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #8fb2cbd6, rgba(0, 0, 0, 0)); 
+  }
+.card {
+    box-shadow: 0px 0px 3px 3px #587a9385;
 }
-#content.active {
+.amka-info {
+    padding: 2px;
+    background: #102d4200;
+    border: none;
+}
+h6:not(.mb-0) {
+    color: #2f7bb1;
     width: 100%;
+    text-align: left;
 }
-.full-width {
-    width: 100% !important;
+.personal-info {
+    background: #8bc8f32e;
+    margin-top: 10px;
 }
-.replace-button {
-    margin-left: 220px !important;
+.prescription-info li {
+    padding: 1px;
+    border: none;
 }
-/* ---------------------------------------------------
-    MEDIAQUERIES
------------------------------------------------------ */
-@media (max-width: 1110px) {
-    #sidebar {
-        margin-left: -250px;
+.span-text {
+    color: #000000c4;
+}
+.collapse-list ul {
+  width: 100%;
+}
+.first {
+  font-weight: 600;
+  margin-right: 11px;
+  font-size: 17px;
+}
+.collapseInfoBtn {
+  margin-bottom: 15px;
+  background-color: #5d84a1;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 30px;
+  border-top-right-radius: 30px !important;
+  border-bottom-right-radius: 30px !important;
+  font-weight: 500;
+}
+.collapseInfoBtn i {
+  float: right;
+  margin-top: 5px;
+}
+.collapseInfoBtn[aria-expanded="false"] i.fa-angle-up {
+  display: none;
+}
+.collapseInfoBtn[aria-expanded="true"] i.fa-angle-down {
+  display: none;
+}
+.collapseInfoBtn[aria-expanded="true"] {
+  color: black;
+  background-color: #d3c2b6 !important;
+  border: 2px solid #5d84a1b0 !important;
+  font-weight: 600 !important;
+}
+#collapseMedicineInfo,
+#collapsePrescriptionInfo,
+#collapseIllnessInfo,
+#collapsePrescpInfo {
+  margin-bottom: 15px;
+}
+.collapseInfoBtn[data-target="#collapseIllnessInfo"] {
+  margin-top: 45px;
+}
+.simple {
+  width: 100%;
+}
+.simple li {
+  padding: 0;
+  border: none;
+  text-align: left;
+}
+.simple .first {
+  float: left;
+  margin-right: 10px;
+}
+.simple .second {
+  float: right;
+}
+.simple li:hover {
+  background: #d3c4be2b;
+}
+#collapseMedicineInfo li:hover,
+#collapsePrescriptionInfo li:hover,
+#collapseIllnessInfo li:hover,
+#collapsePrescpInfo li:hover {
+  background: #d3c4be2b;
+}
+.prescriptionInfo ul {
+  width: 100%;
+}
+.prescriptionInfo li {
+  padding: 4px;
+}
+.prescriptionInfo li:hover {
+  background: #d3c4be2b;
+}
+.doc-comments {
+  width: 100%;
+}
+/* .info-card li:hover {
+    background: #d3c4be2b;
+} */
+/* buttons */
+.btn-group button:not(.back) {
+    color: white; /* White text */
+    padding: 10px 14px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    border-radius: 30px;
+    margin-left: 6px;
+    margin-bottom: 6px;
+    border-top-right-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
+  }
+  .btn-group button:not(.back) * {
+      color: white;
+  }
+  .btn-group {
+      display: block !important;
+      padding-bottom: 20px;
+  }
+  /* Clear floats (clearfix hack) */
+  .btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  .btn-group button:hover {
+    box-shadow: 0px 0px 3px 3px #587a9385;
+  }
+  .delete {
+    background-color: #f75353;
+    float: right;
+  }
+  .add {
+    background-color: hsl(115deg 18% 63%);
+    float: right;
+  }
+  .edit {
+    background-color: #5d84a1;
+    float: right;
+  }
+  .back {
+    margin-top: 15px !important;
+    color: #33556c !important;
+    border: 1px solid #33556c9e;
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px 2px #587a9385 !important;
+    margin-bottom: 10px;
+    float: left;
+  }
+  .edit-submit {
+    float: right;
+    background-color: hsl(115deg 18% 63%);
+    border: none;
+  }
+  .card-body {
+    padding-bottom: 0;
+  }
+  .main-list {
+    border-bottom: 1px solid #5984a373;
+  }
+  .prescriptionInfo h6 {
+    margin-bottom: 22px;
+  }
+
+  .navbar.navbar-default {
+    width: 30%;
+    float: left;
+  }
+  .btn-group {
+    width: 70%;
+    float: right;
+  }
+
+
+@media (max-width: 493px) {
+  .delete span,
+  .edit span,
+  .add span {
+    display: none;
+  }
+}
+@media (max-width: 500px) { 
+    .card-body {
+        padding-left: 0;
+        padding-right: 0;
     }
-    #sidebar.active {
-        margin-left: 0;
-    }
-    #content {
-        width: 100%;
-    }
-    #content.active {
-        width: calc(100% - 250px);
+    .back {
+        width: 35px;
+        height: 35px;
     }
 }
-@media (min-width: 1111px) {
-    #sidebarCollapse {
-        display: none;
+@media (min-width: 501px) and (max-width: 749px) {
+    .back {
+        width: 35px;
+        height: 35px;
+    }
+}
+@media (min-width: 750px) {
+    h5 {
+        font-size: 25px;
+    }
+    h6:not(.mb-0) {
+        font-size: 20px;
+    }
+    h6.mb-0 {
+        font-size: 18px;
+    }
+    .back {
+        width: 40px;
+        height: 40px;
+    }
+    .visit-comments,
+    .visit-reason {
+        padding-bottom: 35px;
+        padding-top: 15px;
     }
 }

@@ -14,11 +14,11 @@
     
       <div class="btn-group col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2">
         <ng-container *ngIf="!isFetching && visit.status != 'cancelled'">
-          <button (click)="openConfirmDeleteModal(visit.id)" class="btn delete"><i class="fa fa-trash"></i> Ακύρωση</button>
-          <button (click)="editVisit(visit.id)" class="btn edit"><i class="fas fa-pencil-alt"></i> Επεξεργασία</button>
+          <button (click)="openConfirmDeleteModal(visit.id)" class="btn delete"><i class="fa fa-trash"></i><span> Ακύρωση</span></button>
+          <button (click)="editVisit(visit.id)" class="btn edit"><i class="fas fa-pencil-alt"></i><span> Επεξεργασία</span></button>
         </ng-container>
         <ng-container *ngIf="!isFetching && canBePrescribed">
-          <button (click)="createPrescriptionForVisit(visit.id)" class="btn add"><i class="fas fa-plus"></i> Δημιουργία Συνταγής</button>
+          <button (click)="createPrescriptionForVisit(visit.id)" class="btn add"><i class="fas fa-plus"></i><span> Δημιουργία Συνταγής</span></button>
         </ng-container>
       </div>
 
