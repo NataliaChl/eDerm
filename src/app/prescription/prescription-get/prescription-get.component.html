@@ -1,170 +1,164 @@
 <div>
-    <app-header></app-header>
-    <!-- Page Content Holder -->
-    <div id="content">
-      <nav class="navbar navbar-default" style="padding: 0; text-align: left;">
-          <div class="container-fluid" style="padding: 0;">
-              <div class="navbar-header">
-                  <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                    <i class="fa fa-bars"></i>
-                    
-                      <!-- <span class="glyphicon glyphicon-align-justify"></span> -->
-                      <!-- <span>Toggle Sidebar</span> -->
-                  </button>
-              </div>
-
-              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                  <ul class="nav navbar-nav navbar-right">
-                      <li><a href="#">Page</a></li>
-                  </ul>
-              </div>
+  <app-header></app-header>
+  <!-- Page Content Holder -->
+  <div id="content">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+          <div class="navbar-header">
+              <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                <i class="fa fa-bars"></i>
+              </button>
           </div>
-      </nav>
-    <div>
-    <h2 style="color: #107dd0;">
-      Συνταγή: {{prescription.id}}
-      <ng-container *ngIf="!isFetching && prescription.status != 'cancelled'">
-        <button (click)="openConfirmDeleteModal(prescription.id)" class="btn btn-danger" style="
-        float: right; margin-right: 20px;">
-          Ακύρωση
-        </button>
-      </ng-container>
-      <ng-container *ngIf="!isFetching && prescription.status != 'cancelled'">
-        <button (click)="editPrescription(prescription.id)" class="btn btn-info" style="float: right;
-            margin-right: 20px;">
-          Επεξεργασία
-        </button>
-      </ng-container>
-      <ng-container *ngIf="!isFetching && prescription.status != 'cancelled'">
-        <button (click)="downloadPrescriptionAsPDF(prescription.id)" class="btn btn-success" style="
-        float: right; margin-right: 20px;">
-          Λήψη
-        </button>
-      </ng-container>
-    </h2>
-    <hr>
-    <div class="table" style="color: #107dd0;">
-      <ng-container *ngIf="!isFetching">
-        <ul style="font-size: 24px;">
-          <li>
-            <span style="color: red;">Barcode Συνταγής: </span>
-            {{prescription.id}}
-          </li>
-          <li>
-            <span style="color: red;">Τίτλος Συνταγής: </span>
-            {{prescription.title}}
-          </li>
-          <li>
-            <span style="color: red;">Ημερομηνία Έναρξης Συνταγής: </span>
-            {{prescription.startDate}}
-          </li>
-          <li>
-            <span style="color: red;">Κατάσταση Συνταγής: </span>
-            {{prescription.status}}
-          </li>
-          <li>
-            <span style="color: red;">Σχόλια Ιατρού: </span> <br>
-            {{prescription.comments}}
-          </li>
-          <li>
-            <div style="color: red;">Πληροφορίες Διάγνωσης ICD-10:</div>
-            <ng-container *ngIf="prescription.patient.amka != null">
-              <div style="font-size: 18px;">
-                - <span style="color: red;">Κωδικός ICD-10: </span> {{prescription.icd10.code}} <br>
-                - <span style="color: red;">Τίτλος Διάγνωσης ICD-10: </span> {{prescription.icd10.diagnosis}} <br>
-              </div>
-            </ng-container>
-          </li>
-          <li>
-            <div style="color: red;">Πληροφορίες Ασθένειας:</div>
-            <ng-container *ngIf="prescription.patient.amka != null">
-              <div style="font-size: 18px;">
-                - <span style="color: red;">ID Ασθένειας: </span> {{prescription.disease.id}} <br>
-                - <span style="color: red;">Τίτλος Ασθένειας: </span> {{prescription.disease.name}} <br>
-              </div>
-            </ng-container>
-          </li>
-          <li>
-            <div style="color: red;">Πληροφορίες Ασθενή:</div>
-            <ng-container *ngIf="prescription.patient.amka != null">
-              <div style="font-size: 18px;">
-                - <span style="color: red;">ΑΜΚΑ: </span> {{prescription.patient.amka}} <br>
-                - <span style="color: red;">Όνομα: </span> {{prescription.patient.firstName}} <br>
-                - <span style="color: red;">Επώνυμο: </span> {{prescription.patient.lastName}} <br>
-                - <span style="color: red;">Ημερομηνία Γέννησης: </span> {{prescription.patient.birthDate | date}} <br>
-                - <span style="color: red;">Πόλη: </span> {{prescription.patient.city}}, {{prescription.patient.county}}
-                <br>
-                - <span style="color: red;">Διεύθυνση: </span> {{prescription.patient.address}} <br>
-              </div>
-            </ng-container>
-          </li>
-          <li>
-            <div style="color: red;">Στοιχεία Μονάδας Συνταγογράφησης:</div>
-            <ng-container *ngIf="prescription.unit.id != null">
-              <div style="font-size: 18px;">
-                - <span style="color: red;">ID: </span> {{prescription.unit.id}} <br>
-                - <span style="color: red;">Όνομα: </span> {{prescription.unit.healthCareUnit.unitType.name}} <br>
-                - <span style="color: red;">Περιγραφή: </span> {{prescription.unit.healthCareUnit.description}} <br>
-              </div>
-            </ng-container>
-          </li>
-          <li>
-            <div style="color: red;">Πληροφορίες Επίσκεψης:</div>
-            <div style="font-size: 18px;">
-              - <span style="color: red;">ID Επίσκεψης: </span> {{prescription.visit.id}} <br>
-              - <span style="color: red;">Ημερομηνία Έναρξης Συνταγής: </span> {{prescription.visit.startDate}} <br>
-              - <span style="color: red;">Λόγος: </span> {{prescription.visit.reason}} <br>
-              - <span style="color: red;">Σχόλια: </span> <br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{prescription.visit.comments}} <br>
-            </div>
-          </li>
-          <li>
-            <div style="color: red;">Πληροφορίες Φαρμάκου:</div>
-            <div style="font-size: 18px;">
-              - <span style="color: red;">Κωδικός ΕΟΦ: </span> {{prescription.medicine.code}} <br>
-              - <span style="color: red;">Barcode: </span> {{prescription.medicine.barcode}} <br>
-              - <span style="color: red;">Ονομασία: </span> {{prescription.medicine.name}} <br>
-              - <span style="color: red;">Ποσότητα: </span> {{prescription.medicine.quantity}} <br>
-              - <span style="color: red;">Μονάδα Μέτρησης: </span> {{prescription.medicine.doseUnit}} <br>
-              - <span style="color: red;">Δραστική Ουσία: </span> {{prescription.medicine.activeSubstanceDescription}}
-              <br>
-              - <span style="color: red;">Συνταγογραφημένη Ημερησία Ποσότητα Δόσης Φαρμάκου: </span>
-              {{prescription.medicine.dailyDose}}
-              <br>
-              - <span style="color: red;">Διάρκεια Θεραπείας σε Ημέρες: </span>
-              {{prescription.medicine.treatmentDuration}}
-              <br>
-            </div>
-          </li>
-          <li>
-            <div style="color: red;">Πληροφορίες Συνταγής:</div>
-            <div style="font-size: 18px;">
-              - <span style="color: red;">Ποσοστό Συμμετοχής Ασφαλισμένου (%): </span>
-              {{prescription.patientParticipationPercentage}} <br>
-              - <span style="color: red;">Έπαναληψιμότητα Συνταγής: </span>
-              {{prescription.info.repeatability.description}} <br>
-              - <span style="color: red;">Είναι Χρόνια Ασθένεια; </span>
-              {{prescription.isChronicIllness === '0' ? 'Όχι' : 'Ναι'}} <br>
-              - <span style="color: red;">Είναι Μηνιαία Συνταγή; </span>
-              {{prescription.isMonthlyPrescription === '0' ? 'Όχι' : 'Ναι'}} <br>
-              - <span style="color: red;">Είναι Δίμηνη Συνταγή; </span>
-              {{prescription.isTwoMonthsPrescription === '0' ? 'Όχι' : 'Ναι'}} <br>
-              - <span style="color: red;">Είναι Συνταγογράφηση με Βάση Εμπορική Ονομασία Φαρμάκου; </span>
-              {{prescription.isPrescribedByBrandNameMedicine === '0' ? 'Όχι' : 'Ναι'}} <br>
-              <ng-container *ngIf="prescription.isPrescribedByBrandNameMedicine === '1'">
-                - <span style="color: red;">Λόγος Συνταγογράφησης με Βάση την Εμπορική Ονομασία του Φαρμάκου: </span>
-                <br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                {{prescription.info.reasonForBrandNamedMedicines.name}} <br>
+      </div>
+    </nav>
+    
+      <div class="btn-group col-sm-12 col-md-12 col-lg-12 col-xl-10 offset-xl-1">
+        <ng-container *ngIf="!isFetching && prescription.status != 'cancelled'">
+          <button (click)="openConfirmDeleteModal(prescription.id)" class="btn delete"><i class="fa fa-trash"></i><span> Ακύρωση</span></button>
+          <button (click)="editPrescription(prescription.id)" class="btn edit"><i class="fas fa-pencil-alt"></i><span> Επεξεργασία</span></button>
+          <button (click)="downloadPrescriptionAsPDF(prescription.id)" class="btn add"><i class="fas fa-download"></i><span> Λήψη</span></button>
+        </ng-container>
+      </div>
+      
+      <div class="card col-sm-12 col-md-12 col-lg-12 col-xl-10 offset-xl-1" *ngIf="!isFetching">
+        <div class="card-body">
+          <h5>Κωδικός συνταγής:  {{prescription.id}}</h5>
+          <hr>
+          <div class="d-flex flex-column align-items-center text-center">
+            <div class="mt-3">
+              <ng-container *ngIf="!isFetching">
+                <ul class="list-group list-group-flush info-card">
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <ng-container *ngIf="prescription.patient.amka != null">
+                        <h6>Στοιχεία ασθενή:</h6>
+                        <ul class="list-group list-group-flush personal-info col-sm-12 col-md-12 col-lg-12 col-xl-10 offset-xl-1">
+                          <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap amka-info">
+                            <h6 class="mb-0"><i class="far fa-address-card"></i><span>  Αριθμός ΑΜΚΑ:</span></h6>
+                            <span class="span-text">{{prescription.patient.amka}}</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap amka-info">
+                            <h6 class="mb-0"><i class="far fa-user-circle"></i><span>  Ονοματεπώνυμο:</span></h6>
+                            <span class="span-text">{{prescription.patient.firstName}} {{prescription.patient.lastName}}</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap amka-info">
+                          <h6 class="mb-0"><i class="fa fa-calendar"></i><span>  Hμερομηνία Γέννησης:</span></h6>
+                          <span  class="span-text">{{prescription.patient.birthDate | date}}</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap amka-info">
+                            <h6 class="mb-0"><i class="fas fa-home"></i><span>  Διεύθυνση κατοικίας:</span></h6>
+                            <span class="span-text">{{prescription.patient.address}} {{prescription.patient.city}} {{prescription.patient.county}} </span>
+                          </li>
+                      </ul>
+                    </ng-container>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap prescriptionInfo">
+                    <h6>Στοιχεία Συνταγής:</h6>
+                    <ul class="list-group list-group-horizontal-sm">
+                      <li class="list-group-item col"><span class="first">Barcode Συνταγής: </span><span class="second">{{prescription.id}}</span></li>
+                      <li class="list-group-item col"><span class="first">Τίτλος Συνταγής: </span><span class="second">{{prescription.title}}</span></li>
+                    </ul>
+                    <ul class="list-group list-group-horizontal-sm">
+                      <li class="list-group-item col"><span class="first">Έναρξη Συνταγής: </span><span class="second">{{prescription.startDate}}</span></li>
+                      <li class="list-group-item col"><span class="first">Κατάσταση Συνταγής: </span><span class="second">{{prescription.status}}</span></li>
+                    </ul>
+                    <ul class="list-group list-group-horizontal-sm doc-comments" *ngIf="prescription.isPrescribedByBrandNameMedicine === '1'">
+                      <li class="list-group-item col"><span class="first"> Σχόλια Ιατρού: </span><br><span class="second">{{prescription.comments}}</span></li>
+                    </ul>
+                  </li>
+                  <li *ngIf="prescription.unit.id != null" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6>Στοιχεία Μονάδας Συνταγογράφησης:</h6>
+                    <ul class="list-group simple">
+                      <li class="list-group-item"><span class="first">ID: </span><span class="second">{{prescription.unit.id}}</span></li>
+                      <li class="list-group-item"><span class="first">Όνομα: </span><span class="second">{{prescription.unit.healthCareUnit.unitType.name}}</span></li>
+                      <li class="list-group-item"><span class="first">Περιγραφή: </span><span class="second">{{prescription.unit.healthCareUnit.description}}</span></li>
+                    </ul>
+                  </li>
+                  <li *ngIf="prescription.patient.amka != null" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6>Πληροφορίες Διάγνωσης ICD-10: </h6>
+                    <ul class="list-group simple">
+                      <li class="list-group-item"><span class="first">Κωδικός ICD-10: </span><span class="second">{{prescription.icd10.code}}</span></li>
+                      <li class="list-group-item"><span class="first">Τίτλος Διάγνωσης ICD-10: </span><span class="second">{{prescription.icd10.diagnosis}}</span></li>
+                    </ul>
+                  </li>
+
+                  <button class="btn btn-primary collapseInfoBtn" type="button" data-toggle="collapse" data-target="#collapseIllnessInfo" aria-expanded="false" aria-controls="collapseIllnessInfo">
+                    Πληροφορίες Ασθένειας:<i class="fas fa-angle-down"></i><i class="fas fa-angle-up"></i>
+                  </button>
+                  <div class="collapse" id="collapseIllnessInfo">
+                    <li *ngIf="prescription.patient.amka != null" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                      <ul class="list-group simple">
+                        <li class="list-group-item"><span class="first">ID Ασθένειας: </span><span class="second">{{prescription.disease.id}}</span></li>
+                        <li class="list-group-item"><span class="first">Τίτλος Ασθένειας: </span><span class="second">{{prescription.disease.name}}</span></li>
+                      </ul>
+                    </li>
+                  </div>
+
+                  <button class="btn btn-primary collapseInfoBtn" type="button" data-toggle="collapse" data-target="#collapsePrescpInfo" aria-expanded="false" aria-controls="collapsePrescpInfo">
+                    Πληροφορίες Επίσκεψης:<i class="fas fa-angle-down"></i><i class="fas fa-angle-up"></i>
+                  </button>
+                  <div class="collapse" id="collapsePrescpInfo">
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                      <ul class="list-group simple">
+                        <li class="list-group-item"><span class="first">ID Επίσκεψης: </span><span class="second">{{prescription.visit.id}}</span></li>
+                        <li class="list-group-item"><span class="first">Ημερομηνία Έναρξης Συνταγής: </span><span class="second">{{prescription.visit.startDate}}</span></li>
+                        <li class="list-group-item"><span class="first">Λόγος Επίσκεψης: </span><span class="second">{{prescription.visit.reason}}</span></li>
+                        <li class="list-group-item"><span class="first">Σχόλια: </span><span class="second">{{prescription.visit.comments}}</span></li>
+                      </ul>
+                    </li>
+                  </div>
+
+
+                  <button class="btn btn-primary collapseInfoBtn" type="button" data-toggle="collapse" data-target="#collapseMedicineInfo" aria-expanded="false" aria-controls="collapseMedicineInfo">
+                    Πληροφορίες Φαρμάκου:<i class="fas fa-angle-down"></i><i class="fas fa-angle-up"></i>
+                  </button>
+                  <div class="collapse" id="collapseMedicineInfo">
+                    <ul class="list-group list-group-horizontal-sm">
+                      <li class="list-group-item col"><span class="first">Κωδικός ΕΟΦ: </span><span class="second">{{prescription.medicine.code}}</span></li>
+                      <li class="list-group-item col"><span class="first">Barcode: </span><span class="second">{{prescription.medicine.barcode}}</span></li>
+                    </ul>
+                    <ul class="list-group list-group-horizontal-sm">
+                      <li class="list-group-item col"><span class="first">Ονομασία: </span><span class="second">{{prescription.medicine.name}}</span></li>
+                      <li class="list-group-item col"><span class="first">Ποσότητα: </span><span class="second">{{prescription.medicine.quantity}}</span></li>
+                    </ul>
+                    <ul class="list-group list-group-horizontal-sm">
+                      <li class="list-group-item col"><span class="first">Μονάδα Μέτρησης: </span><span class="second">{{prescription.medicine.doseUnit}}</span></li>
+                      <li class="list-group-item col"><span class="first">Δραστική Ουσία: </span><span class="second">{{prescription.medicine.activeSubstanceDescription}}</span></li>
+                    </ul>
+                      <ul class="list-group list-group-horizontal-sm">
+                        <li class="list-group-item col"><span class="first">Ημερησία Ποσότητα Δόσης Φαρμάκου: </span><span class="second">{{prescription.medicine.dailyDose}}</span></li>
+                        <li class="list-group-item col"><span class="first">Διάρκεια Θεραπείας (ημέρες): </span><span class="second">{{prescription.medicine.treatmentDuration}}</span></li>
+                    </ul>
+                  </div>
+          
+                  <button class="btn btn-primary collapseInfoBtn" type="button" data-toggle="collapse" data-target="#collapsePrescriptionInfo" aria-expanded="false" aria-controls="collapsePrescriptionInfo">
+                    Πληροφορίες Συνταγής:<i class="fas fa-angle-down"></i><i class="fas fa-angle-up"></i>
+                  </button>
+                  <div class="collapse" id="collapsePrescriptionInfo">
+                    <ul class="list-group list-group-horizontal-sm">
+                      <li class="list-group-item col"><span class="first">Ποσοστό Συμμετοχής Ασφαλισμένου (%): </span><span class="second">{{prescription.patientParticipationPercentage}}</span></li>
+                      <li class="list-group-item col"><span class="first">Έπαναληψιμότητα Συνταγής: </span><span class="second">{{prescription.info.repeatability.description}}</span></li>
+                    </ul>
+                    <ul class="list-group list-group-horizontal-sm">
+                      <li class="list-group-item col"><span class="first">Χρόνια Ασθένεια: </span><span class="second">{{prescription.isChronicIllness === '0' ? 'Όχι' : 'Ναι'}}</span></li>
+                      <li class="list-group-item col"><span class="first">Μηνιαία Συνταγή: </span><span class="second">{{prescription.isMonthlyPrescription === '0' ? 'Όχι' : 'Ναι'}}</span></li>
+                    </ul>
+                    <ul class="list-group list-group-horizontal-sm">
+                      <li class="list-group-item col"><span class="first">Δίμηνη Συνταγή: </span><span class="second">{{prescription.isTwoMonthsPrescription === '0' ? 'Όχι' : 'Ναι'}}</span></li>
+                      <li class="list-group-item col"><span class="first">Συνταγογράφηση με Βάση Εμπορική Ονομασία Φαρμάκου: </span><span class="second">{{prescription.isPrescribedByBrandNameMedicine === '0' ? 'Όχι' : 'Ναι'}}</span></li>
+                    </ul>
+                    <ul class="list-group list-group-horizontal-sm" *ngIf="prescription.isPrescribedByBrandNameMedicine === '1'">
+                      <li class="list-group-item col"><span class="first">Λόγος Συνταγογράφησης με Βάση την Εμπορική Ονομασία του Φαρμάκου: </span><br><span class="second">{{prescription.info.reasonForBrandNamedMedicines.name}}</span></li>
+                    </ul>
+                  </div>
+                </ul>
               </ng-container>
-              <br>
+              <ng-container *ngIf="isFetching">
+                <app-spinner class="main-loader"></app-spinner>
+              </ng-container>
             </div>
-          </li>
-        </ul>
-      </ng-container>
-      <ng-container *ngIf="isFetching">
-        <app-spinner class="main-loader"></app-spinner>
-      </ng-container>
+          </div>
+        </div>
+        <button routerLink="/prescriptions" class="back"><i class="fas fa-angle-left"></i></button>
+      </div>
     </div>
-  </div>
 </div>

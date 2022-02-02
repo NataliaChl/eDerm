@@ -79,7 +79,21 @@ h6:not(.mb-0) {
   .card-body {
       padding-bottom: 0;
   }
-
+  .navbar.navbar-default {
+    width: 30%;
+    float: left;
+  }
+  .btn-group {
+    width: 70%;
+    float: right;
+  }
+  @media (max-width: 493px) {
+    .delete span,
+    .edit span,
+    .add span {
+      display: none;
+    }
+  }
 @media (max-width: 500px) { 
     .card-body {
         padding-left: 0;
