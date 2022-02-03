@@ -1,22 +1,200 @@
 
 <div>
-    <app-header></app-header>
-      <!-- Page Content Holder -->
-      <div id="content">
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-              <div class="navbar-header">
-                  <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                      <i class="fa fa-bars"></i>
-                  </button>
-              </div>
-          </div>
-        </nav>
+  <app-header></app-header>
+    <!-- Page Content Holder -->
+    <div id="content">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+        </div>
+      </nav>
+
+      
+      <button (click)="createEntry()" type="button" class="btn add" id="entry-create">
+        <i class="fas fa-plus"></i>
+        Δημιουργία Καταχώρησης
+      </button>
+      <h2 class="page-title">Λίστα Καταχωρήσεων</h2>
+    
+      <div class="table-responsive col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <table id="desktop-table" class="table table-hover table-nowrap">
+          <thead id="desk-head" class="thead-light">
+              <tr>
+                  <th scope="col">Στοιχεία</th>
+                  <th scope="col">Εικόνα</th>
+                  <th scope="col">Ημερομηνία</th>
+                  <th scope="col">Λεπτομέρειες</th>
+              </tr>
+          </thead>
+          <tbody id="myDeskTable">
+            <!-- <ng-container *ngIf="!isFetching && prescriptions.item.length >= 0">
+              <ng-container *ngFor="let prescription of prescriptions.item"> -->
+                <tr>
+                  <td style="font-size: 17px;" class="first-column">
+                    Χλουβεράκη Ναταλία <br><br>
+                    AMKA: <strong>  13049700449</strong>
+                   
+                  </td>
+                  <td>
+                    <img width="100" height="80" src="../../../assets/melanoma1.jpg">
+                  </td>
+                  <td style="font-size: 17px;" >
+                    <span><i class="far fa-calendar-alt" style="font-size:20px"></i>    13/04/2020  19:35</span>
+                  </td>
+                  <td class="text-end"> 
+                    <button title="Προβολή"><i class="fa fa-eye"></i></button>
+                    <button title="Επεξεργασία"><i class='far fa-edit'></i></button>
+                    <button title="Διαγραφή"><i class="far fa-trash-alt"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-size: 17px;" class="first-column">
+                    Χρήστος Παπαδόπουλος <br><br>
+                    AMKA: <strong>  3456755221</strong>
+                  </td>
+                  <td>
+                    <img width="100" height="80" src="../../../assets/melanoma2.jpg">
+                  </td>
+                  <td style="font-size: 17px;">
+                    <span><i class="far fa-calendar-alt" style="font-size:20px"></i>     01/11/2020  15:30</span>
+                   
+                    <!-- <span class="insurance">{{prescription.patientInfo.socialInsuranceShortName}}</span> -->
+                  </td>
+                  <td class="text-end"> 
+                    <button title="Προβολή"><i class="fa fa-eye"></i></button>
+                    <button title="Επεξεργασία"><i class='far fa-edit'></i></button>
+                    <button title="Διαγραφή"><i class="far fa-trash-alt"></i></button>
+                   
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-size: 17px;" class="first-column">
+                    Χλουβεράκη Ναταλία <br><br>
+                    AMKA: <strong>  1875432435</strong>
+                   
+                  </td>
+                  <td>
+                    <img width="100" height="80" src="../../../assets/melanoma4.jpg">
+                  </td>
+                  <td style="font-size: 17px;" >
+                    <span><i class="far fa-calendar-alt" style="font-size:20px"></i>    11/11/2020  10:35</span>
+                  </td>
+                  <td class="text-end"> 
+                    <button title="Προβολή"><i class="fa fa-eye"></i></button>
+                    <button title="Επεξεργασία"><i class='far fa-edit'></i></button>
+                    <button title="Διαγραφή"><i class="far fa-trash-alt"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-size: 17px;" class="first-column">
+                    Μαρία Δημητρίου <br><br>
+                    AMKA: <strong>  126545321</strong>
+                   
+                  </td>
+                  <td>
+                    <img width="100" height="80" src="../../../assets/melanoma4.jpg">
+                  </td>
+                  <td style="font-size: 17px;" >
+                    <span><i class="far fa-calendar-alt" style="font-size:20px"></i>    19/12/2021  20:01</span>
+                  </td>
+                  <td class="text-end"> 
+                    <button title="Προβολή"><i class="fa fa-eye"></i></button>
+                    <button title="Επεξεργασία"><i class='far fa-edit'></i></button>
+                    <button title="Διαγραφή"><i class="far fa-trash-alt"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-size: 17px;" class="first-column">
+                    Χλουβεράκη Ναταλία <br><br>
+                    AMKA: <strong>  13049700449</strong>
+                   
+                  </td>
+                  <td>
+                    <img width="100" height="80" src="../../../assets/melanoma1.jpg">
+                  </td>
+                  <td style="font-size: 17px;" >
+                    <span><i class="far fa-calendar-alt" style="font-size:20px"></i>    13/04/2020  19:35</span>
+                  </td>
+                  <td class="text-end"> 
+                    <button title="Προβολή"><i class="fa fa-eye"></i></button>
+                    <button title="Επεξεργασία"><i class='far fa-edit'></i></button>
+                    <button title="Διαγραφή"><i class="far fa-trash-alt"></i></button>
+                  </td>
+                </tr>
+              <!-- </ng-container>
+            </ng-container> -->
+          </tbody>
+        </table>
   
-        <h2 class="page-title">Λίστα Καταχωρήσεων</h2>
-        <button (click)="createEntry()" type="button" class="btn btn-primary" id="entry-create">
-          Δημιουργία Καταχώρησης
-        </button>
+        <!-- <table id="mid-table" class="table table-hover table-nowrap">
+          <thead id="mid-head" class="thead-light">
+              <tr>
+                <th scope="col">Στοιχεία Ασθενή</th>
+                <th scope="col">Κατάσταση</th>
+                <th scope="col">Λεπτομέρειες</th>
+              </tr>
+          </thead>
+          <tbody id="myMedTable">
+            <ng-container *ngIf="!isFetching && prescriptions.item.length >= 0">
+              <ng-container *ngFor="let prescription of prescriptions.item">
+                <tr>
+                  <td class="first-column">
+                    <img alt="..." src="../../../assets/user.png" class="avatar avatar-sm rounded-circle me-2"> <span class="text-heading font-semibold" (click)="editPrescription(prescription.barcode)">{{prescription.patientInfo.firstName + ' ' + prescription.patientInfo.lastName}}</span>
+                    <br><span class="mid-amka">AMKA:</span><span class="amka">   {{prescription.patientInfo.amka}}</span><br>
+                    <span><i class="far fa-calendar-alt" style="font-size:25px"></i>    {{prescription.issueDate}}</span>
+                  </td>
+                  <td class="mid-column">
+                    <span *ngIf="prescription.status.status == 'ΣΥΝΤΑΓΟΓΡΑΦΗΜΕΝΗ'" class="badge badge-lg badge-dot"><i class="bg-warning"></i>{{prescription.status.status}}</span>
+                    <span *ngIf="prescription.status.status == 'ΑΚΥΡΩΜΕΝΗ'" class="badge badge-lg badge-dot"><i class="bg-danger"></i>{{prescription.status.status}}</span>
+                    <span *ngIf="prescription.status.status == 'ΟΛΟΚΛΗΡΩΜΕΝΗ'" class="badge badge-lg badge-dot"><i class="bg-success"></i>{{prescription.status.status}}</span>
+                  </td>
+                  <td class="text-end"> 
+                    <button title="Προβολή" (click)="viewPrescriptionDetails(prescription.barcode)"><i class="fa fa-eye"></i></button>
+                    <ng-container *ngIf="prescription.status.status != 'ΑΚΥΡΩΜΕΝΗ' && prescription.status.status != 'ΟΛΟΚΛΗΡΩΜΕΝΗ'">
+                      <button title="Επεξεργασία" (click)="editPrescription(prescription.barcode)"><i class='far fa-edit'></i></button>
+                      <button title="Διαγραφή" (click)="openConfirmDeleteModal(prescription.barcode)"><i class="far fa-trash-alt"></i></button>
+                    </ng-container>
+                  </td>
+                </tr>
+              </ng-container>
+            </ng-container>
+          </tbody>
+        </table>
+  
+  
+        <table id="mobile-table" class="table table-hover table-nowrap">
+          <thead id="mob-head" class="thead-light">
+            <tr>
+                <th scope="col">Στοιχεία</th>
+                <th scope="col">Λεπτομέρειες</th>
+            </tr>
+        </thead>
+          <tbody id="myMobTable">
+            <ng-container *ngIf="!isFetching && prescriptions.item.length >= 0">
+              <ng-container *ngFor="let prescription of prescriptions.item">
+                <tr>
+                  <td class="first-column">
+                    <span *ngIf="prescription.status.status == 'ΣΥΝΤΑΓΟΓΡΑΦΗΜΕΝΗ'" class="badge badge-lg badge-dot"><i class="bg-warning"></i></span>
+                    <span *ngIf="prescription.status.status == 'ΑΚΥΡΩΜΕΝΗ'" class="badge badge-lg badge-dot"> <i class="bg-danger"></i></span>
+                    <span *ngIf="prescription.status.status == 'ΟΛΟΚΛΗΡΩΜΕΝΗ'" class="badge badge-lg badge-dot"> <i class="bg-success"></i></span>
+                    <span class="amka">{{prescription.patientInfo.amka}}</span> <br> <span class="text-heading font-semibold" (click)="editPrescription(prescription.barcode)">{{prescription.patientInfo.firstName + ' ' + prescription.patientInfo.lastName}}</span><br>{{prescription.issueDate}}</td>
+                  <td class="text-end"> 
+                    <button title="Προβολή" (click)="viewPrescriptionDetails(prescription.barcode)"><i class="fa fa-eye"></i></button>
+                    <ng-container *ngIf="prescription.status.status != 'ΑΚΥΡΩΜΕΝΗ' && prescription.status.status != 'ΟΛΟΚΛΗΡΩΜΕΝΗ'">
+                      <button title="Επεξεργασία" (click)="editPrescription(prescription.barcode)"><i class='far fa-edit'></i></button>
+                      <button title="Διαγραφή" (click)="openConfirmDeleteModal(prescription.barcode)"><i class="far fa-trash-alt"></i></button>
+                    </ng-container>
+                  </td>
+                </tr>
+              </ng-container>
+            </ng-container>
+          </tbody>
+        </table> -->
+      </div>
   </div>
 </div>
   
