@@ -19,7 +19,9 @@ export class PhotoAddComponent implements OnInit {
   isImageSaved: boolean;
   cardImageBase64: string;
   public imagesData: any;
-
+  isFetching = false;
+  patientResponse = null;
+  
   constructor(imageService: ImageService, 
     public rest: RestService,
     private router: Router) {
@@ -61,6 +63,17 @@ export class PhotoAddComponent implements OnInit {
   deleteDataFromJson(id): void {
     this.rest.deleteDataFromJson(id).subscribe((data: any) => {
       return this.imagesData = data;
+    });
+  }
+  getPatient(amka): void {
+    this.isFetching = true;
+    amka = amka.toString().trim();
+    console.log(amka);
+    this.rest.getPatientInfo(amka).subscribe((data: any) => {
+      this.patientResponse = data;
+      console.log(this.patientResponse);
+      // var covidMessage = this.patientResponse.covidVaccineMessage;
+      this.isFetching = false;
     });
   }
 

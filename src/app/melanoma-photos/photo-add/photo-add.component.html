@@ -12,48 +12,110 @@
           </div>
         </nav>
 
-{{imageError}}
+           
   
-            <p class = "center">
-              Παρακαλώ επιλέξτε μια εικόνα που θέλετε να ελεχθεί
-            </p>
-            <div class="input-group">
-              <div class="custom-file half-width">
-                <input type="file" 
-                class="custom-file-input" 
-                id="file"
-                aria-describedby="inputGroupFileAddon01"
-                (change)="handleFileInput($event.target.files)">
-                <label class="custom-file-label" for="fileToUpload">{{fileSelectedLabel()}}</label>
-                <ng-container *ngIf="isImageSaved; else elseTemplate">
-                  <img style="width: 100px" [src]="cardImageBase64" />
+            <!-- <div class="btn-group col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2">
+              <ng-container *ngIf="!isFetching && visit.status != 'cancelled'">
+                <button (click)="openConfirmDeleteModal(visit.id)" class="btn delete"><i class="fa fa-trash"></i><span> Ακύρωση</span></button>
+                <button (click)="editVisit(visit.id)" class="btn edit"><i class="fas fa-pencil-alt"></i><span> Επεξεργασία</span></button>
               </ng-container>
-              <ng-template #elseTemplate>
-  
-                  <img style="width: 100px" src="" class="img-responsive" style="background-color:red;">
-              </ng-template>
+              <ng-container *ngIf="!isFetching && canBePrescribed">
+                <button (click)="createPrescriptionForVisit(visit.id)" class="btn add"><i class="fas fa-plus"></i><span> Δημιουργία Συνταγής</span></button>
+              </ng-container>
+            </div> -->
+      
+            <div class="card col-sm-12 col-md-10 col-lg-10 col-xl-10 offset-xl-1 offset-md-1">  
+              <!-- *ngIf="!isFetching" -->
+              <div class="card-body">
+                <h5>Δημιουργία Καταχώρησης:</h5>
+                <hr>
+                <div class="d-flex flex-column align-items-center text-center">
+                  <div class="mt-3">
+                    
+                    <!-- <ng-container *ngIf="!isFetching"> -->
+                      <ul class="list-group list-group-flush info-card">
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                          <h6>Στοιχεία ασθενή:</h6>
+                          <div class="form-group full-width">
+                            <label for="patient-amka">ΑΜΚΑ Ασθενή: </label>
+                            <input [(ngModel)]="amka" name="patient-amka" id="patient-amka" class="form-control"
+                                    type="text" placeholder="Αριθμός ΑΜΚΑ" (focusout)="getPatient(amka)" required
+                                    #r2="ngModel"/>
+                          </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                          <ng-container *ngIf="patientResponse">
+                            <ul class="list-group list-group-flush personal-info col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap amka-info">
+                                <h6 class="mb-0"><i class="far fa-user-circle"></i><span>  Ονοματεπώνυμο:</span></h6>
+                                <span class="span-text">{{patientResponse.firstName + ' ' + patientResponse.lastName}}</span>
+                              </li>
+                              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap amka-info">
+                              <h6 class="mb-0"><i class="fa fa-calendar"></i><span>  Hμερομηνία Γέννησης:</span></h6>
+                              <span  class="span-text">{{patientResponse.birthDate | date}}</span>
+                              </li>
+                              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap amka-info">
+                                <h6 class="mb-0"><i class="far fa-address-card"></i><span>  Επικοινωνία:</span></h6>
+                                <span class="span-text">{{patientResponse.telephone}}</span>
+                              </li>
+                              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap amka-info">
+                                <h6 class="mb-0"><i class="fas fa-home"></i><span>  Διεύθυνση κατοικίας:</span></h6>
+                                <span class="span-text">{{patientResponse.address + ', ' + patientResponse.city + ', ' + patientResponse.county}} </span>
+                              </li>
+                            </ul>
+                          </ng-container>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                          <h6>Εισάγετε την φωτογραφία σας:</h6>
+                          <ng-container *ngIf="isImageSaved; else elseTemplate">
+                            <img width="200px" height="150px" [src]="cardImageBase64" class="img-responsive image-added">
+                            <div class="card-body" style="width: 100%; padding-left: 0;">
+                              <button id="photo-review" class="btn btn-primary spacing" type="submit" [disabled] = "!fileToUpload || loading" (click) = submit()>Αξιολόγηση εικόνας</button>
+                            <a id="photo-delete" class="btn btn-danger" (click)="removeImage()" *ngIf="isImageSaved">Remove</a>
+                            <div *ngIf = "examinedImageResponse">Το αποτέλεσμα της εξέτασης είναι {{examinedImageResponse}} </div>
+                          </div>
+                          </ng-container>
+                          <ng-template #elseTemplate>
+                              <img width="200px" height="150px" src="" class="img-responsive image-added" style="display: none;">
+                          </ng-template>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                      
+                          {{imageError}}
+                          <div class="form-group">
+                              <input type="file" 
+                              class="custom-file-input" 
+                              id="file"
+                              aria-describedby="inputGroupFileAddon01"
+                              (change)="handleFileInput($event.target.files)">
+                              <label class="custom-file-label" for="fileToUpload">{{fileSelectedLabel()}}</label>
+                            </div>
+                          </li>
+                          
+                          
+                          <!-- <button class="btn btn-primary spacing" type="submit" [disabled] = "!fileToUpload || loading" (click) = submit()>Αξιολόγηση εικόνας</button>
+                
+                          <a class="btn btn-danger" (click)="removeImage()" *ngIf="isImageSaved">Remove</a>
+                          <div *ngIf = "examinedImageResponse">Το αποτέλεσμα της εξέτασης είναι {{examinedImageResponse}} </div> -->
+                        
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                          <h6>Σχόλια Καταχώρησης: </h6>
+                          <textarea name="entry-comments" id="entry-comments" class="form-control" type="text" rows="3" placeholder="Σχόλια Καταχώρησης"></textarea>
+                        </li>
+                      </ul>
+                    <!-- </ng-container> -->
+                  </div>
+                </div>
+              </div>
+              <div class="btn-group" style="width: 92%; margin-top: 18px;">
+                <button routerLink="/photos-get" class="back"><i class="fas fa-angle-left"></i></button>
+                <button type="button" class="edit-submit">Αποθήκευση</button>
               </div>
             </div>
-            <button class="btn btn-primary spacing" type="submit" [disabled] = "!fileToUpload || loading" (click) = submit()>Αξιολόγηση εικόνας</button>
-  
-            <a class="btn btn-danger" (click)="removeImage()" *ngIf="isImageSaved">Remove</a>
-            <div *ngIf = "examinedImageResponse">Το αποτέλεσμα της εξέτασης είναι {{examinedImageResponse}} </div>
-  
-    <!-- <div class="input-group">
-      <div class="custom-file half-width">
-        <input type="file" 
-        class="custom-file-input" 
-        id="file"
-        aria-describedby="inputGroupFileAddon01"
-        (change)="handleFileInput($event.target.files)">
-        <label class="custom-file-label" for="fileToUpload">{{fileSelectedLabel()}}</label>
-      </div>
-    </div>
-    <button class="btn btn-primary spacing" type="submit" [disabled] = "!fileToUpload || loading" (click) = submit()>Αξιολόγηση εικόνας</button>
-  
-    <div *ngIf = "examinedImageResponse">Το αποτέλεσμα της εξέτασης είναι {{examinedImageResponse}} </div> -->
-  
-    
-    <!-- <app-spinner class="main-loader" *ngIf = "loading"></app-spinner> -->
+         
+          <!-- <ng-container *ngIf="isFetching">
+            <app-spinner class="main-loader"></app-spinner>
+          </ng-container> -->
+
     </div>
 </div>
