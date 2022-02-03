@@ -21,7 +21,8 @@ export class PhotoAddComponent implements OnInit {
   public imagesData: any;
   isFetching = false;
   patientResponse = null;
-  
+  amka: any;
+
   constructor(imageService: ImageService, 
     public rest: RestService,
     private router: Router) {

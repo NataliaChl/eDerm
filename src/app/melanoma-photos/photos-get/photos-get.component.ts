@@ -20,7 +20,7 @@ export class PhotosGetComponent implements OnInit {
   imageError: string;
   isImageSaved: boolean;
   cardImageBase64: string;
-  public imagesData: any;
+  public imagesData: any = null;
 
   constructor(imageService: ImageService, 
     public rest: RestService,
@@ -31,7 +31,7 @@ export class PhotosGetComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDataFromJson();
-    this.postDataToJson();
+    // this.postDataToJson();
     // this.deleteDataFromJson(1);
   }
 
