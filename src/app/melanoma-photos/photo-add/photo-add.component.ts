@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ExaminedImageResponse } from 'src/app/enums/examined-image-response.enum';
 import { ImageService } from 'src/app/image.service';
@@ -10,18 +11,33 @@ import { RestService } from 'src/app/rest.service';
   styleUrls: ['./photo-add.component.css']
 })
 export class PhotoAddComponent implements OnInit {
-
+  @ViewChild('f', {static: false}) form: NgForm;
+  
   fileToUpload: File = null;
   private imageService: ImageService;
   public examinedImageResponse: any;
+  public dlPredictResponse: any;
+  public removeHairResponse: any;
   public loading: boolean = false;
+  public removeHairLoading: boolean = false;
+  public removeHairClicked: boolean = false;
+  public submitted: boolean = false;
+  public dlPredictLoading: boolean = false;
+  public dlPredictClicked: boolean = false;
+  remHairURL: string;
+  dlURL: string;
   imageError: string;
   isImageSaved: boolean;
   cardImageBase64: string;
   public imagesData: any;
   isFetching = false;
   patientResponse = null;
-  
+  amka: any;
+  date: any;
+  dateNow: any;
+  comments: any;
+  public entry = {"amka": "","comments": "","finalImage": "", "result": "", "date": "", "dateNow": ""};
+
   constructor(imageService: ImageService, 
     public rest: RestService,
     private router: Router) {
@@ -31,7 +47,8 @@ export class PhotoAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDataFromJson();
-    this.postDataToJson();
+    this.getDateNow();
+    // this.postDataToJson();
     // this.deleteDataFromJson(1);
   }
 
@@ -45,16 +62,12 @@ export class PhotoAddComponent implements OnInit {
     });
   }
 
-  postDataToJson(): void {
-    var entry = {
-      "amka": "13456765",
-      "image": "5bfbdfvsv",
-      "result": "dying",
-      "createDate": "13/04/97",
-      "photoDate": "03/05/10"
-    }
-    this.rest.postDataToJson(entry).subscribe((result) => {
+  postDataToJson(entry): void {
+    //console.log(this.entry);
+    this.entry = {"amka": this.amka,"comments": entry.comments,"finalImage": this.cardImageBase64, "result" : this.examinedImageResponse, "date" : entry.date, "dateNow": this.dateNow};
+    this.rest.postDataToJson(this.entry).subscribe((result) => {
       console.log(result);
+      this.router.navigate(['/photos-get']);
     }, (err) => {
       console.log(err);
     });
@@ -75,6 +88,16 @@ export class PhotoAddComponent implements OnInit {
       // var covidMessage = this.patientResponse.covidVaccineMessage;
       this.isFetching = false;
     });
+  }
+
+  getDateNow() {
+    var months = ["Ιανουαρίου", "Φεβρουαρίου", "Μαρτίου", "Απριλίου", "Μαΐου", "Ιουνίου", "Ιουλίου", "Αυγούστου", "Σεπτεμβρίου", "Οκτωβρίου", "Νοεμβρίου", "Δεκεμβρίου"];
+    //var days = ["Δευτέρα", "Τρίτη", "Τετάρτη", "Πέμπτη", "Παρασκευή", "Σάββατο", "Κυριακή"];
+    var d = new Date();
+    var year = d.getFullYear(); 
+    var month = d.getMonth();
+    var day = d.getDate();
+    this.dateNow = day +' '+ months[month] +' '+ year;
   }
 
   //handling the image 
@@ -133,11 +156,15 @@ export class PhotoAddComponent implements OnInit {
   removeImage() {
     this.cardImageBase64 = null;
     this.isImageSaved = false;
+    this.examinedImageResponse = false;
+    this.fileToUpload = null;
+    this.dlPredictClicked = false;
+    this.removeHairClicked = false;
   }
 
 
-  public fileSelectedLabel(){
-    if (this.fileToUpload){
+  public fileSelectedLabel() {
+    if (this.fileToUpload) {
       return this.fileToUpload.name;
     } else {
       return "Επιλέξτε αρχείο";
@@ -154,10 +181,40 @@ export class PhotoAddComponent implements OnInit {
       document.querySelector('#sidebarCollapse').classList.remove('replace-button');
     }
   }
+  removeHairImage() {
+    this.removeHairResponse = null;
+    this.removeHairLoading = true;
+    this.removeHairClicked = true;
+    this.imageService.removeHairImage(this.fileToUpload).subscribe(res => {
+
+      this.removeHairResponse = res.hair_rm;
+      this.remHairURL = 'http://83.212.109.205:50/images/' + this.removeHairResponse;
+      this.removeHairLoading = false;
+    }, (err) => {
+      console.log('error',err);
+    });
+  }
+
+  dlPredict() {
+    this.dlPredictResponse = null;
+    this.dlPredictLoading = true;
+    this.dlPredictClicked = true;
+    this.imageService.dlPredictImage(this.fileToUpload).subscribe(res => {
+
+      this.dlPredictResponse = res.image_name;
+      this.dlURL = 'http://83.212.109.205:50/images/' + this.dlPredictResponse;
+      this.dlPredictLoading = false;
+    }, (err) => {
+      console.log('error',err);
+    });
+  }
 
   submit() {
     this.examinedImageResponse = null;
     this.loading = true;
+    this.submitted = true;
+    this.dlPredictClicked = false;
+    this.removeHairClicked = false;
     this.imageService.examineImage(this.fileToUpload).subscribe(res => {
 
       console.log(res);
@@ -165,10 +222,8 @@ export class PhotoAddComponent implements OnInit {
       console.log(examinedTypeResult);
 
       this.examinedImageResponse = examinedTypeResult;
-      console.log(this.cardImageBase64);
       this.loading = false;
     })
-    console.log(this.fileSelectedLabel);
   }
 
 }
