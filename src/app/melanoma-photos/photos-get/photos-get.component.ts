@@ -14,6 +14,7 @@ import { RestService } from '../../rest.service';
 export class PhotosGetComponent implements OnInit {
 
   fileToUpload: File = null;
+  isFetching = false;
   private imageService: ImageService;
   public examinedImageResponse: any;
   public loading: boolean = false;
@@ -45,20 +46,20 @@ export class PhotosGetComponent implements OnInit {
     });
   }
 
-  postDataToJson(): void {
-    var entry = {
-      "amka": "13456765",
-      "image": "5bfbdfvsv",
-      "result": "dying",
-      "createDate": "13/04/97",
-      "photoDate": "03/05/10"
-    }
-    this.rest.postDataToJson(entry).subscribe((result) => {
-      console.log(result);
-    }, (err) => {
-      console.log(err);
-    });
-  }
+  // postDataToJson(): void {
+  //   var entry = {
+  //     "amka": "13456765",
+  //     "image": "5bfbdfvsv",
+  //     "result": "dying",
+  //     "createDate": "13/04/97",
+  //     "photoDate": "03/05/10"
+  //   }
+  //   this.rest.postDataToJson(entry).subscribe((result) => {
+  //     console.log(result);
+  //   }, (err) => {
+  //     console.log(err);
+  //   });
+  // }
 
   deleteDataFromJson(id): void {
     this.rest.deleteDataFromJson(id).subscribe((data: any) => {

@@ -149,7 +149,6 @@ h6:not(.mb-0) {
     color: white; /* White text */
     padding: 10px 14px; /* Some padding */
     cursor: pointer; /* Pointer/hand icon */
-    float: right; /* Float the buttons side by side */
     border-radius: 30px;
     margin-left: 6px;
     margin-bottom: 6px;
@@ -234,8 +233,24 @@ h6:not(.mb-0) {
     color: #566089;
     font-weight: 600;
 }
-
+.image-group {
+  width: 100%;
+}
+.image-group ul {
+  width: 100%;
+}
+.custom-file-label {
+  top: auto !important;
+}
+.image-response {
+  padding-bottom: 1.25rem !important;
+}
 @media (max-width: 493px) {
+  .image-group {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .delete span,
   .edit span,
   .add span {
