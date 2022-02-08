@@ -103,6 +103,12 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'photo-edit/:id',
+    component: PhotoEditComponent,
+    data: {title: 'photo edit'},
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'photo-add',
     component: PhotoAddComponent,
     data: {title: 'photos add'},

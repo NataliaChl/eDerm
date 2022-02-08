@@ -52,6 +52,12 @@ export class PhotosGetComponent implements OnInit {
     this.router.navigate(['/photo-get/' + id]);
   }
 
+  editEntryDetails(e: Event): void {
+    var element = e.currentTarget as HTMLInputElement
+    var id = element.closest('.all-data').getAttribute('id');
+    this.router.navigate(['/photo-edit/' + id]);
+  }
+
 
   deleteDataFromJson(id): void {
     this.rest.deleteDataFromJson(id).subscribe((data: any) => {
