@@ -1,0 +1,127 @@
+hr { 
+    border : 0;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #8fb2cbd6, rgba(0, 0, 0, 0)); 
+  }
+.card {
+    box-shadow: 0px 0px 3px 3px #587a9385;
+}
+.amka-info {
+    padding: 2px;
+    background: #102d4200;
+    border: none;
+}
+h6:not(.mb-0) {
+    color: #2f7bb1;
+    width: 100%;
+    text-align: left;
+}
+.personal-info {
+    background: #8bc8f32e;
+    margin-top: 10px;
+}
+.prescription-info li {
+    padding: 1px;
+    border: none;
+}
+.span-text {
+    color: #000000c4;
+}
+.info-card li:hover {
+    background: #d3c4be2b;
+}
+/* buttons */
+.btn-group button {
+    color: white; /* White text */
+    padding: 10px 14px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: right; /* Float the buttons side by side */
+    border-radius: 30px;
+    margin-left: 6px;
+    margin-bottom: 6px;
+    border-top-right-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
+  }
+  .btn-group button * {
+      color: white;
+  }
+  .btn-group {
+      display: block !important;
+      padding-bottom: 20px;
+  }
+  /* Clear floats (clearfix hack) */
+  .btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  .btn-group button:hover {
+    box-shadow: 0px 0px 3px 3px #587a9385;
+  }
+  .delete {
+    background-color: #f75353;
+  }
+  .add {
+    background-color: hsl(115deg 18% 63%);
+  }
+  .edit {
+    background-color: #5d84a1;
+  }
+  .back {
+    margin-top: 15px;
+    color: #33556c;
+    float: left;
+    border: 1px solid #33556c9e;
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px 2px #587a9385;
+    margin-bottom: 10px;
+  }
+  .card-body {
+      padding-bottom: 0;
+  }
+  .navbar.navbar-default {
+    width: 30%;
+    float: left;
+  }
+  .btn-group {
+    width: 70%;
+    float: right;
+  }
+  @media (max-width: 493px) {
+    .delete span,
+    .edit span,
+    .add span {
+      display: none;
+    }
+  }
+@media (max-width: 500px) { 
+    .card-body {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .back {
+        width: 35px;
+        height: 35px;
+    }
+}
+@media (min-width: 501px) and (max-width: 749px) {
+    .back {
+        width: 35px;
+        height: 35px;
+    }
+}
+@media (min-width: 750px) {
+    h5 {
+        font-size: 25px;
+    }
+    h6:not(.mb-0) {
+        font-size: 20px;
+    }
+    h6.mb-0 {
+        font-size: 18px;
+    }
+    .back {
+        width: 40px;
+        height: 40px;
+    }
+}

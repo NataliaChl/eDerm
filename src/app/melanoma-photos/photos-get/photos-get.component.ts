@@ -46,20 +46,12 @@ export class PhotosGetComponent implements OnInit {
     });
   }
 
-  // postDataToJson(): void {
-  //   var entry = {
-  //     "amka": "13456765",
-  //     "image": "5bfbdfvsv",
-  //     "result": "dying",
-  //     "createDate": "13/04/97",
-  //     "photoDate": "03/05/10"
-  //   }
-  //   this.rest.postDataToJson(entry).subscribe((result) => {
-  //     console.log(result);
-  //   }, (err) => {
-  //     console.log(err);
-  //   });
-  // }
+  viewEntryDetails(e: Event): void {
+    var element = e.currentTarget as HTMLInputElement
+    var id = element.closest('.all-data').getAttribute('id');
+    this.router.navigate(['/photo-get/' + id]);
+  }
+
 
   deleteDataFromJson(id): void {
     this.rest.deleteDataFromJson(id).subscribe((data: any) => {

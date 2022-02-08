@@ -37,7 +37,7 @@
           </div>
 
           <ng-container *ngFor="let item of imagesData">
-            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 all-data">
+            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 all-data" data-id="{{item.id}}">
               <div class="col">
                 {{item.name}} <br>AMKA: <strong>  {{item.amka}}</strong>
               </div>
@@ -45,7 +45,7 @@
                 <div><img width="100" height="80" [src]="item.finalImage"></div>
                 <div class="d-none d-none d-sm-block d-md-none"><span><i class="far fa-calendar-alt" style="font-size:20px"></i>    {{item.dateNow}}</span></div>
                 <div class="d-block d-sm-none">
-                  <button title="Προβολή"><i class="fa fa-eye"></i></button>
+                  <button title="Προβολή" (click)="viewEntryDetails($event)"><i class="fa fa-eye"></i></button>
                   <button title="Επεξεργασία"><i class="far fa-edit"></i></button>
                   <button title="Διαγραφή"><i class="far fa-trash-alt"></i></button>
                 </div>
@@ -54,7 +54,7 @@
                 <span><i class="far fa-calendar-alt" style="font-size:20px"></i>    {{item.dateNow}}</span>
               </div>
               <div class="col d-none d-sm-block">
-                <button title="Προβολή"><i class="fa fa-eye"></i></button>
+                <button title="Προβολή" (click)="viewEntryDetails($event)"><i class="fa fa-eye"></i></button>
                 <button title="Επεξεργασία"><i class='far fa-edit'></i></button>
                 <button title="Διαγραφή"><i class="far fa-trash-alt"></i></button>
               </div>
