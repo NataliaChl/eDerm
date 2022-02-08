@@ -36,7 +36,8 @@ export class PhotoAddComponent implements OnInit {
   date: any;
   dateNow: any;
   comments: any;
-  public entry = {"amka": "","comments": "","finalImage": "", "result": "", "date": "", "dateNow": ""};
+  name: any;
+  public entry = {"amka": "","name": "","comments": "","finalImage": "", "result": "", "date": "", "dateNow": ""};
 
   constructor(imageService: ImageService, 
     public rest: RestService,
@@ -64,7 +65,7 @@ export class PhotoAddComponent implements OnInit {
 
   postDataToJson(entry): void {
     //console.log(this.entry);
-    this.entry = {"amka": this.amka,"comments": entry.comments,"finalImage": this.cardImageBase64, "result" : this.examinedImageResponse, "date" : entry.date, "dateNow": this.dateNow};
+    this.entry = {"amka": this.amka,"name": this.name,"comments": entry.comments,"finalImage": this.cardImageBase64, "result" : this.examinedImageResponse, "date" : entry.date, "dateNow": this.dateNow};
     this.rest.postDataToJson(this.entry).subscribe((result) => {
       console.log(result);
       this.router.navigate(['/photos-get']);
@@ -84,6 +85,7 @@ export class PhotoAddComponent implements OnInit {
     console.log(amka);
     this.rest.getPatientInfo(amka).subscribe((data: any) => {
       this.patientResponse = data;
+      this.name = this.patientResponse.firstName + ' ' + this.patientResponse.lastName;
       console.log(this.patientResponse);
       // var covidMessage = this.patientResponse.covidVaccineMessage;
       this.isFetching = false;
