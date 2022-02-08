@@ -28,6 +28,7 @@ import { PhotoAddComponent } from './melanoma-photos/photo-add/photo-add.compone
 import { PhotosGetComponent } from './melanoma-photos/photos-get/photos-get.component';
 import { PhotoEditComponent } from './melanoma-photos/photo-edit/photo-edit.component';
 import { PhotoDeleteComponent } from './melanoma-photos/photo-delete/photo-delete.component';
+import { PhotoGetComponent } from './melanoma-photos/photo-get/photo-get.component';
 
 const appRoutes: Routes = [
   {
@@ -96,6 +97,12 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'photo-get/:id',
+    component: PhotoGetComponent,
+    data: {title: 'photo get'},
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'photo-add',
     component: PhotoAddComponent,
     data: {title: 'photos add'},
@@ -142,7 +149,8 @@ const appRoutes: Routes = [
     PhotoAddComponent,
     PhotosGetComponent,
     PhotoEditComponent,
-    PhotoDeleteComponent
+    PhotoDeleteComponent,
+    PhotoGetComponent
   ],
   imports: [
     BrowserModule,
