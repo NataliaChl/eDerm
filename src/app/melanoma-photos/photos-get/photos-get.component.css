@@ -4,7 +4,6 @@ body{margin-top:20px;
     background-color: #e4e6e9;
     color: #41464d;
 }
-
 .btn:not(:disabled):not(.disabled) {
     cursor: pointer;
 }
@@ -14,6 +13,11 @@ body{margin-top:20px;
     z-index: auto;
     border-radius: .175rem;
     transition: color .15s,background-color .15s,border-color .15s,box-shadow .15s,opacity .15s;
+}
+ button {
+    border-radius: 40%;
+    border: 1px solid #7684bf;
+    margin-right: 5px;
 }
 .btn-primary {
     background-color: #566089 !important;
@@ -27,286 +31,15 @@ body{margin-top:20px;
 .far.fa-trash-alt {
     color: #fe5f5f;
 }
-
-/* searchbar */
-.form {
-    position: relative
-}
-
-.form .fa-search {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    color: #9ca3af
-}
-
-.form span {
-    position: absolute;
-    right: 17px;
-    top: 13px;
-    padding: 2px;
-    border-left: 1px solid #d1d5db
-}
-
-.form-input {
-    height: 55px;
-    text-indent: 33px;
-    border-radius: 10px
-}
 .text-end button {
     border-radius: 40%;
     border: 1px solid #7684bf;
     margin-right: 5px;
 }
-tr,
-tbody {
-    width: 100%;
-}
-#sidebarCollapse {
-    background-color: #566089;
-}
-
-#myInputDesk,
-#myInputMed,
-#myInputMob {
-    margin-bottom: 30px;
-    margin-top: 30px;
-}
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
-input:focus, textarea:focus, select:focus, button:focus {
-    outline: none;
-}
-.insurance {
-	font-size: 17px;
-	font-weight: 600;
-}
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-#content {
-    width: calc(100% - 250px);
-    padding: 40px;
-    min-height: 100vh;
-    transition: all 0.3s;
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-#content.active {
-    width: 100%;
-}
-.full-width {
-    width: 100% !important;
-}
-.replace-button {
-    margin-left: 220px !important;
-}
-#desktop-table thead {
-	width: 100%;
-}
-#desktop-table thead th {
-	width: 30%;
-}
-
-/* ---------------------------------------------------
-    MEDIAQUERIES
------------------------------------------------------ */
-/* handle tables on several devices */
-@media (max-width: 578px) {
-    #desktop-table,
-    #mid-table,
-    .desktop,
-    .medium {
-        display: none;
-    }
-    #mobile-table,
-    .mobile {
-        display: block;
-    }
-    #content {
-        padding: 10px !important;
-    }
-    .table-responsive {
-        padding: 2px;
-    }
-    .first-column {
-        padding-left: 5px;
-        padding-right: 7px;
-        width: 80%;
-    }
-    .text-end {
-        padding-left: 0;
-        width: 20%;
-    }
-    .text-end button {
-        margin-top: 17px;
-        font-size: 18px;
-    }
-    .far.fa-trash-alt {
-        width: 19px;
-    }
-    .page-title {
-        font-size: 25px;
-        margin-left: 3px;
-    }
-    .mobile {
-        margin-top: 60px;
-    }
-}
-@media (min-width: 579px) and (max-width: 1300px) {
-    #desktop-table,
-    #mobile-table,
-    .desktop,
-    .mobile {
-        display: none;
-    }
-    #mid-table,
-    .medium {
-        display: block;
-    }
-    #content {
-        padding: 10px !important;
-    }
-    .table-responsive {
-        padding: 2px;
-    }
-    .first-column {
-        padding-left: 5px;
-        padding-right: 7px;
-        width: 55%;
-    }
-    .text-end {
-        padding-left: 0;
-        width: 20%;
-    }
-    .text-end button {
-        margin-top: 17px;
-        font-size: 18px;
-    }
-    .text-heading {
-        font-size: 15px;
-		display: inline-flex;
-		width: 80%;
-		overflow: hidden;
-    }
-    .mid-amka {
-        font-weight: 600;
-        font-style: italic;
-    }
-    .mid-column {
-        padding-left: 0;
-		width: 30%;
-    }
-    .far.fa-trash-alt {
-        width: 19px;
-    }
-    .thead-light tr th {
-        font-size: 16px;
-    }
-    #myMedTable tr td {
-        padding-left: 0;
-    }
-    .page-title {
-        font-size: 25px;
-        margin-left: 30px;
-    }
-}
-
-@media (min-width: 1301px) {
-    #mobile-table,
-    #mid-table,
-    .medium,
-    .mobile {
-        display: none;
-    }
-    #desktop-table,
-    .desktop {
-        display: block;
-    }
-    #myDeskTable td {
-        width: 25%;
-    }
-    .desk-date i {
-        margin-top: 9px;
-        margin-left: 10px;
-    }
-    .desk-date .fa-calendar-alt * {
-        font-size: 15px;
-    }
-    #content {
-        padding-left: 5px;
-        padding-right: 2px;
-    }
-    .page-title {
-        font-size: 35px;
-        margin-left: 30px;
-    }
-    .amka-number {
-        font-size: 19px;
-    }
-    .text-heading {
-        font-size: 16px;
-		display: inline-flex;
-		width: 95%;
-		overflow: hidden;
-    }
-    .badge-dot {
-        font-size: 18px;
-    }
-    .text-end button {
-       font-size: 22px;
-    }
-    .far.fa-trash-alt {
-        width: 24px;
-    }
-    .thead-light tr th {
-        font-size: 18px;
-    }
-	.first-column {
-		width: 30%;
-	}
-}
-
-@media (max-width: 1110px) {
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-    #content {
-        width: 100%;
-    }
-    #content.active {
-        width: calc(100% - 250px);
-    }
-}
-@media (min-width: 1111px) {
-    #sidebarCollapse {
-        display: none;
-    }
-}
-
-
-
-.table-responsive {
-    margin-top: 20px;
-}
-
 #entry-create {
     float: right;
     margin-right: 16px;
 }
-
 .add {
     background-color: #566089d6;
     color: white; /* White text */
@@ -319,3 +52,33 @@ input:focus, textarea:focus, select:focus, button:focus {
     border-top-right-radius: 30px !important;
     border-bottom-right-radius: 30px !important;
   }
+.all-data .col {
+    border: 1px solid #566089d6;
+    text-align: center;
+    overflow: hidden;
+}
+.my-header .col {
+    border: 1px solid #cf1515;
+    text-align: center;
+    overflow: hidden;
+}
+.all-data .col {
+    min-height: 95px;
+    max-height: 100px;
+}
+.all-data .col {
+    background-color: #e1e1e180;
+}
+.all-data {
+    background-color: #e1e1e180;
+}
+.all-data:hover {
+    background-color: #cee5ff;
+}
+.my-header {
+    margin-top: 85px;
+    background-color: #5660893b;
+}
+.my-table {
+    min-width: 100%;
+}
