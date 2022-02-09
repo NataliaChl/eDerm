@@ -1,18 +1,104 @@
-
 <div>
-    <app-header></app-header>
-    <!-- Page Content Holder -->
-    <div id="content">
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                    <i class="fa fa-bars"></i>
-                </button>
-            </div>
+  <app-header></app-header>
+  <!-- Page Content Holder -->
+  <div id="content">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+          <div class="navbar-header">
+              <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                <i class="fa fa-bars"></i>
+              </button>
+          </div>
+      </div>
+    </nav>
+
+    <!-- modal for delete -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Διαγραφή καταχώρησης</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Είστε σίγουροι πως θέλετε να διαγράψετε αυτή την καταχώρηση; 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Όχι</button>
+            <button type="button" (click)="deleteDataFromJson()" style="color: white; background-color: #f75353;" class="btn btn-primary" data-dismiss="modal">Διαγραφή</button>
+          </div>
         </div>
-      </nav>
-      
-     
+      </div>
     </div>
-  </div>  
+
+
+    <div class="btn-group col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2">
+      <ng-container *ngIf="!isFetching">
+        <button data-toggle="modal" data-target="#exampleModal" class="btn delete"><i class="fa fa-trash"></i><span> Διαγραφή</span></button>
+      </ng-container>
+    </div>
+
+    <div class="card col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2" *ngIf="!loading">
+      <div class="card-body">
+        <ng-container *ngIf="!isFetching">
+            <h5>Κωδικός καταχώρησης:  {{result.id}}</h5>
+            <hr>
+            <div class="d-flex flex-column align-items-center text-center">
+            <div class="mt-3">
+                <ul class="list-group list-group-flush info-card">
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <ng-container *ngIf="result.amka != null">
+                        <h6>Στοιχεία ασθενή:</h6>
+                        <ul class="list-group list-group-flush personal-info col-sm-12 col-md-12 col-lg-12 col-xl-10 offset-xl-1">
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap amka-info">
+                            <h6 class="mb-0"><i class="far fa-address-card"></i><span>  Αριθμός ΑΜΚΑ:</span></h6>
+                            <span class="span-text">{{result.amka}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap amka-info">
+                            <h6 class="mb-0"><i class="far fa-user-circle"></i><span>  Ονοματεπώνυμο:</span></h6>
+                            <span class="span-text">{{result.name}}</span>
+                        </li>
+                    </ul>
+                    </ng-container>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <div class="card" style="width: 18rem;">
+                        <img style="max-width:120px; max-height:120px" class="card-img-top" [src]="result.finalImage" alt="Card image cap">
+                        <div class="card-body">
+                          <h5 class="card-title">Αποτέλεσμα Αξιόλογησης:</h5>
+                          <p class="card-text">{{result.result}}</p>
+                          
+                        </div>
+                      </div>
+                  
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6>Σχόλια Επίσκεψης: </h6>
+                    <textarea [(ngModel)]="result.comments" name="entry-comments" id="entry-comments" class="form-control" type="text" rows="3" placeholder="Σχόλια Καταχώρησης"></textarea>
+                    <!-- {{result.comments}} -->
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6><i class="far fa-calendar-check"></i><span>   Ημερομηνία Λήψης Εικόνας:</span></h6>
+                    <span class="span-text">{{result.date}}</span>
+                    </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6><i class="far fa-calendar-check"></i><span>   Ημερομηνία Δημιουργίας Καταχώρησης:</span></h6>
+                    <span class="span-text">{{result.dateNow}}</span>
+                </li>
+                <div class="btn-group" style="width: 92%; margin-top: 18px;">
+                  <button (click)="updateDataOnJson()" type="button" class="edit-submit">Αποθήκευση</button>
+                </div>
+                </ul>
+            </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="loading">
+        <app-spinner class="main-loader"></app-spinner>
+        </ng-container>
+        </div>
+        <button routerLink="/visits" class="back"><i class="fas fa-angle-left"></i></button>
+    </div>
+  </div>
+</div>

@@ -18,6 +18,7 @@ export class PhotosGetComponent implements OnInit {
   private imageService: ImageService;
   public examinedImageResponse: any;
   public loading: boolean = false;
+  public clickedId: string;
   imageError: string;
   isImageSaved: boolean;
   cardImageBase64: string;
@@ -58,10 +59,23 @@ export class PhotosGetComponent implements OnInit {
     this.router.navigate(['/photo-edit/' + id]);
   }
 
+  getEntryId(e: Event): void {
+    var element = e.currentTarget as HTMLInputElement
+    this.clickedId = element.closest('.all-data').getAttribute('id');
+    console.log(this.clickedId);
 
-  deleteDataFromJson(id): void {
-    this.rest.deleteDataFromJson(id).subscribe((data: any) => {
-      return this.imagesData = data;
+  //   var elementt = document.getElementById("exampleModal");
+  //   console.log(elementt);
+  // elementt.classList.add("show");
+  // elementt.style.display = "block";
+
+  }
+  
+  deleteDataFromJson(): void {
+    this.rest.deleteDataFromJson(this.clickedId).subscribe((result) => {
+      console.log(result);
+    }, (err) => {
+      console.log(err);
     });
   }
 

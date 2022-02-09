@@ -11,25 +11,19 @@ import { RestService } from 'src/app/rest.service';
 export class PhotoGetComponent implements OnInit {
   entryId: string;
   private imageService: ImageService;
+  public loading: boolean = false;
   public imagesData: any;
   public id: string;
   public result : any;
   isFetching = false;
   constructor(imageService: ImageService, 
-    public rest: RestService,
-    private router: Router) {
+    public rest: RestService) {
     this.imageService = imageService;
   }
 
   ngOnInit(): void {
     
     this.getDataFromJson();
-    
-    // this.getEntryId();
-    
-    // console.log(this.imagesData);
-    // this.getEntry(this.entryId , this.imagesData);
-    //console.log(id)
   }
 
   getEntry(id, data): void {
