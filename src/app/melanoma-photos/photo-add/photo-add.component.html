@@ -38,10 +38,14 @@
                             <h6>Στοιχεία ασθενή:</h6>
                             <div class="form-group full-width">
                               <label for="patient-amka">ΑΜΚΑ Ασθενή: </label>
+                              
                               <input [(ngModel)]="amka" ng-model="input" name="patient-amka" id="patient-amka" class="form-control"
-                                      type="text" placeholder="Αριθμός ΑΜΚΑ" (focusout)="getPatient(amka)" required
+                                      type="number" placeholder="Αριθμός ΑΜΚΑ" (keyup)="getPatient(amka)" required
                                       #r1="ngModel"/>
-                                <div style="color: red; font-size: 13px;" *ngIf="!r1.valid && r1.touched">Παρακαλώ συμπληρώστε αυτό το
+                                      <!-- <ng-container *ngIf="loading"> -->
+                                      <i *ngIf="!invalidError" class="fa fa-check"></i><i *ngIf="invalidError" class="fas fa-exclamation-circle"></i>
+                                    <!-- </ng-container> -->
+                                <div style="color: #ff0000bf; font-size: 13px;" *ngIf="!r1.valid && r1.touched">Παρακαλώ συμπληρώστε αυτό το
                                   πεδίο!
                                 </div>
                             </div>
@@ -53,7 +57,7 @@
                               </div>
                             </div>
                           </ng-container> -->
-                          <li *ngIf="patientResponse" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                          <li *ngIf="patientResponse && !invalidError" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                             <ul class="list-group list-group-flush personal-info col-sm-12 col-md-12 col-lg-12 col-xl-12">
                               <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap amka-info">
                                 <h6 class="mb-0"><i class="far fa-user-circle"></i><span>  Ονοματεπώνυμο:</span></h6>
@@ -82,8 +86,11 @@
                                 class="custom-file-input" 
                                 id="file"
                                 aria-describedby="inputGroupFileAddon01"
-                                (change)="handleFileInput($event.target.files)">
+                                (change)="handleFileInput($event.target.files)" [(ngModel)]="photo" name="melanoma-photo" required #r2="ngModel"/>
                                 <label class="custom-file-label" for="fileToUpload">{{fileSelectedLabel()}}</label>
+                              </div>
+                              <div style="color: red; font-size: 13px;" *ngIf="!r2.valid && r2.touched">Παρακαλώ συμπληρώστε αυτό το
+                                πεδίο!
                               </div>
                             </ng-container>
                             <ng-template #elseTemplate>
@@ -144,7 +151,10 @@
                           
                           <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                             <h6>Ημερομηνία Λήψης Φωτογραφίας: </h6>
-                            <input [(ngModel)]="entry.date" type="date" id="entry-date" name="entry-date">                          
+                            <input [(ngModel)]="entry.date" type="date" id="entry-date" name="entry-date" #r3="ngModel" required/>                        
+                            <div style="color: red; font-size: 13px;" *ngIf="r3.invalid && (r3.dirty || r3.touched)">Παρακαλώ συμπληρώστε αυτό το
+                              πεδίο!
+                            </div>
                           </li>
                           <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                             <h6>Ημερομηνία Δημιουργίας Καταχώρησης: </h6>
@@ -160,7 +170,7 @@
                 </div>
                 <div class="btn-group" style="width: 92%; margin-top: 18px;">
                   <button routerLink="/photos-get" class="back"><i class="fas fa-angle-left"></i></button>
-                  <button (click)="postDataToJson(entry)" type="button" class="edit-submit" [disabled]="!f.valid">Αποθήκευση</button>
+                  <button (click)="postDataToJson(entry)" type="submit" class="edit-submit" [disabled]="!f.valid">Αποθήκευση</button>
                 </div>
               </form>
             </div>

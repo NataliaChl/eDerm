@@ -199,6 +199,11 @@ h6:not(.mb-0) {
     background-color: hsl(115deg 18% 63%);
     border: none;
   }
+  .edit-submit:disabled {
+    float: right;
+    background-color: lightslategrey;
+    cursor: not-allowed !important;
+  }
   .card-body {
     padding-bottom: 0;
   }
@@ -244,6 +249,18 @@ h6:not(.mb-0) {
 }
 .image-response {
   padding-bottom: 1.25rem !important;
+}
+.fa-check {
+  margin-left: -34px;
+  margin-top: 6px;
+  font-size: 25px;
+  color: green;
+}
+.fa-exclamation-circle {
+  margin-left: -34px;
+  margin-top: 6px;
+  font-size: 23px;
+  color: red;
 }
 @media (max-width: 493px) {
   .image-group {

@@ -37,6 +37,7 @@ export class PhotoAddComponent implements OnInit {
   dateNow: any;
   comments: any;
   name: any;
+  public invalidError: boolean;
   public entry = {"amka": "","name": "","comments": "","finalImage": "", "result": "", "date": "", "dateNow": ""};
 
   constructor(imageService: ImageService, 
@@ -49,8 +50,6 @@ export class PhotoAddComponent implements OnInit {
   ngOnInit(): void {
     this.getDataFromJson();
     this.getDateNow();
-    // this.postDataToJson();
-    // this.deleteDataFromJson(1);
   }
 
   createEntry(): void {
@@ -80,21 +79,27 @@ export class PhotoAddComponent implements OnInit {
     });
   }
   getPatient(amka): void {
-    this.isFetching = true;
+    // this.invalidError = false;
+    this.patientResponse = null;
     amka = amka.toString().trim();
-    console.log(amka);
-    this.rest.getPatientInfo(amka).subscribe((data: any) => {
-      this.patientResponse = data;
-      this.name = this.patientResponse.firstName + ' ' + this.patientResponse.lastName;
-      console.log(this.patientResponse);
-      // var covidMessage = this.patientResponse.covidVaccineMessage;
-      this.isFetching = false;
-    });
+    if (amka.length >= 11) {
+      this.isFetching = true;
+      this.rest.getPatientInfo(amka).subscribe((data: any) => {
+        this.patientResponse = data;
+        this.name = this.patientResponse.firstName + ' ' + this.patientResponse.lastName;
+        console.log(this.patientResponse);
+        // var covidMessage = this.patientResponse.covidVaccineMessage;
+        this.invalidError = false;
+        this.isFetching = false;
+      }, (err) => {
+        this.invalidError = true;
+        console.log('error!!',err);
+      }); 
+    }
   }
 
   getDateNow() {
     var months = ["Ιανουαρίου", "Φεβρουαρίου", "Μαρτίου", "Απριλίου", "Μαΐου", "Ιουνίου", "Ιουλίου", "Αυγούστου", "Σεπτεμβρίου", "Οκτωβρίου", "Νοεμβρίου", "Δεκεμβρίου"];
-    //var days = ["Δευτέρα", "Τρίτη", "Τετάρτη", "Πέμπτη", "Παρασκευή", "Σάββατο", "Κυριακή"];
     var d = new Date();
     var year = d.getFullYear(); 
     var month = d.getMonth();
