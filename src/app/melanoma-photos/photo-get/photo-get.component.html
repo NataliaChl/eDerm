@@ -14,11 +14,32 @@
       
         <div class="btn-group col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2">
           <ng-container *ngIf="!isFetching">
-            <button class="btn delete"><i class="fa fa-trash"></i><span> Ακύρωση</span></button>
-            <button class="btn edit"><i class="fas fa-pencil-alt"></i><span> Επεξεργασία</span></button>
+            <button class="btn delete" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-trash"></i><span> Διαγραφή</span></button>
+            <button class="btn edit" (click)="editEntryDetails($event)"><i class="fas fa-pencil-alt"></i><span> Επεξεργασία</span></button>
           </ng-container>
         </div>
-  
+
+        <!-- modal for delete -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Διαγραφή καταχώρησης</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Είστε σίγουροι πως θέλετε να διαγράψετε αυτή την καταχώρηση; 
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Όχι</button>
+                <button type="button" (click)="deleteDataFromJson()" style="color: white; background-color: #f75353;" class="btn btn-primary" data-dismiss="modal">Διαγραφή</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="card col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2" *ngIf="!loading">
           <div class="card-body">
             <ng-container *ngIf="!isFetching">
@@ -73,7 +94,7 @@
             <app-spinner class="main-loader"></app-spinner>
             </ng-container>
             </div>
-            <button routerLink="/visits" class="back"><i class="fas fa-angle-left"></i></button>
+            <button routerLink="/photos-get" class="back"><i class="fas fa-angle-left"></i></button>
         </div>
     </div>
   </div>

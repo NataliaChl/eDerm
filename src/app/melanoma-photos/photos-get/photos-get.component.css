@@ -14,8 +14,9 @@ body{margin-top:20px;
     border-radius: .175rem;
     transition: color .15s,background-color .15s,border-color .15s,box-shadow .15s,opacity .15s;
 }
- button {
-    border-radius: 40%;
+ button:not(.modal-btn), 
+ a {
+    border-radius: 30px;
     border: 1px solid #7684bf;
     margin-right: 5px;
 }
@@ -31,10 +32,15 @@ body{margin-top:20px;
 .far.fa-trash-alt {
     color: #fe5f5f;
 }
-.text-end button {
-    border-radius: 40%;
-    border: 1px solid #7684bf;
-    margin-right: 5px;
+.delete-entry {
+    height: 33px;
+    background: #efefef;
+    padding: 8px;
+    text-align: center;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    line-height: 9px;
 }
 #entry-create {
     float: right;

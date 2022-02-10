@@ -23,7 +23,7 @@ export class PhotosGetComponent implements OnInit {
   isImageSaved: boolean;
   cardImageBase64: string;
   public imagesData: any = null;
-
+  public entryLine: any;
   constructor(imageService: ImageService, 
     public rest: RestService,
     private router: Router) {
@@ -61,19 +61,14 @@ export class PhotosGetComponent implements OnInit {
 
   getEntryId(e: Event): void {
     var element = e.currentTarget as HTMLInputElement
-    this.clickedId = element.closest('.all-data').getAttribute('id');
-    console.log(this.clickedId);
-
-  //   var elementt = document.getElementById("exampleModal");
-  //   console.log(elementt);
-  // elementt.classList.add("show");
-  // elementt.style.display = "block";
-
+    this.entryLine = element.closest('.all-data');
+    this.clickedId = this.entryLine.getAttribute('id');
+    console.log(this.entryLine);
   }
   
   deleteDataFromJson(): void {
     this.rest.deleteDataFromJson(this.clickedId).subscribe((result) => {
-      console.log(result);
+      this.entryLine.style.display = "none";
     }, (err) => {
       console.log(err);
     });

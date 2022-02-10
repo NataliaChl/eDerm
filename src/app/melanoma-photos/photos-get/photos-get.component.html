@@ -24,16 +24,14 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Διαγραφή καταχώρησης</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <button type="button" class="btn-close modal-btn" data-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             Είστε σίγουροι πως θέλετε να διαγράψετε αυτή την καταχώρηση; 
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Όχι</button>
-            <button type="button" (click)="deleteDataFromJson()" style="color: white; background-color: #f75353;" class="btn btn-primary" data-dismiss="modal">Διαγραφή</button>
+            <button type="button" class="btn btn-secondary modal-btn" data-dismiss="modal">Όχι</button>
+            <button type="button" (click)="deleteDataFromJson()" style="color: white; background-color: #f75353 !important;" class="btn btn-primary modal-btn" data-dismiss="modal">Διαγραφή</button>
           </div>
         </div>
       </div>
@@ -78,8 +76,8 @@
               </div>
               <div class="col d-none d-sm-block">
                 <button title="Προβολή" (click)="viewEntryDetails($event)"><i class="fa fa-eye"></i></button>
-                <button title="Επεξεργασία" (click)="editEntryDetails($event)"><i class='far fa-edit'></i></button>
-                <button title="Διαγραφή" (click)="getEntryId($event)"><i class="far fa-trash-alt" data-target="#exampleModal"></i></button>
+                <button title="Επεξεργασία" (click)="editEntryDetails($event)"><i class="far fa-edit"></i></button>
+                <a href="#exampleModal" title="Διαγραφή" role="button" (click)="getEntryId($event)" class="btn delete-entry" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
               </div>
             </div>
           </ng-container>

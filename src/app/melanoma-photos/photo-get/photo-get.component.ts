@@ -17,7 +17,8 @@ export class PhotoGetComponent implements OnInit {
   public result : any;
   isFetching = false;
   constructor(imageService: ImageService, 
-    public rest: RestService) {
+    public rest: RestService,
+    private router: Router) {
     this.imageService = imageService;
   }
 
@@ -56,6 +57,20 @@ export class PhotoGetComponent implements OnInit {
     this.id = id;
   }
 
+  deleteDataFromJson(): void {
+    this.rest.deleteDataFromJson(this.id).subscribe((result) => {
+      console.log(result);
+      this.router.navigate(['/photos-get']);
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  editEntryDetails(e: Event): void {
+    // var element = e.currentTarget as HTMLInputElement
+    // var id = element.closest('.all-data').getAttribute('id');
+    this.router.navigate(['/photo-edit/' + this.id]);
+  }
   handleClick(event: Event) {
     document.querySelector('#sidebar, #content').classList.toggle('active');
     if (document.querySelector('#sidebar').classList.contains('active')) {

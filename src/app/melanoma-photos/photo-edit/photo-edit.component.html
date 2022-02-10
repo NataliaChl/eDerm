@@ -80,9 +80,9 @@
                     <!-- {{result.comments}} -->
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6><i class="far fa-calendar-check"></i><span>   Ημερομηνία Λήψης Εικόνας:</span></h6>
-                    <span class="span-text">{{result.date}}</span>
-                    </li>
+                  <h6><i class="far fa-calendar-check"></i><span>   Ημερομηνία Λήψης Εικόνας:</span></h6>
+                  <input [(ngModel)]="result.date" type="date" id="entry-date" name="entry-date"> 
+                </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6><i class="far fa-calendar-check"></i><span>   Ημερομηνία Δημιουργίας Καταχώρησης:</span></h6>
                     <span class="span-text">{{result.dateNow}}</span>
@@ -98,7 +98,7 @@
         <app-spinner class="main-loader"></app-spinner>
         </ng-container>
         </div>
-        <button routerLink="/visits" class="back"><i class="fas fa-angle-left"></i></button>
+        <button routerLink="/photos-get" class="back"><i class="fas fa-angle-left"></i></button>
     </div>
   </div>
 </div>
