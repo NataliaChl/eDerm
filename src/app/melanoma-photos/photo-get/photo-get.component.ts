@@ -11,6 +11,7 @@ import { RestService } from 'src/app/rest.service';
 export class PhotoGetComponent implements OnInit {
   entryId: string;
   private imageService: ImageService;
+  public loading: boolean = false;
   public imagesData: any;
   public id: string;
   public result : any;
@@ -24,12 +25,6 @@ export class PhotoGetComponent implements OnInit {
   ngOnInit(): void {
     
     this.getDataFromJson();
-    
-    // this.getEntryId();
-    
-    // console.log(this.imagesData);
-    // this.getEntry(this.entryId , this.imagesData);
-    //console.log(id)
   }
 
   getEntry(id, data): void {
@@ -62,6 +57,20 @@ export class PhotoGetComponent implements OnInit {
     this.id = id;
   }
 
+  deleteDataFromJson(): void {
+    this.rest.deleteDataFromJson(this.id).subscribe((result) => {
+      console.log(result);
+      this.router.navigate(['/photos-get']);
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  editEntryDetails(e: Event): void {
+    // var element = e.currentTarget as HTMLInputElement
+    // var id = element.closest('.all-data').getAttribute('id');
+    this.router.navigate(['/photo-edit/' + this.id]);
+  }
   handleClick(event: Event) {
     document.querySelector('#sidebar, #content').classList.toggle('active');
     if (document.querySelector('#sidebar').classList.contains('active')) {

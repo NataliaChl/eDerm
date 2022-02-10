@@ -18,11 +18,12 @@ export class PhotosGetComponent implements OnInit {
   private imageService: ImageService;
   public examinedImageResponse: any;
   public loading: boolean = false;
+  public clickedId: string;
   imageError: string;
   isImageSaved: boolean;
   cardImageBase64: string;
   public imagesData: any = null;
-
+  public entryLine: any;
   constructor(imageService: ImageService, 
     public rest: RestService,
     private router: Router) {
@@ -52,10 +53,24 @@ export class PhotosGetComponent implements OnInit {
     this.router.navigate(['/photo-get/' + id]);
   }
 
+  editEntryDetails(e: Event): void {
+    var element = e.currentTarget as HTMLInputElement
+    var id = element.closest('.all-data').getAttribute('id');
+    this.router.navigate(['/photo-edit/' + id]);
+  }
 
-  deleteDataFromJson(id): void {
-    this.rest.deleteDataFromJson(id).subscribe((data: any) => {
-      return this.imagesData = data;
+  getEntryId(e: Event): void {
+    var element = e.currentTarget as HTMLInputElement
+    this.entryLine = element.closest('.all-data');
+    this.clickedId = this.entryLine.getAttribute('id');
+    console.log(this.entryLine);
+  }
+  
+  deleteDataFromJson(): void {
+    this.rest.deleteDataFromJson(this.clickedId).subscribe((result) => {
+      this.entryLine.style.display = "none";
+    }, (err) => {
+      console.log(err);
     });
   }
 

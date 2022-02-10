@@ -17,6 +17,27 @@
       <i class="fas fa-plus"></i>
       Δημιουργία Καταχώρησης
     </button>
+
+    <!-- modal for delete -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Διαγραφή καταχώρησης</h5>
+            <button type="button" class="btn-close modal-btn" data-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Είστε σίγουροι πως θέλετε να διαγράψετε αυτή την καταχώρηση; 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary modal-btn" data-dismiss="modal">Όχι</button>
+            <button type="button" (click)="deleteDataFromJson()" style="color: white; background-color: #f75353 !important;" class="btn btn-primary modal-btn" data-dismiss="modal">Διαγραφή</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <h2 class="page-title">Λίστα Καταχωρήσεων</h2>
     <ng-container *ngIf="!isFetching">
       <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -47,7 +68,7 @@
                 <div class="d-block d-sm-none">
                   <button title="Προβολή" (click)="viewEntryDetails($event)"><i class="fa fa-eye"></i></button>
                   <button title="Επεξεργασία"><i class="far fa-edit"></i></button>
-                  <button title="Διαγραφή"><i class="far fa-trash-alt"></i></button>
+                  <button title="Διαγραφή" data-target="#exampleModal"><i class="far fa-trash-alt"></i></button>
                 </div>
               </div>
               <div class="col d-sm-none d-md-block d-none d-sm-block">
@@ -55,8 +76,8 @@
               </div>
               <div class="col d-none d-sm-block">
                 <button title="Προβολή" (click)="viewEntryDetails($event)"><i class="fa fa-eye"></i></button>
-                <button title="Επεξεργασία"><i class='far fa-edit'></i></button>
-                <button title="Διαγραφή"><i class="far fa-trash-alt"></i></button>
+                <button title="Επεξεργασία" (click)="editEntryDetails($event)"><i class="far fa-edit"></i></button>
+                <a href="#exampleModal" title="Διαγραφή" role="button" (click)="getEntryId($event)" class="btn delete-entry" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
               </div>
             </div>
           </ng-container>

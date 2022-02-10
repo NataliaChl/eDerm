@@ -378,9 +378,15 @@ export class RestService {
       catchError(this.handleError<any>('entry')));
   }
 
-  deleteDataFromJson(entryId): Observable<any> {
+  updateDataOnJson(entry , entryId): Observable<any> {
+    return this.http.put(this.dbEndpoint + 'users/' + entryId + '/' , entry).pipe(
+      tap((entry) => console.log("updated:",entry)),
+      catchError(this.handleError<any>('entry')));
+  }
+
+ deleteDataFromJson(entryId): Observable<any> {
     return this.http.delete(this.dbEndpoint + 'users/' + entryId).pipe(
-      tap((entry) => console.log("removed:",entryId)),
+      tap((entry) => console.log("updated:",entry)),
       catchError(this.handleError<any>('entry')));
   }
   
