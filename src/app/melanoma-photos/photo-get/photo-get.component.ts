@@ -71,6 +71,7 @@ export class PhotoGetComponent implements OnInit {
     // var id = element.closest('.all-data').getAttribute('id');
     this.router.navigate(['/photo-edit/' + this.id]);
   }
+  
   handleClick(event: Event) {
     document.querySelector('#sidebar, #content').classList.toggle('active');
     if (document.querySelector('#sidebar').classList.contains('active')) {

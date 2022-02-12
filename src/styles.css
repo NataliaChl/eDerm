@@ -18,6 +18,30 @@ tbody {
 }
 
 
+/* menu button */
+.navbar-default {
+  margin-left: -16px;
+  text-align: left;
+}
+#sidebarCollapse {
+  background-color: #d1c0b4 !important;
+  padding: 10px !important;
+  border-radius: 9px !important;
+  border: 1px solid #525f7f !important;
+}
+#sidebarCollapse:focus{
+  outline: none !important;
+}
+#sidebarCollapse .fa-bars {
+  color: black !important;
+}
+.replace-button {
+  margin-left: 220px !important;
+}
+.list-page.replace-button {
+  margin-left: 232px !important;
+}
+
 /* side menu */
 /* ---------------------------------------------------
     CONTENT STYLE
