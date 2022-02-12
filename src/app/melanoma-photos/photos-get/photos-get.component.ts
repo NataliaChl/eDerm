@@ -33,8 +33,6 @@ export class PhotosGetComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDataFromJson();
-    // this.postDataToJson();
-    // this.deleteDataFromJson(1);
   }
 
   createEntry(): void {

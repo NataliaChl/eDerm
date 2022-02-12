@@ -22,6 +22,12 @@ tbody {
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
+@media (max-width: 500px) {
+  #content {
+      padding-left: 12px !important;
+      padding-right: 12px !important;
+  }
+}
 #content {
   background-color: #8fb2cb4a;
   width: calc(100% - 250px);

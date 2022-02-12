@@ -68,7 +68,7 @@
                 <div class="d-block d-sm-none">
                   <button title="Προβολή" (click)="viewEntryDetails($event)"><i class="fa fa-eye"></i></button>
                   <button title="Επεξεργασία"><i class="far fa-edit"></i></button>
-                  <button title="Διαγραφή" data-target="#exampleModal"><i class="far fa-trash-alt"></i></button>
+                  <a href="#exampleModal" title="Διαγραφή" role="button" (click)="getEntryId($event)" class="btn delete-entry" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
                 </div>
               </div>
               <div class="col d-sm-none d-md-block d-none d-sm-block">

@@ -33,7 +33,7 @@
             <ng-container *ngFor="let prescription of prescriptions.item">
               <tr>
                 <td class="first-column">
-                  <img alt="..." src="../../../assets/user.png" class="avatar avatar-sm rounded-circle me-2"> <span class="text-heading font-semibold" (click)="editPrescription(prescription.barcode)">{{prescription.patientInfo.firstName + ' ' + prescription.patientInfo.lastName}}</span>
+                  <img alt="..." src="../../../assets/user.png" class="avatar avatar-sm rounded-circle me-2"> <span class="text-heading font-semibold" (click)="viewPrescriptionDetails(prescription.barcode)">{{prescription.patientInfo.firstName + ' ' + prescription.patientInfo.lastName}}</span>
                   <br><span class="mid-amka">AMKA:</span><span class="amka">   {{prescription.patientInfo.amka}}</span><br>
                   <span><i class="far fa-calendar-alt" style="font-size:25px"></i>    {{prescription.issueDate}}</span>
                 </td>
