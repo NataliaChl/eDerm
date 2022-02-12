@@ -87,6 +87,11 @@ h6:not(.mb-0) {
     width: 70%;
     float: right;
   }
+  .edit-submit {
+    float: right;
+    background-color: hsl(115deg 18% 63%);
+    border: none;
+  }
   
   @media (max-width: 493px) {
     .delete span,

@@ -1,27 +1,7 @@
 @import url("https://unpkg.com/@webpixels/css@1.1.5/dist/index.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css");
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-#content {
-    width: calc(100% - 250px);
-    padding: 40px;
-    min-height: 100vh;
-    transition: all 0.3s;
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-#content.active {
-    width: 100%;
-}
-.full-width {
-    width: 100% !important;
-}
-.replace-button {
-    margin-left: 220px !important;
-}
-  
+
+ 
 .tb {
     display: table;
     width: 100%;
@@ -118,11 +98,7 @@ form {
 .patient-info {
     margin-top: 10%;
 }
-.navbar-default {
-    margin-left: -16px;
-    margin-top: -28px;
-    text-align: left;
-}
+
 .container-fluid {
     padding: 0;
 }
@@ -578,9 +554,6 @@ hr:not(.line) {
         font-size: 33px;
     }
 }
-#sidebarCollapse {
-    background-color: #59638d;
-}
 
 
 @media (max-width: 1110px) {
@@ -605,9 +578,6 @@ hr:not(.line) {
     }
 }
 @media (min-width: 1111px) {
-    #sidebarCollapse {
-        display: none;
-    }
     .doc-info {
         margin-left: 30px;
     }

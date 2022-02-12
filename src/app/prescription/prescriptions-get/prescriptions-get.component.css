@@ -62,9 +62,6 @@ tr,
 tbody {
     width: 100%;
 }
-#sidebarCollapse {
-    background-color: #566089;
-}
 
 #myInputDesk,
 #myInputMed,
@@ -75,27 +72,6 @@ tbody {
 .insurance {
 	font-size: 17px;
 	font-weight: 600;
-}
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-#content {
-    width: calc(100% - 250px);
-    padding: 40px;
-    min-height: 100vh;
-    transition: all 0.3s;
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-#content.active {
-    width: 100%;
-}
-.full-width {
-    width: 100% !important;
-}
-.replace-button {
-    margin-left: 220px !important;
 }
 #desktop-table thead {
 	width: 100%;
@@ -275,10 +251,5 @@ tbody {
     }
     #content.active {
         width: calc(100% - 250px);
-    }
-}
-@media (min-width: 1111px) {
-    #sidebarCollapse {
-        display: none;
     }
 }
