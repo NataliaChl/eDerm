@@ -262,6 +262,72 @@ h6:not(.mb-0) {
   font-size: 23px;
   color: red;
 }
+
+ /* collappse */
+ #collapseImageInfo {
+  margin-bottom: 15px;
+  padding-left: 0;
+  padding-right: 0;
+  background: #d3c4be2b;
+}
+.collapseInfoBtn {
+  margin-bottom: 15px;
+  background-color: #5d84a1;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 30px;
+  border-top-right-radius: 30px !important;
+  border-bottom-right-radius: 30px !important;
+  font-weight: 500;
+}
+.collapseInfoBtn i {
+  float: right;
+}
+.collapseInfoBtn[aria-expanded="false"] i.fa-angle-up {
+  display: none;
+}
+.collapseInfoBtn[aria-expanded="true"] i.fa-angle-down {
+  display: none;
+}
+.collapseInfoBtn[aria-expanded="true"] {
+  color: black;
+  background-color: #d3c2b6 !important;
+  border: 2px solid #5d84a1b0 !important;
+  font-weight: 600 !important;
+}
+/* lines */
+hr:not(.line) { 
+border : 0;
+height: 3px !important;
+background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #8fb2cbd6, rgba(0, 0, 0, 0)); 
+}
+.line {
+border : 0;
+height: 2px;
+background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #8fb2cbd6, rgba(0, 0, 0, 0)); 
+}
+.all-data .col,
+.my-header .col {
+  text-align: center;
+}
+.all-data:hover {
+  background-color: #8fb2cb38;
+}
+.my-header,
+.all-data {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+.all-data img {
+  max-height: 100px;
+  min-height: 100px;
+}
+.view-entry {
+border-radius: 30px;
+border: 1px solid #7684bf;
+margin-right: 5px;
+}
+
 @media (max-width: 493px) {
   .image-group {
     padding-left: 0;

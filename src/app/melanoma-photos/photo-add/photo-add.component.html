@@ -28,7 +28,7 @@
                         <label for="patient-amka">ΑΜΚΑ Ασθενή: </label>
                         
                         <input [(ngModel)]="amka" ng-model="input" name="patient-amka" id="patient-amka" class="form-control"
-                                type="text" placeholder="Αριθμός ΑΜΚΑ" (keyup)="getPatient(amka)" required
+                                type="text" placeholder="Αριθμός ΑΜΚΑ" (keyup)="getPatient(amka); getDataFromJson(amka)" required
                                 #r1="ngModel"/>
                                 <!-- <ng-container *ngIf="loading"> -->
                                 <i *ngIf="!invalidError" class="fa fa-check"></i><i *ngIf="invalidError" class="fas fa-exclamation-circle"></i>
@@ -38,13 +38,6 @@
                           </div>
                       </div>
                     </li>
-                    <!-- <ng-container *ngIf="isFetching">
-                      <div style="margin-top: 36px;height: 100px;">
-                        <div class="spinner-border" style="text-align: center;" role="status">
-                          <span class="sr-only">Loading...</span>
-                        </div>
-                      </div>
-                    </ng-container> -->
                     <li *ngIf="patientResponse && !invalidError" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                       <ul class="list-group list-group-flush personal-info col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap amka-info">
@@ -152,6 +145,60 @@
                       <h6>Σχόλια Καταχώρησης: </h6>
                       <textarea [(ngModel)]="entry.comments" name="entry-comments" id="entry-comments" class="form-control" type="text" rows="3" placeholder="Σχόλια Καταχώρησης"></textarea>
                     </li>
+
+                  <hr>
+                  <ng-container *ngIf="!loading && entries.length > 0">
+                    <button class="btn btn-primary collapseInfoBtn" type="button" data-toggle="collapse" data-target="#collapseImageInfo" aria-expanded="false" aria-controls="collapseImageInfo">
+                        Άλλες καταχωρήσεις με αυτό το ΑΜΚΑ:<i class="fas fa-angle-down"></i><i class="fas fa-angle-up"></i>
+                    </button>
+                    <div class="collapse" id="collapseImageInfo">
+                      <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 my-header">
+                        <div class="col">
+                          <strong>ΕΙΚΟΝΑ</strong>
+                        </div>
+                        <div class="col d-sm-none d-md-block d-none d-sm-block">
+                          <strong>ΗΜΕΡΟΜΗΝΙΑ ΚΑΤΑΧΩΡΗΣΗΣ</strong>
+                        </div>
+                        <div class="col">
+                          <strong>ΑΞΙΟΛΟΓΗΣΗ</strong>
+                        </div>
+                        <div class="col d-none d-sm-block">
+                          <strong>ΠΡΟΒΟΛΗ</strong>
+                        </div>
+                      </div>
+                      <hr>
+                      <ng-container *ngFor="let item of entries">
+                        <ng-container *ngIf="item">
+                          <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 all-data">
+                            <div class="col">
+                              <div><img width="100" height="80" [src]="item.finalImage"></div>
+                            </div>
+                            <div class="col d-sm-none d-md-block d-none d-sm-block">
+                              <span><i class="far fa-calendar-alt" style="font-size:20px"></i>    {{item.dateNow}}</span>
+                            </div>
+                            <div class="col">
+                              <span *ngIf="item.result">{{item.result}}</span>
+                              <span *ngIf="!item.result"><i class="far fa-window-minimize"></i></span>
+                              <div class="d-block d-sm-none" style="margin-top: 27px;">
+                                <button class="view-entry" title="Προβολή Στοιχείων" (click)="viewEntryDetails(item.id)"><i class="fa fa-eye"></i></button>
+                              </div>
+                            </div>
+                            <div class="col d-none d-sm-block">
+                              <button class="view-entry" title="Προβολή Στοιχείων" (click)="viewEntryDetails(item.id)"><i class="fa fa-eye"></i></button>
+                            </div>
+                          </div>
+                          <hr class="line">
+                        </ng-container>
+                      </ng-container>
+                    </div>
+                  </ng-container>
+                  <ng-container *ngIf="loading">
+                    <div style="margin-top: 36px;height: 100px;">
+                        <div class="spinner-border" style="text-align: center;" role="status">
+                          <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                  </ng-container>
                   </ul>
               </div>
             </div>

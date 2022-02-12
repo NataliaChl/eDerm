@@ -11,10 +11,12 @@ import { RestService } from 'src/app/rest.service';
 export class PhotoGetComponent implements OnInit {
   entryId: string;
   private imageService: ImageService;
+  public amka: any;
   public loading: boolean = false;
   public imagesData: any;
   public id: string;
   public result : any;
+  public entries : any = [];
   isFetching = false;
   constructor(imageService: ImageService, 
     public rest: RestService,
@@ -28,7 +30,6 @@ export class PhotoGetComponent implements OnInit {
 
   getEntry(id, data): void {
     console.log('going to search in:  '+id);
-
     var searchField = "id";
     var searchVal = id;
     for (var i=0 ; i < data.length ; i++)
@@ -38,6 +39,8 @@ export class PhotoGetComponent implements OnInit {
       }
     }
     console.log(this.result);
+    this.amka = this.result.amka;
+    this.lookFromOtherEntries(this.amka, data);
   }
 
   getDataFromJson(): void {
@@ -48,6 +51,24 @@ export class PhotoGetComponent implements OnInit {
       this.getEntry(this.id, data);
       this.isFetching = false;
     });
+  }
+
+  viewEntryDetails(id): void {
+    this.router.navigate(['/photo-get/' + id]);
+  }
+  
+  lookFromOtherEntries(amka, data) {
+    this.entries = [];
+    console.log('going to amka:  '+amka);
+    var searchField = "amka";
+    var searchVal = amka;
+    for (var i=0 ; i < data.length ; i++)
+    {
+      if (data[i][searchField] == searchVal) {
+        this.entries[i] = data[i];
+      }
+    }
+    console.log(this.entries);
   }
 
   getEntryId(): void {

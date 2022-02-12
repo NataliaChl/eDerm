@@ -114,9 +114,9 @@
             </ng-container>
             <ng-container *ngIf="loading">
               <div style="margin-top: 36px;height: 100px;">
-                  <div class="spinner-border" style="text-align: center;" role="status">
-                    <span class="sr-only">Loading...</span>
-                  </div>
+                <div class="spinner-border" style="text-align: center;" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
               </div>
             </ng-container>
             <ng-container *ngIf="!prescFetching && amkaPrescriptions.length > 0">
@@ -174,7 +174,6 @@
             </ng-container>
           </div>
           
-         
 
           <div class="alert alert-danger shadow" role="alert">
             <button class="btn collapseAlert" type="button" data-toggle="collapse" data-target="#collapseAlert" aria-expanded="false" aria-controls="collapseAlert">

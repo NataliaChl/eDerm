@@ -33,7 +33,7 @@ import { PhotoGetComponent } from './melanoma-photos/photo-get/photo-get.compone
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: '/visits',
+    redirectTo: '/amka-search',
     pathMatch: 'full'
   },
   {
