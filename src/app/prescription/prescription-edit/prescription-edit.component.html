@@ -2,19 +2,14 @@
   <app-header></app-header>
   <!-- Page Content Holder -->
   <div id="content">
-    <nav class="navbar navbar-default" style="padding: 0; text-align: left;">
-        <div class="container-fluid" style="padding: 0;">
-            <div class="navbar-header">
-                <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                  <i class="fa fa-bars"></i>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Page</a></li>
-                </ul>
-            </div>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
+            <i class="fa fa-bars"></i>
+          </button>
         </div>
+      </div>
     </nav>
     <div>
       <ng-container *ngIf="!isFetching">
