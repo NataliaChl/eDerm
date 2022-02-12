@@ -213,7 +213,7 @@ export class PrescriptionGetComponent implements OnInit {
   }
 
   setReasonForBrandNamedMedicines(id): void {
-    for (const reason of this.reasonsForBrandNamedMedicines) {
+    for (var reason of this.reasonsForBrandNamedMedicines) {
       if (reason.id.toString() === id) {
         this.prescription.info.reasonForBrandNamedMedicines = reason;
         break;

@@ -40,7 +40,7 @@
                               <label for="patient-amka">ΑΜΚΑ Ασθενή: </label>
                               
                               <input [(ngModel)]="amka" ng-model="input" name="patient-amka" id="patient-amka" class="form-control"
-                                      type="number" placeholder="Αριθμός ΑΜΚΑ" (keyup)="getPatient(amka)" required
+                                      type="text" placeholder="Αριθμός ΑΜΚΑ" (keyup)="getPatient(amka)" required
                                       #r1="ngModel"/>
                                       <!-- <ng-container *ngIf="loading"> -->
                                       <i *ngIf="!invalidError" class="fa fa-check"></i><i *ngIf="invalidError" class="fas fa-exclamation-circle"></i>

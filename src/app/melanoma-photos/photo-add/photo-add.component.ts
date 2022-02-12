@@ -64,6 +64,8 @@ export class PhotoAddComponent implements OnInit {
 
   postDataToJson(entry): void {
     //console.log(this.entry);
+    console.log(this.amka);
+    this.amka = this.amka.toString().trim();
     this.entry = {"amka": this.amka,"name": this.name,"comments": entry.comments,"finalImage": this.cardImageBase64, "result" : this.examinedImageResponse, "date" : entry.date, "dateNow": this.dateNow};
     this.rest.postDataToJson(this.entry).subscribe((result) => {
       console.log(result);

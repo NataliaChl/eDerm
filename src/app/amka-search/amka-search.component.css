@@ -1,3 +1,5 @@
+@import url("https://unpkg.com/@webpixels/css@1.1.5/dist/index.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css");
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
@@ -139,7 +141,7 @@ form {
     font-weight: 700;
 }
 .card {
-    margin-top: 16%;
+    margin-top: 8%;
     box-shadow: #b2d0ef 0px 1px 2px 0px, #c6d6e7 0px 1px 12px 5px;
 }
 .alert-danger p {
@@ -151,12 +153,23 @@ form {
     border-left:#721C24 5px solid;
     border-radius: 0px
 }
-.alert-danger svg {
-    width: 100%;
-}
 .fa-angle-down {
     font-size:24px;
     color:#721C24;
+}
+.fa-angle-up {
+    font-size:24px;
+    color: black;
+}
+.fa-exclamation {
+    margin-left: -18px;
+    font-size: 21px;
+    color: #721c24;
+}
+button:not(.collapseAlert) {
+   border-radius: 30px;
+   border: 1px solid #7684bf;
+   margin-right: 5px;
 }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -175,12 +188,156 @@ input:focus, textarea:focus, select:focus, button:focus {
     display: none;
 }
 
+/* lines */
+hr:not(.line) { 
+    border : 0;
+    height: 3px !important;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #8fb2cbd6, rgba(0, 0, 0, 0)); 
+}
+.line {
+    border : 0;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #8fb2cbd6, rgba(0, 0, 0, 0)); 
+}
+
+.span-text {
+    color: #000000c4;
+}
+.collapse-list ul {
+  width: 100%;
+}
+.first {
+  font-weight: 600;
+  margin-right: 11px;
+  font-size: 17px;
+}
+.collapseInfoBtn {
+  margin-bottom: 15px;
+  background-color: #5d84a1;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 30px;
+  border-top-right-radius: 30px !important;
+  border-bottom-right-radius: 30px !important;
+  font-weight: 500;
+}
+.collapseInfoBtn i {
+  float: right;
+}
+.collapseInfoBtn[aria-expanded="false"] i.fa-angle-up {
+  display: none;
+}
+.collapseInfoBtn[aria-expanded="true"] i.fa-angle-down {
+  display: none;
+}
+.collapseInfoBtn[aria-expanded="true"] {
+  color: black;
+  background-color: #d3c2b6 !important;
+  border: 2px solid #5d84a1b0 !important;
+  font-weight: 600 !important;
+}
+
+#collapsePrescpInfo,
+#collapseImageInfo {
+  margin-bottom: 15px;
+}
+#collapsePrescpInfo,
+#collapseImageInfo {
+    padding-left: 0;
+    padding-right: 0;
+}
+.my-header,
+.all-data {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+.all-data img:not(.avatar) {
+    max-height: 100px;
+    min-height: 100px;
+}
+.fa-bell {
+    cursor: pointer;
+    font-size: 22px;
+}
+.all-data .col,
+.my-header .col {
+    text-align: center;
+}
+.all-data:hover {
+    background-color: #8fb2cb38;
+}
+.text-heading:hover {
+    cursor: pointer;
+}
+.collapseInfoBtn[data-target="#collapseIllnessInfo"] {
+  margin-top: 45px;
+}
+.collapseAlert {
+    width: 100%;
+}
+.collapseAlert .fa-exclamation {
+    float: left;
+}
+.collapseAlert .fa-angle-down,
+.collapseAlert .fa-angle-up {
+    float: right;
+}
+.collapseAlert[aria-expanded="false"] i.fa-angle-up {
+    display: none;
+}
+.collapseAlert[aria-expanded="true"] i.fa-angle-down {
+    display: none;
+}
+.simple {
+  width: 100%;
+}
+.simple li {
+  padding: 0;
+  border: none;
+  text-align: left;
+}
+.simple .first {
+  float: left;
+  margin-right: 10px;
+}
+.simple .second {
+  float: right;
+}
+.simple li:hover {
+  background: #d3c4be2b;
+}
+
+#collapsePrescpInfo,
+#collapseImageInfo {
+  background: #d3c4be2b;
+}
+.no-response {
+    margin-top: 55px;
+    text-align: center;
+    color: red;
+}
+
+.text-secondary {
+    color: black !important;
+}
+/* prescriptions list */
+.avatar {
+    height: 30px;
+    width: 30px;
+}
+.page-title {
+    color: #566089;
+}
 
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
 /* control the page in several devices */
 @media (max-width: 480px) {
+    /* #content {
+        padding-left: 12px;
+        padding-right: 12px;
+    } */
     #s-cover button {
         display: none;
     }
@@ -254,10 +411,10 @@ input:focus, textarea:focus, select:focus, button:focus {
         margin-top: 10px;
     }
     .card li h6 {
-        font-size: 14px;
+        font-size: 16px;
     }
     .card li span.text-secondary {
-        font-size: 13px;
+        font-size: 15px;
     }
     .alert-danger p {
         font-size: 14px;
@@ -265,45 +422,12 @@ input:focus, textarea:focus, select:focus, button:focus {
     .doc-info {
         display: none;
     }
+    .page-title {
+        font-size: 21px !important;
+        margin-left: 0 !important;
+    }
 }
-/* @media (min-width: 481px) {
-    #cover {
-        height: 65px;
-    }
-    #amka-input {
-        font-size: 30px;
-    }
-    #s-circle {
-        border: 5px solid #fff;
-        top: -9px;
-        width: 35px;
-        height: 35px;
-    }
-    #submit-button {
-        width: 68px;
-    }
-    #submit-button span {
-        top: 13px;
-        left: 2px;
-        width: 55px;
-        height: 11px;
-    }
-    #submit-button span:before,
-    #submit-button span:after {
-        width: 33px;
-        height: 7px;
-    }
-    #s-cover:hover #s-circle {
-        top: -1px;
-        width: 67px;
-        height: 15px;
-    }
-    #s-cover:hover button span:before,
-    #s-cover:hover button span:after {
-        right: -6px;
-        width: 40px;
-    }
-} */
+    
 @media (min-width: 481px) and (max-width: 900px) {
     #s-cover .fa-search {
         display: none;
@@ -372,6 +496,9 @@ input:focus, textarea:focus, select:focus, button:focus {
     }
     .doc-info {
         display: none;
+    }
+    .page-title {
+        font-size: 25px !important;
     }
 }
 @media (min-width: 901px) {
@@ -442,11 +569,13 @@ input:focus, textarea:focus, select:focus, button:focus {
     }
     .doc-info {
         color: #004085;
-        height: 65px;
     }
     .doc-info p {
-        font-size:18px;
+        font-size: 18px;
         width: 90%
+    }
+    .page-title {
+        font-size: 33px;
     }
 }
 #sidebarCollapse {
@@ -467,9 +596,23 @@ input:focus, textarea:focus, select:focus, button:focus {
     #content.active {
         width: calc(100% - 250px);
     }
+    .doc-info {
+        margin-left: 30px;
+    }
+    .page-title {
+        font-size: 35px;
+        margin-left: 30px;
+    }
 }
 @media (min-width: 1111px) {
     #sidebarCollapse {
         display: none;
+    }
+    .doc-info {
+        margin-left: 30px;
+    }
+    .page-title {
+        font-size: 35px;
+        margin-left: 30px;
     }
 }
