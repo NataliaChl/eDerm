@@ -24,6 +24,8 @@ export class PhotoAddComponent implements OnInit {
   public submitted: boolean = false;
   public dlPredictLoading: boolean = false;
   public dlPredictClicked: boolean = false;
+  public entries : any = [];
+  public entriesFetching: boolean = false;
   remHairURL: string;
   dlURL: string;
   imageError: string;
@@ -48,18 +50,11 @@ export class PhotoAddComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getDataFromJson();
     this.getDateNow();
   }
 
   createEntry(): void {
     this.router.navigate(['/photo-add']);
-  }
-
-  getDataFromJson(): void {
-    this.rest.getDataFromJson().subscribe((data: any) => {
-      return this.imagesData = data;
-    });
   }
 
   postDataToJson(entry): void {
@@ -169,6 +164,33 @@ export class PhotoAddComponent implements OnInit {
     this.fileToUpload = null;
     this.dlPredictClicked = false;
     this.removeHairClicked = false;
+  }
+
+  viewEntryDetails(id): void {
+    this.router.navigate(['/photo-get/' + id]);
+  }
+
+  getDataFromJson(amka): void {
+    this.entriesFetching = true;
+    this.rest.getDataFromJson().subscribe((data: any) => {
+      this.imagesData = data;
+      this.lookFromOtherEntries(amka, this.imagesData);
+      this.entriesFetching = false;
+    });
+  }
+
+  lookFromOtherEntries(amka, data) {
+    this.entries = [];
+    console.log('going to amka:  '+amka);
+    var searchField = "amka";
+    var searchVal = amka;
+    for (var i=0 ; i < data.length ; i++)
+    {
+      if (data[i][searchField] == searchVal) {
+        this.entries[i] = data[i];
+      }
+    }
+    console.log(this.entries);
   }
 
 
