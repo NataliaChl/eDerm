@@ -45,15 +45,13 @@ export class PhotosGetComponent implements OnInit {
     });
   }
 
-  viewEntryDetails(e: Event): void {
-    var element = e.currentTarget as HTMLInputElement
-    var id = element.closest('.all-data').getAttribute('id');
+  viewEntryDetails(id): void {
     this.router.navigate(['/photo-get/' + id]);
   }
 
-  editEntryDetails(e: Event): void {
-    var element = e.currentTarget as HTMLInputElement
-    var id = element.closest('.all-data').getAttribute('id');
+  editEntryDetails(id): void {
+    // var element = e.currentTarget as HTMLInputElement
+    // var id = element.closest('.all-data').getAttribute('id');
     this.router.navigate(['/photo-edit/' + id]);
   }
 

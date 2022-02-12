@@ -59,15 +59,15 @@
 
           <ng-container *ngFor="let item of imagesData">
             <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 all-data" data-id="{{item.id}}">
-              <div class="col">
+              <div class="col" (click)="viewEntryDetails(item.id)">
                 {{item.name}} <br>AMKA: <strong>  {{item.amka}}</strong>
               </div>
               <div class="col">
                 <div><img width="100" height="80" [src]="item.finalImage"></div>
                 <div class="d-none d-none d-sm-block d-md-none"><span><i class="far fa-calendar-alt" style="font-size:20px"></i>    {{item.dateNow}}</span></div>
                 <div class="d-block d-sm-none">
-                  <button title="Προβολή" (click)="viewEntryDetails($event)"><i class="fa fa-eye"></i></button>
-                  <button title="Επεξεργασία"><i class="far fa-edit"></i></button>
+                  <button title="Προβολή" (click)="viewEntryDetails(item.id)"><i class="fa fa-eye"></i></button>
+                  <button title="Επεξεργασία" (click)="editEntryDetails(item.id)"><i class="far fa-edit"></i></button>
                   <a href="#exampleModal" title="Διαγραφή" role="button" (click)="getEntryId($event)" class="btn delete-entry" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
                 </div>
               </div>
@@ -75,8 +75,8 @@
                 <span><i class="far fa-calendar-alt" style="font-size:20px"></i>    {{item.dateNow}}</span>
               </div>
               <div class="col d-none d-sm-block">
-                <button title="Προβολή" (click)="viewEntryDetails($event)"><i class="fa fa-eye"></i></button>
-                <button title="Επεξεργασία" (click)="editEntryDetails($event)"><i class="far fa-edit"></i></button>
+                <button title="Προβολή" (click)="viewEntryDetails(item.id)"><i class="fa fa-eye"></i></button>
+                <button title="Επεξεργασία" (click)="editEntryDetails(item.id)"><i class="far fa-edit"></i></button>
                 <a href="#exampleModal" title="Διαγραφή" role="button" (click)="getEntryId($event)" class="btn delete-entry" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
               </div>
             </div>
