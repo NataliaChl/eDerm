@@ -77,18 +77,6 @@ h6:not(.mb-0) {
 .card-body {
     padding-bottom: 0;
 }
-.full-width {
-    margin-top: 15px;
-    display: inline;
-    width: 100%;
-}
-.full-width label {
-    width: 20%;
-    display: inline;
-    margin-right: 20px;
-    color: #566089;
-    font-weight: 600;
-}
 h5 {
     color: #566089;
 }

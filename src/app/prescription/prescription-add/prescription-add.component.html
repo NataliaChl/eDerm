@@ -67,51 +67,47 @@
                   Αναζήτηση Φαρμάκου
                 </button>
               </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                <ng-container *ngIf="medicines !== null && medicines !== undefined && medicines.item[0].barcode != null">
-                  <div ngbDropdown class="d-inline-block">
-                    <h6 style="color: #107dd0;">Επιλέξτε Φάρμακο: </h6>
-                    <br>
-                    <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-                      <ng-container *ngIf="selectedMedicineName == null">
-                        Επιλογή Φαρμάκου
-                      </ng-container>
-                      <ng-container *ngIf="selectedMedicineName != null">
-                        {{selectedMedicineName}}
-                      </ng-container>
-                    </button>
-                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                      <ng-container *ngFor="let medicine of medicines.item">
-                        <button (click)="selectMedicine(medicine.barcode)" ngbDropdownItem class="btn btn-primary m-1">
-                          {{medicine.commercialName + ' ' + medicine.formCode + ' ' + medicine.content + ' ' +
-                        medicine.packageForm}}
-                        </button>
-                      </ng-container>
-                    </div>
+              <li *ngIf="medicines !== null && medicines !== undefined && medicines.item[0].barcode != null" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <div ngbDropdown class="d-inline-block">
+                  <h6 style="color: #107dd0;">Επιλέξτε Φάρμακο: </h6>
+                  <br>
+                  <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                    <ng-container *ngIf="selectedMedicineName == null">
+                      Επιλογή Φαρμάκου
+                    </ng-container>
+                    <ng-container *ngIf="selectedMedicineName != null">
+                      {{selectedMedicineName}}
+                    </ng-container>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <ng-container *ngFor="let medicine of medicines.item">
+                      <button (click)="selectMedicine(medicine.barcode)" ngbDropdownItem class="btn btn-primary m-1">
+                        {{medicine.commercialName + ' ' + medicine.formCode + ' ' + medicine.content + ' ' +
+                      medicine.packageForm}}
+                      </button>
+                    </ng-container>
                   </div>
-                </ng-container>
+                </div>
               </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                <ng-container *ngIf="selectedMedicine != null">
-                  <div ngbDropdown class="d-inline-block">
-                    <h6 style="color: #107dd0;">Επιλογή Ημερήσιας Δόσης Φαρμάκου: </h6>
-                    <button class="btn btn-outline-primary" id="dropdownBasic7" ngbDropdownToggle>
-                      <ng-container *ngIf="selectedMedicineDailyDose == null">
-                        Επιλογή Ημερήσιας Δόσης Φαρμάκου
-                      </ng-container>
-                      <ng-container *ngIf="selectedMedicineDailyDose != null">
-                        {{selectedMedicineDailyDose}}
-                      </ng-container>
-                    </button>
-                    <div ngbDropdownMenu aria-labelledby="dropdownBasic7">
-                      <ng-container *ngFor="let dose of selectedMedicineDailyDoseArray">
-                        <button (click)="selectMedicineDailyDose(dose)" ngbDropdownItem class="btn btn-primary m-1">
-                          {{dose}}
-                        </button>
-                      </ng-container>
-                    </div>
+              <li *ngIf="selectedMedicine != null" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <div ngbDropdown class="d-inline-block">
+                  <h6 style="color: #107dd0;">Επιλογή Ημερήσιας Δόσης Φαρμάκου: </h6>
+                  <button class="btn btn-outline-primary" id="dropdownBasic7" ngbDropdownToggle>
+                    <ng-container *ngIf="selectedMedicineDailyDose == null">
+                      Επιλογή Ημερήσιας Δόσης Φαρμάκου
+                    </ng-container>
+                    <ng-container *ngIf="selectedMedicineDailyDose != null">
+                      {{selectedMedicineDailyDose}}
+                    </ng-container>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic7">
+                    <ng-container *ngFor="let dose of selectedMedicineDailyDoseArray">
+                      <button (click)="selectMedicineDailyDose(dose)" ngbDropdownItem class="btn btn-primary m-1">
+                        {{dose}}
+                      </button>
+                    </ng-container>
                   </div>
-                </ng-container>
+                </div>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                 <h6>Αναζητήστε ICD-10 Βάσει του Τίτλου ICD-10: </h6>
@@ -121,7 +117,7 @@
                   πεδίο!
                 </div>
               </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+              <li *ngIf="prescriptionData.icd10title !== null && prescriptionData.icd10title.trim() !== ''" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                 <ng-container *ngIf="prescriptionData.icd10title !== null && prescriptionData.icd10title.trim() !== ''">
                   <div class="form-group">
                     <h6 style="color: #107dd0;">Αναζητήστε ICD-10 Βάσει της Περιγραφής
@@ -135,28 +131,25 @@
                   Αναζήτηση ICD-10
                 </button>
               </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                <ng-container *ngIf="icd10s !== null && icd10s !== undefined && icd10s.item[0].code != null">
-                  <div ngbDropdown class="d-inline-block">
-                    <h6>Επιλέξτε ICD-10: </h6>
-                    <br>
-                    <button class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>
-                      <ng-container *ngIf="selectedIcd10Name == null">
-                        Επιλέξτε ICD-10
-                      </ng-container>
-                      <ng-container *ngIf="selectedIcd10Name != null">
-                        {{selectedIcd10Name}}
-                      </ng-container>
-                    </button>
-                    <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-                      <ng-container *ngFor="let icd10 of icd10s.item">
-                        <button (click)="selectICD10(icd10.code)" ngbDropdownItem class="btn btn-primary m-1">
-                          {{icd10.title}}
-                        </button>
-                      </ng-container>
-                    </div>
+              <li *ngIf="icd10s !== null && icd10s !== undefined && icd10s.item[0].code != null" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <div ngbDropdown class="d-inline-block">
+                  <h6>Επιλέξτε ICD-10: </h6>
+                  <button class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>
+                    <ng-container *ngIf="selectedIcd10Name == null">
+                      Επιλέξτε ICD-10
+                    </ng-container>
+                    <ng-container *ngIf="selectedIcd10Name != null">
+                      {{selectedIcd10Name}}
+                    </ng-container>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                    <ng-container *ngFor="let icd10 of icd10s.item">
+                      <button (click)="selectICD10(icd10.code)" ngbDropdownItem class="btn btn-primary m-1">
+                        {{icd10.title}}
+                      </button>
+                    </ng-container>
                   </div>
-                </ng-container>
+                </div>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                 <h6>Αναζητήστε Ασθένεια: </h6>
@@ -169,28 +162,26 @@
                   Αναζήτηση Ασθένειας
                 </button>            
               </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                <ng-container *ngIf="searchedDiseases !== null && searchedDiseases !== undefined
-                && searchedDiseases[0].id != null">
-                  <div ngbDropdown class="d-inline-block">
-                    <h6>Επιλέξτε Ασθένεια: </h6>
-                    <button class="btn btn-outline-primary" id="dropdownBasic6" ngbDropdownToggle>
-                      <ng-container *ngIf="selectedDisease == null">
-                        Επιλέξτε Ασθένεια
-                      </ng-container>
-                      <ng-container *ngIf="selectedDisease != null">
-                        {{selectedDisease.name}}
-                      </ng-container>
-                    </button>
-                    <div ngbDropdownMenu aria-labelledby="dropdownBasic6">
-                      <ng-container *ngFor="let disease of searchedDiseases">
-                        <button (click)="selectDisease(disease.id)" ngbDropdownItem class="btn btn-primary m-1">
-                          {{disease.name}}
-                        </button>
-                      </ng-container>
-                    </div>
+              <li *ngIf="searchedDiseases !== null && searchedDiseases !== undefined
+              && searchedDiseases[0].id != null" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <div ngbDropdown class="d-inline-block">
+                  <h6>Επιλέξτε Ασθένεια: </h6>
+                  <button class="btn btn-outline-primary" id="dropdownBasic6" ngbDropdownToggle>
+                    <ng-container *ngIf="selectedDisease == null">
+                      Επιλέξτε Ασθένεια
+                    </ng-container>
+                    <ng-container *ngIf="selectedDisease != null">
+                      {{selectedDisease.name}}
+                    </ng-container>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic6">
+                    <ng-container *ngFor="let disease of searchedDiseases">
+                      <button (click)="selectDisease(disease.id)" ngbDropdownItem class="btn btn-primary m-1">
+                        {{disease.name}}
+                      </button>
+                    </ng-container>
                   </div>
-                </ng-container>
+                </div>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                 <div ngbDropdown class="d-inline-block">

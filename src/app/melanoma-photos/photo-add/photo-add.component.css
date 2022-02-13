@@ -226,12 +226,12 @@ h5 {
     width: 72%;
     display: inline;
 }
-.full-width {
+.full-size {
     margin-top: 15px;
     display: inline;
     width: 100%;
 }
-.full-width label {
+.full-size label {
     width: 20%;
     display: inline;
     margin-right: 20px;
