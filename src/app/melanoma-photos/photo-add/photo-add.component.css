@@ -16,6 +16,9 @@ h6:not(.mb-0) {
     width: 100%;
     text-align: left;
 }
+h5 {
+  color: #566089;
+}
 .personal-info {
     background: #8bc8f32e;
     margin-top: 10px;
@@ -106,9 +109,6 @@ h6:not(.mb-0) {
 .doc-comments {
   width: 100%;
 }
-/* .info-card li:hover {
-    background: #d3c4be2b;
-} */
 /* buttons */
 .btn-group button:not(.back) {
     color: white; /* White text */
@@ -297,14 +297,14 @@ h6:not(.mb-0) {
 }
 /* lines */
 hr:not(.line) { 
-border : 0;
-height: 3px !important;
-background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #8fb2cbd6, rgba(0, 0, 0, 0)); 
+  border : 0;
+  height: 3px !important;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #8fb2cbd6, rgba(0, 0, 0, 0)); 
 }
 .line {
-border : 0;
-height: 2px;
-background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #8fb2cbd6, rgba(0, 0, 0, 0)); 
+  border : 0;
+  height: 2px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #8fb2cbd6, rgba(0, 0, 0, 0)); 
 }
 .all-data .col,
 .my-header .col {
@@ -323,9 +323,9 @@ background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #8fb2cbd6, rgba(0,
   min-height: 100px;
 }
 .view-entry {
-border-radius: 30px;
-border: 1px solid #7684bf;
-margin-right: 5px;
+  border-radius: 30px;
+  border: 1px solid #7684bf;
+  margin-right: 5px;
 }
 
 @media (max-width: 493px) {

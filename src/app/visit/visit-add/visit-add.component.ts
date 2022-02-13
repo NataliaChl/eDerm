@@ -20,6 +20,8 @@ export class VisitAddComponent implements OnInit {
   visit: Visit;
   doctorUnits: DoctorUnits;
   selectedDoctorUnitName: string;
+  public invalidError: boolean;
+  isFetching = false;
 
   ngOnInit(): void {
     this.visit = InitHelper.initVisit();
@@ -31,11 +33,8 @@ export class VisitAddComponent implements OnInit {
   createVisit(): void {
     this.visit.reason = this.visitData.reason.trim();
     this.visit.comments = this.visitData.comments.trim();
-
     const patientAmka = this.visitData.patientAmka.trim();
-
     this.getPatient(patientAmka);
-
     this.addVisit();
   }
 
@@ -64,9 +63,17 @@ export class VisitAddComponent implements OnInit {
 
   getPatient(amka): void {
     amka = amka.toString().trim();
-    this.rest.getPatientInfo(amka).subscribe((data: any) => {
-      this.visit.patient = data;
-    });
+    if (amka.length >= 11) {
+      this.isFetching = true;
+      this.rest.getPatientInfo(amka).subscribe((data: any) => {
+        this.visit.patient = data;
+        this.invalidError = false;
+        this.isFetching = false;
+      }, (err) => {
+        this.invalidError = true;
+        console.log('error!!',err);
+      }); 
+    }
   }
 
   addVisit(): void {
