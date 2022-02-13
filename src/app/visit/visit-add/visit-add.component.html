@@ -11,74 +11,88 @@
         </div>
       </div>
     </nav>
-    <div>
-      <br>
-      <br>
-      <h3 style="color: #566089;">Δημιουργία Επίσκεψης</h3>
-      <hr>
+
+    <div class="card col-sm-12 col-md-12 col-lg-12 col-xl-10 offset-xl-1">
       <form #f="ngForm">
-        <div class="form-group">
-          <label for="visit-reason" style="color: #566089;">Λόγος Επίσκεψης: </label>
-          <input [(ngModel)]="visitData.reason" name="visit-reason" id="visit-reason" class="form-control" type="text"
-                  placeholder="Λόγος Επίσκεψης" required #r1="ngModel"/>
-          <div style="color: red; font-size: 13px;" *ngIf="!r1.valid && r1.touched">Παρακαλώ συμπληρώστε αυτό το
-            πεδίο!
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="visit-comments" style="color: #566089;">Σχόλια Επίσκεψης: </label>
-          <textarea [(ngModel)]="visitData.comments" name="visit-comments" id="visit-comments" class="form-control"
-                    type="text" rows="3" placeholder="Σχόλια Επίσκεψης"></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="patient-amka" style="color: #566089;">ΑΜΚΑ Ασθενή: </label>
-          <input [(ngModel)]="visitData.patientAmka" name="patient-amka" id="patient-amka" class="form-control"
-                  type="text" placeholder="ΑΜΚΑ Ασθενή" (focusout)="getPatient(visitData.patientAmka)" required
-                  #r2="ngModel"/>
-          <div style="color: red; font-size: 13px;" *ngIf="!r2.valid && r2.touched">Παρακαλώ συμπληρώστε αυτό το
-            πεδίο!
-          </div>
-          <ng-container *ngIf="visit.patient.amka != null">
-            <div style="color: #566089;">
-              Στοιχεία Ασθενή:
-              <ul>
-                <li>{{visit.patient.firstName + ' ' + visit.patient.lastName}}</li>
-                <li>{{visit.patient.birthDate | date}}</li>
-                <li>{{visit.patient.address + ', ' + visit.patient.city + ', ' + visit.patient.county}}</li>
-                <li>{{visit.patient.telephone}}</li>
+        <div class="card-body">
+          <h5>Δημιουργία Επίσκεψης</h5>
+          <hr>
+          <div class="d-flex flex-column align-items-center text-center">
+            <div class="mt-3">
+              <ul class="list-group list-group-flush info-card">
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <h6 style="color: #566089;">ΑΜΚΑ Ασθενή: </h6>
+                  <input [(ngModel)]="visitData.patientAmka" name="patient-amka" id="patient-amka" class="form-control"
+                          type="text" placeholder="ΑΜΚΑ Ασθενή" (focusout)="getPatient(visitData.patientAmka)" required
+                          #r2="ngModel"/>
+                  <div style="color: red; font-size: 13px;" *ngIf="!r2.valid && r2.touched">Παρακαλώ συμπληρώστε αυτό το
+                    πεδίο!
+                  </div>
+                </li>
+                <li *ngIf="visit.patient.amka != null && !invalidError" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <h6>Στοιχεία ασθενή:</h6>
+                  <ul class="list-group list-group-flush personal-info">
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap amka-info">
+                      <h6 class="mb-0"><i class="far fa-user-circle"></i><span>  Ονοματεπώνυμο:</span></h6>
+                      <span class="span-text">{{visit.patient.firstName + ' ' + visit.patient.lastName}}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap amka-info">
+                      <h6 class="mb-0"><i class="fa fa-calendar"></i><span>  Hμερομηνία Γέννησης:</span></h6>
+                      <span class="span-text">{{visit.patient.birthDate | date}}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap amka-info">
+                      <h6 class="mb-0"><i class="far fa-address-card"></i><span>  Επικοινωνία:</span></h6>
+                      <span class="span-text">{{visit.patient.telephone}}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap amka-info">
+                      <h6 class="mb-0"><i class="fas fa-home"></i><span>  Διεύθυνση κατοικίας:</span></h6>
+                      <span class="span-text">{{visit.patient.address + ', ' + visit.patient.city + ', ' + visit.patient.county}} </span>
+                    </li>
+                  </ul>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <h6 style="color: #566089;">Λόγος Επίσκεψης: </h6>
+                  <input [(ngModel)]="visitData.reason" name="visit-reason" id="visit-reason" class="form-control" type="text"
+                          placeholder="Λόγος Επίσκεψης" required #r1="ngModel"/>
+                  <div style="color: red; font-size: 13px;" *ngIf="!r1.valid && r1.touched">Παρακαλώ συμπληρώστε αυτό το
+                    πεδίο!
+                  </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <h6 style="color: #566089;">Σχόλια Επίσκεψης: </h6>
+                  <textarea [(ngModel)]="visitData.comments" name="visit-comments" id="visit-comments" class="form-control"
+                            type="text" rows="3" placeholder="Σχόλια Επίσκεψης"></textarea>
+                  <div style="color: red; font-size: 13px;" *ngIf="!r1.valid && r1.touched">Παρακαλώ συμπληρώστε αυτό το
+                    πεδίο!
+                  </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <div ngbDropdown class="d-inline-block">
+                    <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                      <ng-container *ngIf="visit.unit.id == null">
+                        Επιλογή Μονάδας Συνταγογράφησης
+                      </ng-container>
+                      <ng-container *ngIf="visit.unit.id != null">
+                        {{selectedDoctorUnitName}}
+                      </ng-container>
+                    </button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                      <ng-container *ngFor="let unit of doctorUnits.item">
+                        <button (click)="selectDoctorUnit(unit.id)" ngbDropdownItem class="btn btn-primary m-1 dropdown-option">
+                          {{unit.healthCareUnit.unitType.name + ' - ' + unit.healthCareUnit.description}}
+                        </button>
+                      </ng-container>
+                    </div>
+                  </div>
+                </li>
               </ul>
             </div>
-          </ng-container>
-        </div>
-
-        <label for="dropdownBasic1" style="color: #566089;">Επιλογή Μονάδας Συνταγογράφησης: </label>
-        <br>
-        <div ngbDropdown class="d-inline-block">
-          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-            <ng-container *ngIf="visit.unit.id == null">
-              Επιλογή Μονάδας Συνταγογράφησης
-            </ng-container>
-            <ng-container *ngIf="visit.unit.id != null">
-              {{selectedDoctorUnitName}}
-            </ng-container>
-          </button>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <ng-container *ngFor="let unit of doctorUnits.item">
-              <button (click)="selectDoctorUnit(unit.id)" ngbDropdownItem class="btn btn-primary m-1">
-                {{unit.healthCareUnit.unitType.name + ' - ' + unit.healthCareUnit.description}}
-              </button>
-            </ng-container>
           </div>
         </div>
-        <br>
-        <br>
-        <br>
-        <button (click)="createVisit()" type="button" class="btn btn-primary"
-                [disabled]="!f.valid">
-          Δημιουργήστε την<br>Επίσκεψη
-        </button>
+        <div class="btn-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <button routerLink="/visits" class="back"><i class="fas fa-angle-left"></i></button>
+          <button (click)="createVisit()" type="button" class="edit-submit" [disabled]="!f.valid">Δημιουργία<br>Επίσκεψης</button>
+        </div>
       </form>
     </div>
   </div>
