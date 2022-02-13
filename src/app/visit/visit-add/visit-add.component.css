@@ -92,7 +92,6 @@ h6:not(.mb-0) {
 h5 {
     color: #566089;
 }
-
 #dropdownBasic1 {
     white-space: normal;
     background-color: #566089a6;
@@ -106,12 +105,6 @@ h5 {
     width: 100%;
 }
 
-@media (max-width: 493px) {
-    .image-group {
-      padding-left: 0;
-      padding-right: 0;
-    }
-  }
   @media (max-width: 500px) { 
       .card-body {
           padding-left: 0;
