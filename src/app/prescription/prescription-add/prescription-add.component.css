@@ -104,6 +104,12 @@ h5 {
     float: right;
 }
 
+.btn-group-toggle label,
+.dropdown button {
+    background-color: #566089c4;
+    color: white;
+}
+
   @media (max-width: 500px) { 
     h5 {
         font-size: 22px;
