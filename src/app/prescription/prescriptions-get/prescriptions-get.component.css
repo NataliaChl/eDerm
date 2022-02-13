@@ -79,6 +79,9 @@ tbody {
 #desktop-table thead th {
 	width: 30%;
 }
+#mob-head tr > th {
+    width: 80%;
+}
 
 /* ---------------------------------------------------
     MEDIAQUERIES
@@ -176,11 +179,17 @@ tbody {
         font-size: 16px;
     }
     #myMedTable tr td {
-        padding-left: 0;
+        padding-left: 6px;
     }
     .page-title {
         font-size: 25px;
         margin-left: 30px;
+    }
+    #mid-head tr > th:nth-child(1) {
+        width: 55%;
+    }
+    #mid-head tr > th:nth-child(2) {
+        width: 30%;
     }
 }
 

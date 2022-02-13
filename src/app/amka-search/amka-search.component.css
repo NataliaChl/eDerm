@@ -241,6 +241,7 @@ hr:not(.line) {
 }
 .all-data:hover {
     background-color: #8fb2cb38;
+    border-left: 2px solid grey;
 }
 .text-heading:hover {
     cursor: pointer;
