@@ -92,6 +92,10 @@ h6:not(.mb-0) {
     background-color: hsl(115deg 18% 63%);
     border: none;
   }
+#imageModal img,
+#paintedImageModal img {
+  min-width: 450px;
+}
   
   @media (max-width: 493px) {
     .delete span,

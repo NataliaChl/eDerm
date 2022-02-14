@@ -152,6 +152,10 @@ hr:not(.line) {
   border: 1px solid #7684bf;
   margin-right: 5px;
 }
+#imageModal img,
+#paintedImageModal img {
+  min-width: 450px;
+}
 
   @media (max-width: 493px) {
     .delete span,
