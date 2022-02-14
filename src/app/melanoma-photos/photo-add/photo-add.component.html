@@ -11,7 +11,33 @@
           </div>
         </div>
       </nav>
-    
+      <ng-container *ngIf="!isFetching">
+        <!-- modal for full-size painted image -->
+        <div class="modal fade" id="paintedImageModal" tabindex="-1" role="dialog" aria-labelledby="paintedImageModal" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="paintedImageLabel">Σημείωση σπίλου στο σώμα</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="body-drawing"><image-drawing
+                  src="../../../assets/men-s-body-anatomy-vector-illustration-man-front-back-side-views-outline-144613383.jpg"
+                  outputMimeType="'image/png'" showCancelButton="false">
+              </image-drawing></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Ακύρωση</button>
+                <button type="button" (click)="save()" style="color: white; background-color: #167516;" class="btn btn-primary" data-dismiss="modal">Αποθήκευση</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      
+
       <div class="card col-sm-12 col-md-10 col-lg-10 col-xl-10 offset-xl-1 offset-md-1">  
         <form #f="ngForm">
         <div class="card-body">
@@ -94,7 +120,8 @@
                       <button id="photo-review" class="btn btn-primary spacing" [hidden]="!examinedImageResponse || dlPredictResponse" [disabled] = "dlPredictLoading || removeHairLoading" type="submit" (click) = dlPredict()>Οριοθέτηση εικόνας</button>
                       <button id="photo-review" class="btn btn-primary spacing" [hidden]="!examinedImageResponse || removeHairResponse" [disabled] = "dlPredictLoading || removeHairLoading" type="submit" (click) = removeHairImage()>Αφαίρεση τριχών</button>
                       <button id="photo-review" class="btn btn-primary spacing" [hidden]="examinedImageResponse" [disabled] = "loading" type="submit" (click) = submit()>Αξιολόγηση εικόνας</button>
-                      <a id="photo-delete" class="btn btn-danger" (click)="removeImage()">Remove</a>
+                      <button class="btn draw" data-toggle="modal" data-target="#paintedImageModal"><i class="fa fa-edit"></i><span> Σημείωση στο σώμα</span></button>
+                      <a id="photo-delete" class="btn btn-danger" (click)="removeImage()">Αφαίρεση</a>
                     </div>
                   </ng-template>
                 </li>

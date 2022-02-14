@@ -40,8 +40,8 @@ export class PhotoAddComponent implements OnInit {
   comments: any;
   name: any;
   public invalidError: boolean;
-  public entry = {"amka": "","name": "","comments": "","finalImage": "", "result": "", "date": "", "dateNow": ""};
-
+  public entry = {"amka": "","name": "","comments": "","finalImage": "", "result": "", "date": "", "dateNow": "", "paintedImage":""};
+  paintedImage: any;
   constructor(imageService: ImageService, 
     public rest: RestService,
     private router: Router) {
@@ -61,7 +61,7 @@ export class PhotoAddComponent implements OnInit {
     //console.log(this.entry);
     console.log(this.amka);
     this.amka = this.amka.toString().trim();
-    this.entry = {"amka": this.amka,"name": this.name,"comments": entry.comments,"finalImage": this.cardImageBase64, "result" : this.examinedImageResponse, "date" : entry.date, "dateNow": this.dateNow};
+    this.entry = {"amka": this.amka,"name": this.name,"comments": entry.comments,"finalImage": this.cardImageBase64, "result" : this.examinedImageResponse, "date" : entry.date, "dateNow": this.dateNow, "paintedImage": this.paintedImage};
     this.rest.postDataToJson(this.entry).subscribe((result) => {
       console.log(result);
       this.router.navigate(['/photos-get']);
@@ -106,8 +106,11 @@ export class PhotoAddComponent implements OnInit {
 
   //handling the image 
   handleFileInput(files: FileList) {
-    this.fileToUpload = files.item(0);
+    //hiding toolbar buttons on pop-up
+    let modal = document.querySelector<HTMLElement>('#paintedImageModal .toolbar .buttons');
+    modal.style.display = "none";
 
+    this.fileToUpload = files.item(0);
     this.imageError = null;
     if (this.fileToUpload) {
         // Size Filter Bytes
@@ -193,13 +196,17 @@ export class PhotoAddComponent implements OnInit {
     console.log(this.entries);
   }
 
-
   public fileSelectedLabel() {
     if (this.fileToUpload) {
       return this.fileToUpload.name;
     } else {
       return "Επιλέξτε αρχείο";
     }
+  }
+
+  save() {
+    var canvas = document.getElementById('canvas') as HTMLCanvasElement;
+    this.paintedImage = canvas.toDataURL();
   }
 
   handleClick(event: Event) {

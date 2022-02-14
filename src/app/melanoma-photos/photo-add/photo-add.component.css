@@ -144,7 +144,8 @@ h5 {
     background-color: hsl(115deg 18% 63%);
     float: right;
   }
-  #photo-review {
+  #photo-review,
+  .draw {
     background-color: #677094d6;
     color: white; /* White text */
     padding: 10px 14px; /* Some padding */

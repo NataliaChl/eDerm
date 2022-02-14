@@ -29,6 +29,8 @@ import { PhotosGetComponent } from './melanoma-photos/photos-get/photos-get.comp
 import { PhotoEditComponent } from './melanoma-photos/photo-edit/photo-edit.component';
 import { PhotoDeleteComponent } from './melanoma-photos/photo-delete/photo-delete.component';
 import { PhotoGetComponent } from './melanoma-photos/photo-get/photo-get.component';
+import { ImageDrawingModule } from 'ngx-image-drawing';
+import { fabric } from "fabric";
 
 const appRoutes: Routes = [
   {
@@ -161,6 +163,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    ImageDrawingModule,
     HttpClientModule,
     NgbDatepickerModule, NgbDropdownModule,
     RouterModule.forRoot(appRoutes), NgbButtonsModule, ReactiveFormsModule
