@@ -14,14 +14,16 @@ import { RestService } from '../../rest.service';
 export class PhotosGetComponent implements OnInit {
 
   fileToUpload: File = null;
+  isFetching = false;
   private imageService: ImageService;
   public examinedImageResponse: any;
   public loading: boolean = false;
+  public clickedId: string;
   imageError: string;
   isImageSaved: boolean;
   cardImageBase64: string;
-  public imagesData: any;
-
+  public imagesData: any = null;
+  public entryLine: any;
   constructor(imageService: ImageService, 
     public rest: RestService,
     private router: Router) {
@@ -31,8 +33,6 @@ export class PhotosGetComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDataFromJson();
-    this.postDataToJson();
-    // this.deleteDataFromJson(1);
   }
 
   createEntry(): void {
@@ -45,24 +45,28 @@ export class PhotosGetComponent implements OnInit {
     });
   }
 
-  postDataToJson(): void {
-    var entry = {
-      "amka": "13456765",
-      "image": "5bfbdfvsv",
-      "result": "dying",
-      "createDate": "13/04/97",
-      "photoDate": "03/05/10"
-    }
-    this.rest.postDataToJson(entry).subscribe((result) => {
-      console.log(result);
-    }, (err) => {
-      console.log(err);
-    });
+  viewEntryDetails(id): void {
+    this.router.navigate(['/photo-get/' + id]);
   }
 
-  deleteDataFromJson(id): void {
-    this.rest.deleteDataFromJson(id).subscribe((data: any) => {
-      return this.imagesData = data;
+  editEntryDetails(id): void {
+    // var element = e.currentTarget as HTMLInputElement
+    // var id = element.closest('.all-data').getAttribute('id');
+    this.router.navigate(['/photo-edit/' + id]);
+  }
+
+  getEntryId(e: Event): void {
+    var element = e.currentTarget as HTMLInputElement
+    this.entryLine = element.closest('.all-data');
+    this.clickedId = this.entryLine.getAttribute('id');
+    console.log(this.entryLine);
+  }
+  
+  deleteDataFromJson(): void {
+    this.rest.deleteDataFromJson(this.clickedId).subscribe((result) => {
+      this.entryLine.style.display = "none";
+    }, (err) => {
+      console.log(err);
     });
   }
 

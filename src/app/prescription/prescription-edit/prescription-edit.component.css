@@ -1,43 +1,216 @@
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-#content {
-    width: calc(100% - 250px);
-    padding: 40px;
-    min-height: 100vh;
-    transition: all 0.3s;
-    position: absolute;
-    top: 0;
-    right: 0;
+hr { 
+    border : 0;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #8fb2cbd6, rgba(0, 0, 0, 0)); 
 }
-#content.active {
+.card {
+    box-shadow: 0px 0px 3px 3px #587a9385;
+}
+h6:not(.mb-0) {
+    color: #2f7bb1;
+    text-align: left;
+}
+.personal-info {
+    background: #8bc8f32e;
+    margin-top: 10px;
     width: 100%;
 }
-.full-width {
-    width: 100% !important;
+.amka-info {
+    padding: 2px;
+    background: #102d4200;
+    border: none;
 }
-.replace-button {
-    margin-left: 220px !important;
+.span-text {
+    color: #000000c4;
 }
-/* ---------------------------------------------------
-    MEDIAQUERIES
------------------------------------------------------ */
-@media (max-width: 1100px) {
-    #sidebar {
-        margin-left: -250px;
+.amka-info:hover {
+    background-color: #8fb2cb38;
+}
+
+/* buttons */
+.btn-group button:not(.back) {
+    color: white; /* White text */
+    padding: 10px 14px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    border-radius: 30px;
+    margin-left: 6px;
+    margin-bottom: 6px;
+    border-top-right-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
+}
+.btn-group {
+    display: block !important;
+    padding-bottom: 20px;
+}
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table; 
+}
+.btn-group button:hover {
+    box-shadow: 0px 0px 3px 3px #587a9385;
+}
+.back {
+    margin-top: 15px !important;
+    color: #33556c !important;
+    border: 1px solid #33556c9e;
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px 2px #587a9385 !important;
+    margin-bottom: 10px;
+    float: left;
+}
+.edit-submit {
+    float: right;
+    background-color: hsl(115deg 18% 63%);
+    border: none;
+}
+.edit-submit:disabled {
+    float: right;
+    background-color: lightslategrey;
+    cursor: not-allowed !important;
+}
+.card-body {
+    padding-bottom: 0;
+}
+h5 {
+    color: #566089;
+}
+#dropdownBasic1 {
+    white-space: normal;
+    background-color: #566089a6;
+    color: white;
+}
+.dropdown-option {
+    white-space: normal;
+}
+.dropdown {
+    text-align: left;
+    width: 100%;
+}
+
+.first {
+    font-weight: 600;
+    margin-right: 11px;
+    font-size: 17px;
+    float: left;
+    margin-right: 10px;
+}
+.second {
+    float: right;
+}
+/* buttons */
+.btn-group button:not(.back) {
+    color: white; /* White text */
+    padding: 10px 14px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: right; /* Float the buttons side by side */
+    border-radius: 30px;
+    margin-left: 6px;
+    margin-bottom: 6px;
+    border-top-right-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
+  }
+  .btn-group button:not(.back) * {
+      color: white;
+  }
+  .btn-group {
+      display: block !important;
+      padding-bottom: 20px;
+  }
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  .btn-group button:hover {
+    box-shadow: 0px 0px 3px 3px #587a9385;
+  }
+  .delete {
+    background-color: #f75353;
+  }
+  .add {
+    background-color: hsl(115deg 18% 63%);
+  }
+  .edit {
+    background-color: #5d84a1;
+  }
+
+.btn-group-toggle label {
+    background-color: #566089c4;
+    color: white;
+}
+.dropdown button {
+    border-color: #566089c4;
+    color: #566089c4;
+}
+.dropdown button:hover {
+    background-color: #566089c4;
+    color: white;
+}
+@media (max-width: 493px) {
+    .delete span,
+    .edit span,
+    .add span {
+      display: none;
     }
-    #sidebar.active {
-        margin-left: 0;
+  }
+  @media (max-width: 500px) { 
+    h5 {
+        font-size: 22px;
     }
-    #content {
+      .card-body {
+          padding-left: 0;
+          padding-right: 0;
+      }
+      .back {
+          width: 35px;
+          height: 35px;
+      }
+      .text-center > .mt-3 {
         width: 100%;
     }
-    #content.active {
-        width: calc(100% - 250px);
+    h6:not(.mb-0) {
+        font-size: 17px;
     }
-}
-@media (min-width: 1111px) {
-    #sidebarCollapse {
-        display: none;
+    h6.mb-0 {
+        font-size: 16px;
     }
-}
+  }
+  @media (min-width: 501px) and (max-width: 749px) {
+    h5 {
+        font-size: 24px;
+    }
+      .back {
+          width: 35px;
+          height: 35px;
+      }
+      .text-center > .mt-3 {
+        width: 100%;
+    }
+    h6:not(.mb-0) {
+        font-size: 18px;
+    }
+    h6.mb-0 {
+        font-size: 17px;
+    }
+  }
+  @media (min-width: 750px) {
+      h5 {
+          font-size: 25px;
+      }
+      h6:not(.mb-0) {
+          font-size: 20px;
+      }
+      h6.mb-0 {
+          font-size: 18px;
+      }
+      .back {
+          width: 40px;
+          height: 40px;
+      }
+      .text-center > .mt-3 {
+        width: 90%;
+    }
+  }

@@ -1,49 +1,183 @@
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-#content {
-    width: calc(100% - 250px);
-    padding: 40px;
-    min-height: 100vh;
-    transition: all 0.3s;
-    position: absolute;
-    top: 0;
-    right: 0;
+@import url("https://unpkg.com/@webpixels/css@1.1.5/dist/index.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css");
+body{margin-top:20px;
+    background-color: #e4e6e9;
+    color: #41464d;
 }
-#content.active {
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+.btn {
+    cursor: pointer;
+    position: relative;
+    z-index: auto;
+    border-radius: .175rem;
+    transition: color .15s,background-color .15s,border-color .15s,box-shadow .15s,opacity .15s;
+}
+ button:not(.modal-btn), 
+ a {
+    border-radius: 30px;
+    border: 1px solid #7684bf;
+    margin-right: 5px;
+}
+.btn-primary {
+    background-color: #566089 !important;
+    border-color: #6c757d;
+    box-shadow: 2px 3px 5px #6c757d;
+}
+.page-title {
+    color: #566089;
+    display:inline;
+}
+.far.fa-trash-alt {
+    color: #fe5f5f;
+}
+.delete-entry {
+    height: 30px;
+    background: #efefef;
+    padding: 8px;
+    text-align: center;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    line-height: 9px;
+}
+#entry-create {
+    float: right;
+    margin-right: 16px;
+}
+.add {
+    background-color: #566089d6;
+    color: white; /* White text */
+    padding: 10px 14px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: right; /* Float the buttons side by side */
+    border-radius: 30px;
+    margin-left: 6px;
+    margin-bottom: 6px;
+    border-top-right-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
+  }
+.all-data .col {
+    /* border: 1px solid #566089d6; */
+    text-align: center;
+    overflow: hidden;
+    background-color: #e1e1e180;
+    min-height: 95px;
+    max-height: 100px;
+/* vertical align center on the list */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+}
+.all-data .col > span {
+    margin: 0;
     width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
 }
-.full-width {
-    width: 100% !important;
+.all-data:hover {
+    border-left: 2px solid grey;
 }
-.replace-button {
-    margin-left: 220px !important;
+.line {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border : 0;
+    height: 2px !important;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #8fb2cbd6, rgba(0, 0, 0, 0));
 }
-/* ---------------------------------------------------
-    MEDIAQUERIES
------------------------------------------------------ */
-@media (max-width: 1110px) {
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-    #content {
-        width: 100%;
-    }
-    #content.active {
-        width: calc(100% - 250px);
-    }
-    .list-group-item i {
-        font-size: 25px;
-    }
+.my-header {
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
 }
-@media (min-width: 1111px) {
-    #sidebarCollapse {
+.my-header .col {
+    text-align: center;
+    overflow: hidden;
+}
+.all-data {
+    background-color: #e1e1e180;
+}
+.all-data:hover {
+    background-color: #cee5ff;
+}
+.my-header {
+    margin-top: 85px;
+    background-color: #5660893b;
+}
+.my-table {
+    min-width: 100%;
+}
+
+hr:not(.line) { 
+    border : 0;
+    height: 3px !important;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #8fb2cbd6, rgba(0, 0, 0, 0)); 
+}
+.patient-name {
+    cursor: pointer;
+}
+.patient-image {
+    max-height: 100px;
+    height: 100px;
+}
+.container-fluid {
+    padding-left: 0;
+}
+
+/* Small devices (landscape phones, 544px and up) */
+@media (max-width: 544px) {  
+    .patient-name {
+        font-size: 14px;
+    }
+    .patient-amka {
+        font-size: 13px;
+    }
+    .all-data > .col {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    #entry-create span {
         display: none;
     }
-    .list-group-item i {
-        font-size: 30px;
+    .my-table {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    #content > .col-sm-12.col-md-12 {
+        padding-left: 5px;
+        padding-right: 5px;
     }
 }
+ 
+@media (min-width: 545px) and (max-width: 768px) {  
+    .patient-name {
+        font-size: 16px;
+    }
+    .patient-amka {
+        font-size: 14px;
+    }
+    .all-data > .col {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .my-table {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    #content > .col-sm-12.col-md-12 {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+ 
+@media (min-width: 769px) and (max-width: 1199px) { 
+  h1 {font-size:2.5rem;} /*1rem = 16px*/
+}
+
+@media (min-width: 1200px) {  
+  h1 {font-size:3rem;} /*1rem = 16px*/    
+}
+ 

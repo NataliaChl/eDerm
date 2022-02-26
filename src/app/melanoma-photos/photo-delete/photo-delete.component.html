@@ -1,20 +1,35 @@
-<div>
-    <app-header></app-header>
-      <!-- Page Content Holder -->
-      <div id="content">
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-              <div class="navbar-header">
-                  <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                      <i class="fa fa-bars"></i>
-                  </button>
-              </div>
-          </div>
-        </nav>
+<!-- <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Ακύρωση Επίσκεψης</h4>
+  </div>
+  <div class="modal-body">
+    <p><strong>Είστε σίγουροι οτι θέλετε να ακυρώσετε αυτή την επίσκεψη;</strong></p>
+  </div>
+  <div class="modal-footer">
+    <button style="width: 4rem;" type="button" class="btn btn-outline-secondary"
+            (click)="modal.dismiss('cancel click')">
+      Όχι
+    </button>
+    <button style="width: 4rem;" type="button" class="btn btn-danger" (click)="modal.close('Ok click')">
+      Ναι
+    </button>
+  </div> -->
 
-
-  
-    
-    <!-- <app-spinner class="main-loader" *ngIf = "loading"></app-spinner> -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
     </div>
-</div>
+  </div>

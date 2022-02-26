@@ -3,95 +3,193 @@
   <app-header></app-header>
     <!-- Page Content Holder -->
     <div id="content">
-        <nav class="navbar navbar-default">
+      <nav class="navbar navbar-default">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                    <i class="fa fa-bars"></i>
+          <div class="navbar-header">
+            <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
+              <i class="fa fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <h2 class="page-title">Αναζήτηση στοιχείων ασθενή βάση ΑΜΚΑ</h2>
+      <div (mouseover)="changeText=true" (mouseout)="changeText=false" class="doc-info" ><span><i class="fa fa-bell"></i></span>
+        <p *ngIf="changeText" class="mb-0 font-weight-light">Μπορείτε να κάνετε αναζήτηση βάση του αριθμού ΑΜΚΑ του ασθενή σας. Οι πληροφορίες που εμφανίζονται στα "Στοιχεία Ασφαλισμένου" έχουν καταχωρηθεί στο κρατικό σύστημα.</p>
+      </div>
+      <div class="amka-search col-sm-12 col-md-12 col-lg-12 col-xl-10 offset-xl-1">
+        <div id="cover">
+          <div class="tb">
+            <div class="td">
+                <input id="amka-input" [(ngModel)]="amka" type="text" placeholder="Αριθμός ΑΜΚΑ" required>
+            </div>
+            <div class="td" id="s-cover">
+                <button id="submit-button" type="submit" (click)="getPatient(amka); getDataFromJson(); getAllPrescriptions();">
+                    <div id="s-circle"></div>
+                <span></span>
                 </button>
+                <i class="fa fa-search" (click)="getPatient(amka); getDataFromJson(); getAllPrescriptions();"></i>
             </div>
+          </div>
         </div>
-        </nav>
-
-
-        <!-- <div (mouseover)="changeText=true" (mouseout)="changeText=false">
-            <span *ngIf="!changeText">Hide</span>
-            <span *ngIf="changeText">Show</span>
-          </div> -->
-
-
-        <div class="amka-search col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2">
-            <div (mouseover)="changeText=true" (mouseout)="changeText=false" class="doc-info" role="alert">
-                <div class="row">
-                    <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="m-1 bi bi-bell-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
-                    </svg>
-                      <p *ngIf="changeText" class="mb-0 font-weight-light">Μπορείτε να κάνετε αναζήτηση βάσει του αριθμού ΑΜΚΑ του ασθενή σας. Οι πληροφορίες που εμφανίζονται έχουν καταχωρηθεί στο κρατικό σύστημα.</p>
-                </div>
-            </div>
-            <div id="cover">
-                <div class="tb">
-                    <div class="td">
-                        <input id="amka-input" [(ngModel)]="amka" type="number" placeholder="Αριθμός ΑΜΚΑ" required>
+        <div *ngIf="patientResponse">
+          <div class="patient-info" class="card" *ngIf="!isFetching">
+            <h5>Στοιχεία ασφαλισμένου</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 class="mb-0"><i class="far fa-user-circle"></i><span>Ονοματεπώνυμο:</span></h6>
+                <span class="text-secondary">{{patientResponse.firstName}} {{patientResponse.lastName}}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 class="mb-0"><i class="fa fa-calendar"></i><span>Hμερομηνία Γέννησης:</span></h6>
+                <span class="text-secondary">{{patientResponse.birthDate | date}}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 class="mb-0"><i class="far fa-address-card"></i><span>Ασφάλιση:</span></h6>
+                <span class="text-secondary">{{patientResponse.activeInsurance[0].socialInsurance.name}} ({{patientResponse.activeInsurance[0].socialInsurance.shortName}})</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 class="mb-0"><i class="fas fa-home"></i><span>Διεύθυνση κατοικίας:</span></h6>
+                <span class="text-secondary">{{patientResponse.address}} , {{patientResponse.postalCode}} , {{patientResponse.country.name}}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 class="mb-0"><i class="far fa-envelope-open"></i><span>Τελευταία συνταγογράφηση:</span></h6>
+                <span class="text-secondary">{{patientResponse.lastPrescriptionDate}}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 class="mb-0"><i class="fas fa-phone"></i><span>Επικοινωνία:</span></h6>
+                <span class="text-secondary">{{patientResponse.telephone}}</span>
+                </li>
+                <!-- <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 class="mb-0"><i class="fa fa-plus-square"></i><span>Ειδικότητα:</span></h6>
+                <span class="text-secondary">  </span>
+                </li> -->
+            </ul>
+            <hr>
+            <ng-container *ngIf="!loading && results.length > 0">
+              <button class="btn btn-primary collapseInfoBtn" type="button" data-toggle="collapse" data-target="#collapseImageInfo" aria-expanded="false" aria-controls="collapseImageInfo">
+                  Στοιχεία δερματολογικής εξέτασης:<i class="fas fa-angle-down"></i><i class="fas fa-angle-up"></i>
+              </button>
+              <div class="collapse" id="collapseImageInfo">
+                <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 my-header">
+                    <div class="col">
+                      <strong>ΕΙΚΟΝΑ</strong>
                     </div>
-                    <div class="td" id="s-cover">
-                        <button id="submit-button" type="submit" (click)="getPatient(amka)">
-                            <div id="s-circle"></div>
-                        <span></span>
-                        </button>
-                        <i class="fa fa-search" (click)="getPatient(amka)"></i>
+                    <div class="col d-sm-none d-md-block d-none d-sm-block">
+                      <strong>ΗΜΕΡΟΜΗΝΙΑ ΚΑΤΑΧΩΡΗΣΗΣ</strong>
                     </div>
-                </div>
-            </div>
-            <div *ngIf="patientResponse">
-                <div class="patient-info" class="card" *ngIf="!isFetching">
-                    <h5>Στοιχεία ασφαλισμένου</h5>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                        <h6 class="mb-0"><i class="far fa-user-circle"></i><span>Ονοματεπώνυμο:</span></h6>
-                        <span class="text-secondary">{{patientResponse.firstName}} {{patientResponse.lastName}}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                        <h6 class="mb-0"><i class="fa fa-calendar"></i><span>Hμερομηνία Γέννησης:</span></h6>
-                        <span class="text-secondary">{{patientResponse.birthDate | date}}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                        <h6 class="mb-0"><i class="far fa-address-card"></i><span>Ασφάλιση:</span></h6>
-                        <span class="text-secondary">{{patientResponse.activeInsurance[0].socialInsurance.name}} ({{patientResponse.activeInsurance[0].socialInsurance.shortName}})</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                        <h6 class="mb-0"><i class="fas fa-home"></i><span>Διεύθυνση κατοικίας:</span></h6>
-                        <span class="text-secondary">{{patientResponse.address}} , {{patientResponse.postalCode}} , {{patientResponse.country.name}}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                        <h6 class="mb-0"><i class="far fa-envelope-open"></i><span>Τελευταία συνταγογράφηση:</span></h6>
-                        <span class="text-secondary">{{patientResponse.lastPrescriptionDate}}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                        <h6 class="mb-0"><i class="fas fa-phone"></i><span>Επικοινωνία:</span></h6>
-                        <span class="text-secondary">{{patientResponse.telephone}}</span>
-                        </li>
-                        <!-- <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                        <h6 class="mb-0"><i class="fa fa-plus-square"></i><span>Ειδικότητα:</span></h6>
-                        <span class="text-secondary">  </span>
-                        </li> -->
-                    </ul>
-                </div>
-                <div class="alert alert-danger shadow" role="alert">
-                    <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <i class="fas fa-angle-down"></i>
-                    </button>
-                    <div class="row">
-                        <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="m-1 bi bi-exclamation-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                          <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-                        </svg>
-                          <p class="mb-0 font-weight-light">{{patientResponse.covidVaccineMessage}}</p>
+                    <div class="col">
+                      <strong>ΑΞΙΟΛΟΓΗΣΗ</strong>
+                    </div>
+                    <div class="col d-none d-sm-block">
+                      <strong>ΠΡΟΒΟΛΗ</strong>
                     </div>
                 </div>
-            </div>
-            <ng-container *ngIf="isFetching">
-                <app-spinner class="main-loader"></app-spinner>
+                <hr>
+                <ng-container *ngFor="let item of results">
+                  <ng-container *ngIf="item">
+                    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 all-data">
+                      <div class="col">
+                        <div><img width="100" height="80" [src]="item.finalImage"></div>
+                        <div class="d-none d-none d-sm-block d-md-none"><span><i class="far fa-calendar-alt" style="font-size:20px"></i>    {{item.dateNow}}</span></div>
+                      </div>
+                      <div class="col d-sm-none d-md-block d-none d-sm-block">
+                        <span><i class="far fa-calendar-alt" style="font-size:20px"></i>    {{item.dateNow}}</span>
+                      </div>
+                      <div class="col">
+                        <span *ngIf="item.result">{{item.result}}</span>
+                        <span *ngIf="!item.result"><i class="far fa-window-minimize"></i></span>
+                        <div class="d-block d-sm-none" style="margin-top: 27px;">
+                          <button title="Προβολή Στοιχείων" (click)="viewEntryDetails(item.id)"><i class="fa fa-eye"></i></button>
+                        </div>
+                      </div>
+                      <div class="col d-none d-sm-block">
+                        <button title="Προβολή Στοιχείων" (click)="viewEntryDetails(item.id)"><i class="fa fa-eye"></i></button>
+                      </div>
+                    </div>
+                    <hr class="line">
+                  </ng-container>
+                </ng-container>
+              </div>
             </ng-container>
+            <ng-container *ngIf="loading">
+              <div style="margin-top: 36px;height: 100px;">
+                <div class="spinner-border" style="text-align: center;" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="!prescFetching && amkaPrescriptions.length > 0">
+              <button class="btn btn-primary collapseInfoBtn" type="button" data-toggle="collapse" data-target="#collapsePrescpInfo" aria-expanded="false" aria-controls="collapsePrescpInfo">
+                Στοιχεία συνταγών ασφαλισμένου:<i class="fas fa-angle-down"></i><i class="fas fa-angle-up"></i>
+              </button>
+              <div class="collapse" id="collapsePrescpInfo">
+                <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 my-header">
+                  <div class="col">
+                    <strong>ΣΤΟΙΧΕΙΑ</strong>
+                  </div>
+                  <div class="col d-sm-none d-md-block d-none d-sm-block">
+                    <strong>ΗΜΕΡΟΜΗΝΙΑ</strong>
+                  </div>
+                  <div class="col">
+                    <strong>ΚΑΤΑΣΤΑΣΗ</strong>
+                  </div>
+                  <div class="col d-none d-sm-block">
+                    <strong>ΠΡΟΒΟΛΗ</strong>
+                  </div>
+                </div>
+                <hr>
+                <ng-container *ngFor="let prescription of amkaPrescriptions">
+                  <ng-container *ngIf="prescription">
+                    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 all-data">
+                      <div class="col">
+                        <img alt="..." src="../../../assets/user.png" class="avatar avatar-sm rounded-circle me-2"> <span class="text-heading font-semibold" (click)="viewPrescriptionDetails(prescription.barcode)">{{prescription.patientInfo.firstName + ' ' + prescription.patientInfo.lastName}}</span>
+                      </div>
+                      <div class="col d-sm-none d-md-block d-none d-sm-block">
+                        {{prescription.issueDate}}
+                      </div>
+                      <div class="col">
+                        <span *ngIf="prescription.status.status == 'ΣΥΝΤΑΓΟΓΡΑΦΗΜΕΝΗ'" class="badge badge-lg badge-dot"><i class="bg-warning"></i>{{prescription.status.status}}</span>
+                        <span *ngIf="prescription.status.status == 'ΑΚΥΡΩΜΕΝΗ'" class="badge badge-lg badge-dot"> <i class="bg-danger"></i>{{prescription.status.status}}</span>
+                        <span *ngIf="prescription.status.status == 'ΟΛΟΚΛΗΡΩΜΕΝΗ'" class="badge badge-lg badge-dot"> <i class="bg-success"></i>{{prescription.status.status}}</span>
+                        <div class="d-block d-sm-none">
+                          <button title="Προβολή Στοιχείων" (click)="viewPrescriptionDetails(prescription.barcode)"><i class="fa fa-eye"></i></button>
+                        </div>
+                      </div>
+                      <div class="col d-none d-sm-block">
+                        <button title="Προβολή Στοιχείων" (click)="viewPrescriptionDetails(prescription.barcode)"><i class="fa fa-eye"></i></button>
+                      </div>
+                    </div>
+                    <hr class="line">
+                  </ng-container>
+                </ng-container>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="prescFetching">
+              <div style="margin-top: 36px;height: 100px;">
+                  <div class="spinner-border" style="text-align: center;" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+              </div>
+            </ng-container>
+          </div>
+          
+
+          <div class="alert alert-danger shadow" role="alert">
+            <button class="btn collapseAlert" type="button" data-toggle="collapse" data-target="#collapseAlert" aria-expanded="false" aria-controls="collapseAlert">
+                <i class="fas fa-exclamation" style="color: #721c24;"></i><span style="float: left;">Ειδοποίηση</span><i class="fas fa-angle-down"></i><i class="fas fa-angle-up"></i>
+            </button>
+            <div class="row collapse" id="collapseAlert">
+                <p class="mb-0 font-weight-light">{{patientResponse.covidVaccineMessage}}</p>
+            </div>
+          </div>
         </div>
+        <div class="no-response" *ngIf="noAnswer">
+          <p>Δεν βρέθηκαν στοιχεία ασφαλισμένου. Παρακαλώ ελεγξτε τον αριθμό ΑΜΚΑ.</p>
+        </div>
+        <ng-container *ngIf="isFetching">
+            <app-spinner class="main-loader"></app-spinner>
+        </ng-container>
     </div>
+  </div>
 </div>

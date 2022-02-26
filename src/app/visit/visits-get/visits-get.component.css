@@ -31,26 +31,11 @@ body{margin-top:20px;
 #visit-create {
     float: right;
 }
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-#content {
-    width: calc(100% - 250px);
-    padding: 40px;
-    min-height: 100vh;
-    transition: all 0.3s;
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-#content.active {
+thead {
     width: 100%;
 }
-.full-width {
-    width: 100% !important;
-}
-.replace-button {
-    margin-left: 220px !important;
+#mob-head tr > th {
+    width: 80%;
 }
 #desktop-table thead {
 	width: 100%;
@@ -115,8 +100,10 @@ body{margin-top:20px;
         margin-top: 60px;
     }
     #visit-create {
-        width: 125px;
         font-size: 15px;
+    }
+    #visit-create span {
+        display: none;
     }
 }
 @media (min-width: 579px) and (max-width: 860px) {
@@ -169,7 +156,10 @@ body{margin-top:20px;
         font-size: 16px;
     }
     #myMedTable tr td {
-        padding-left: 0;
+        padding-left: 6px;
+    }
+    #mid-head tr > th:nth-child(3) {
+        width: 20%;
     }
     .page-title {
         font-size: 25px;
@@ -265,9 +255,6 @@ body{margin-top:20px;
 tr {
     width: 100%;
 }
-#sidebarCollapse {
-    background-color: #566089;
-}
 
 #myInputDesk,
 #myInputMed,
@@ -303,10 +290,5 @@ input:focus, textarea:focus, select:focus, button:focus {
     }
     #content.active {
         width: calc(100% - 250px);
-    }
-}
-@media (min-width: 1111px) {
-    #sidebarCollapse {
-        display: none;
     }
 }

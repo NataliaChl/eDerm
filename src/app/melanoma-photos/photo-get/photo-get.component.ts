@@ -2,30 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ImageService } from 'src/app/image.service';
 import { RestService } from 'src/app/rest.service';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-photo-edit',
-  templateUrl: './photo-edit.component.html',
-  styleUrls: ['./photo-edit.component.css']
+  selector: 'app-photo-get',
+  templateUrl: './photo-get.component.html',
+  styleUrls: ['./photo-get.component.css']
 })
-export class PhotoEditComponent implements OnInit {
-
+export class PhotoGetComponent implements OnInit {
   entryId: string;
   private imageService: ImageService;
+  public amka: any;
   public loading: boolean = false;
   public imagesData: any;
   public id: string;
   public result : any;
+  public entries : any = [];
   isFetching = false;
-  patientResponse = null;
-  amka: any;
-  date: any;
-  dateNow: any;
-  comments: any;
-  name: any;
-  public updatedEntry = {"amka": "","name": "","comments": "","finalImage": "", "result": "", "date": "", "dateNow": ""};
-
   constructor(imageService: ImageService, 
     public rest: RestService,
     private router: Router) {
@@ -34,12 +26,10 @@ export class PhotoEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDataFromJson();
-   
   }
 
   getEntry(id, data): void {
     console.log('going to search in:  '+id);
-
     var searchField = "id";
     var searchVal = id;
     for (var i=0 ; i < data.length ; i++)
@@ -49,6 +39,8 @@ export class PhotoEditComponent implements OnInit {
       }
     }
     console.log(this.result);
+    this.amka = this.result.amka;
+    this.lookFromOtherEntries(this.amka, data);
   }
 
   getDataFromJson(): void {
@@ -61,24 +53,28 @@ export class PhotoEditComponent implements OnInit {
     });
   }
 
-  getEntryId(): void {
-    var url = window.location.href;
-    var id = url.substring(url.indexOf('photo-edit/') + 11);
-    this.id = id;
+  viewEntryDetails(id): void {
+    this.router.navigate(['/photo-get/' + id]);
+  }
+  
+  lookFromOtherEntries(amka, data) {
+    this.entries = [];
+    console.log('going to amka:  '+amka);
+    var searchField = "amka";
+    var searchVal = amka;
+    for (var i=0 ; i < data.length ; i++)
+    {
+      if (data[i][searchField] == searchVal) {
+        this.entries[i] = data[i];
+      }
+    }
+    console.log(this.entries);
   }
 
-  updateDataOnJson(): void {
-    if (this.result.finalImage == undefined) {this.result.finalImage = ""};
-    if (this.result.date == undefined) {this.result.date = ""};
-    if (this.result.result == undefined) {this.result.result = ""};
-    this.updatedEntry = {"amka": this.result.amka,"name": this.result.name,"comments": this.result.comments,"finalImage": this.result.finalImage, "result" : this.result.result, "date" : this.result.date, "dateNow": this.result.dateNow};
-    //console.log(this.updatedEntry);
-    this.rest.updateDataOnJson(this.updatedEntry , this.id).subscribe((result) => {
-      console.log(result);
-      this.router.navigate(['/photos-get']);
-    }, (err) => {
-      console.log(err);
-    });
+  getEntryId(): void {
+    var url = window.location.href;
+    var id = url.substring(url.indexOf('photo-get/') + 10);
+    this.id = id;
   }
 
   deleteDataFromJson(): void {
@@ -88,6 +84,12 @@ export class PhotoEditComponent implements OnInit {
     }, (err) => {
       console.log(err);
     });
+  }
+
+  editEntryDetails(e: Event): void {
+    // var element = e.currentTarget as HTMLInputElement
+    // var id = element.closest('.all-data').getAttribute('id');
+    this.router.navigate(['/photo-edit/' + this.id]);
   }
   
   handleClick(event: Event) {
@@ -100,4 +102,5 @@ export class PhotoEditComponent implements OnInit {
       document.querySelector('#sidebarCollapse').classList.remove('replace-button');
     }
   }
+
 }

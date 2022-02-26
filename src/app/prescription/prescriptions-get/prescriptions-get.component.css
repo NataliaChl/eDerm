@@ -62,9 +62,6 @@ tr,
 tbody {
     width: 100%;
 }
-#sidebarCollapse {
-    background-color: #566089;
-}
 
 #myInputDesk,
 #myInputMed,
@@ -72,49 +69,18 @@ tbody {
     margin-bottom: 30px;
     margin-top: 30px;
 }
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
-input:focus, textarea:focus, select:focus, button:focus {
-    outline: none;
-}
 .insurance {
 	font-size: 17px;
 	font-weight: 600;
-}
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-#content {
-    width: calc(100% - 250px);
-    padding: 40px;
-    min-height: 100vh;
-    transition: all 0.3s;
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-#content.active {
-    width: 100%;
-}
-.full-width {
-    width: 100% !important;
-}
-.replace-button {
-    margin-left: 220px !important;
 }
 #desktop-table thead {
 	width: 100%;
 }
 #desktop-table thead th {
 	width: 30%;
+}
+#mob-head tr > th {
+    width: 80%;
 }
 
 /* ---------------------------------------------------
@@ -213,11 +179,17 @@ input:focus, textarea:focus, select:focus, button:focus {
         font-size: 16px;
     }
     #myMedTable tr td {
-        padding-left: 0;
+        padding-left: 6px;
     }
     .page-title {
         font-size: 25px;
         margin-left: 30px;
+    }
+    #mid-head tr > th:nth-child(1) {
+        width: 55%;
+    }
+    #mid-head tr > th:nth-child(2) {
+        width: 30%;
     }
 }
 
@@ -288,10 +260,5 @@ input:focus, textarea:focus, select:focus, button:focus {
     }
     #content.active {
         width: calc(100% - 250px);
-    }
-}
-@media (min-width: 1111px) {
-    #sidebarCollapse {
-        display: none;
     }
 }

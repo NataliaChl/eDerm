@@ -1,49 +1,379 @@
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-#content {
-    width: calc(100% - 250px);
-    padding: 40px;
-    min-height: 100vh;
-    transition: all 0.3s;
-    position: absolute;
-    top: 0;
-    right: 0;
+hr { 
+    border : 0;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #8fb2cbd6, rgba(0, 0, 0, 0)); 
+  }
+.card {
+    box-shadow: 0px 0px 3px 3px #587a9385;
 }
-#content.active {
+.amka-info {
+    padding: 2px;
+    background: #102d4200;
+    border: none;
+}
+h6:not(.mb-0) {
+    color: #2f7bb1;
+    width: 100%;
+    text-align: left;
+}
+h5 {
+  color: #566089;
+}
+.personal-info {
+    background: #8bc8f32e;
+    margin-top: 10px;
+}
+.prescription-info li {
+    padding: 1px;
+    border: none;
+}
+.span-text {
+    color: #000000c4;
+}
+.collapse-list ul {
+  width: 100%;
+}
+.first {
+  font-weight: 600;
+  margin-right: 11px;
+  font-size: 17px;
+}
+.collapseInfoBtn {
+  margin-bottom: 15px;
+  background-color: #5d84a1;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 30px;
+  border-top-right-radius: 30px !important;
+  border-bottom-right-radius: 30px !important;
+  font-weight: 500;
+}
+.collapseInfoBtn i {
+  float: right;
+  margin-top: 5px;
+}
+.collapseInfoBtn[aria-expanded="false"] i.fa-angle-up {
+  display: none;
+}
+.collapseInfoBtn[aria-expanded="true"] i.fa-angle-down {
+  display: none;
+}
+.collapseInfoBtn[aria-expanded="true"] {
+  color: black;
+  background-color: #d3c2b6 !important;
+  border: 2px solid #5d84a1b0 !important;
+  font-weight: 600 !important;
+}
+#collapseMedicineInfo,
+#collapsePrescriptionInfo,
+#collapseIllnessInfo,
+#collapsePrescpInfo {
+  margin-bottom: 15px;
+}
+.collapseInfoBtn[data-target="#collapseIllnessInfo"] {
+  margin-top: 45px;
+}
+.simple {
+  width: 100%;
+}
+.simple li {
+  padding: 0;
+  border: none;
+  text-align: left;
+}
+.simple .first {
+  float: left;
+  margin-right: 10px;
+}
+.simple .second {
+  float: right;
+}
+.simple li:hover {
+  background: #d3c4be2b;
+}
+#collapseMedicineInfo li:hover,
+#collapsePrescriptionInfo li:hover,
+#collapseIllnessInfo li:hover,
+#collapsePrescpInfo li:hover {
+  background: #d3c4be2b;
+}
+.prescriptionInfo ul {
+  width: 100%;
+}
+.prescriptionInfo li {
+  padding: 4px;
+}
+.prescriptionInfo li:hover {
+  background: #d3c4be2b;
+}
+.doc-comments {
+  width: 100%;
+}
+/* buttons */
+.btn-group button:not(.back) {
+    color: white; /* White text */
+    padding: 10px 14px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    border-radius: 30px;
+    margin-left: 6px;
+    margin-bottom: 6px;
+    border-top-right-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
+  }
+  .btn-group button:not(.back) * {
+      color: white;
+  }
+  .btn-group {
+      display: block !important;
+      padding-bottom: 20px;
+  }
+  /* Clear floats (clearfix hack) */
+  .btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  .btn-group button:hover {
+    box-shadow: 0px 0px 3px 3px #587a9385;
+  }
+  .delete {
+    background-color: #f75353;
+    float: right;
+  }
+  .add {
+    background-color: hsl(115deg 18% 63%);
+    float: right;
+  }
+  #photo-review,
+  .draw {
+    background-color: #677094d6;
+    color: white; /* White text */
+    padding: 10px 14px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    border-radius: 30px;
+    margin-left: 6px;
+    margin-bottom: 6px;
+    border-top-right-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
+    float: left;
+  }
+  #photo-delete {
+    background-color: #f75353;
+    color: white; /* White text */
+    padding: 10px 14px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: right; /* Float the buttons side by side */
+    border-radius: 30px;
+    margin-left: 6px;
+    margin-bottom: 6px;
+    border-top-right-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
+    float: left;
+  }
+  .edit {
+    background-color: #5d84a1;
+    float: right;
+  }
+  .back {
+    margin-top: 15px !important;
+    color: #33556c !important;
+    border: 1px solid #33556c9e;
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px 2px #587a9385 !important;
+    margin-bottom: 10px;
+    float: left;
+  }
+  #save-entry {
+    background-color: #176c2a;
+    color: white; /* White text */
+    padding: 10px 14px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: right; /* Float the buttons side by side */
+    border-radius: 30px;
+    margin-left: 6px;
+    margin-bottom: 6px;
+    border-top-right-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
+  }
+  .edit-submit {
+    float: right;
+    background-color: hsl(115deg 18% 63%);
+    border: none;
+  }
+  .edit-submit:disabled {
+    float: right;
+    background-color: lightslategrey;
+    cursor: not-allowed !important;
+  }
+  .card-body {
+    padding-bottom: 0;
+  }
+  .main-list {
+    border-bottom: 1px solid #5984a373;
+  }
+  .prescriptionInfo h6 {
+    margin-bottom: 22px;
+  }
+
+  .navbar.navbar-default {
+    width: 30%;
+    float: left;
+  }
+  .btn-group {
+    width: 70%;
+    float: right;
+  }
+#patient-amka {
+    width: 72%;
+    display: inline;
+}
+.full-size {
+    margin-top: 15px;
+    display: inline;
     width: 100%;
 }
-.full-width {
-    width: 100% !important;
+.full-size label {
+    width: 20%;
+    display: inline;
+    margin-right: 20px;
+    color: #566089;
+    font-weight: 600;
 }
-.replace-button {
-    margin-left: 220px !important;
+.image-group {
+  width: 100%;
 }
-/* ---------------------------------------------------
-    MEDIAQUERIES
------------------------------------------------------ */
-@media (max-width: 1110px) {
-    #sidebar {
-        margin-left: -250px;
+.image-group ul {
+  width: 100%;
+}
+.custom-file-label {
+  top: auto !important;
+}
+.image-response {
+  padding-bottom: 1.25rem !important;
+}
+.fa-check {
+  margin-left: -34px;
+  margin-top: 6px;
+  font-size: 25px;
+  color: green;
+}
+.fa-exclamation-circle {
+  margin-left: -34px;
+  margin-top: 6px;
+  font-size: 23px;
+  color: red;
+}
+
+ /* collappse */
+ #collapseImageInfo {
+  margin-bottom: 15px;
+  padding-left: 0;
+  padding-right: 0;
+  background: #d3c4be2b;
+}
+.collapseInfoBtn {
+  margin-bottom: 15px;
+  background-color: #5d84a1;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 30px;
+  border-top-right-radius: 30px !important;
+  border-bottom-right-radius: 30px !important;
+  font-weight: 500;
+}
+.collapseInfoBtn i {
+  float: right;
+}
+.collapseInfoBtn[aria-expanded="false"] i.fa-angle-up {
+  display: none;
+}
+.collapseInfoBtn[aria-expanded="true"] i.fa-angle-down {
+  display: none;
+}
+.collapseInfoBtn[aria-expanded="true"] {
+  color: black;
+  background-color: #d3c2b6 !important;
+  border: 2px solid #5d84a1b0 !important;
+  font-weight: 600 !important;
+}
+/* lines */
+hr:not(.line) { 
+  border : 0;
+  height: 3px !important;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #8fb2cbd6, rgba(0, 0, 0, 0)); 
+}
+.line {
+  border : 0;
+  height: 2px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #8fb2cbd6, rgba(0, 0, 0, 0)); 
+}
+.all-data .col,
+.my-header .col {
+  text-align: center;
+}
+.all-data:hover {
+  background-color: #8fb2cb38;
+}
+.my-header,
+.all-data {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+.all-data img {
+  max-height: 100px;
+  min-height: 100px;
+}
+.view-entry {
+  border-radius: 30px;
+  border: 1px solid #7684bf;
+  margin-right: 5px;
+}
+
+@media (max-width: 493px) {
+  .image-group {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .delete span,
+  .edit span,
+  .add span {
+    display: none;
+  }
+}
+@media (max-width: 500px) { 
+    .card-body {
+        padding-left: 0;
+        padding-right: 0;
     }
-    #sidebar.active {
-        margin-left: 0;
+    .back {
+        width: 35px;
+        height: 35px;
     }
-    #content {
-        width: 100%;
+}
+@media (min-width: 501px) and (max-width: 749px) {
+    .back {
+        width: 35px;
+        height: 35px;
     }
-    #content.active {
-        width: calc(100% - 250px);
-    }
-    .list-group-item i {
+}
+@media (min-width: 750px) {
+    h5 {
         font-size: 25px;
     }
-}
-@media (min-width: 1111px) {
-    #sidebarCollapse {
-        display: none;
+    h6:not(.mb-0) {
+        font-size: 20px;
     }
-    .list-group-item i {
-        font-size: 30px;
+    h6.mb-0 {
+        font-size: 18px;
+    }
+    .back {
+        width: 40px;
+        height: 40px;
+    }
+    .visit-comments,
+    .visit-reason {
+        padding-bottom: 35px;
+        padding-top: 15px;
     }
 }

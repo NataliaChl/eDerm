@@ -1,22 +1,94 @@
 
 <div>
-    <app-header></app-header>
-      <!-- Page Content Holder -->
-      <div id="content">
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-              <div class="navbar-header">
-                  <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                      <i class="fa fa-bars"></i>
-                  </button>
-              </div>
+  <app-header></app-header>
+  <!-- Page Content Holder -->
+  <div id="content">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+    
+    <button (click)="createEntry()" type="button" class="btn add" id="entry-create">
+      <i class="fas fa-plus"></i>
+      <span>   Δημιουργία Καταχώρησης</span>
+    </button>
+    <h2 class="page-title">Λίστα Καταχωρήσεων</h2>
+    
+    <!-- modal for delete -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Διαγραφή καταχώρησης</h5>
+            <button type="button" class="btn-close modal-btn" data-dismiss="modal" aria-label="Close"></button>
           </div>
-        </nav>
-  
-        <h2 class="page-title">Λίστα Καταχωρήσεων</h2>
-        <button (click)="createEntry()" type="button" class="btn btn-primary" id="entry-create">
-          Δημιουργία Καταχώρησης
-        </button>
+          <div class="modal-body">
+            Είστε σίγουροι πως θέλετε να διαγράψετε αυτή την καταχώρηση; 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary modal-btn" data-dismiss="modal">Όχι</button>
+            <button type="button" (click)="deleteDataFromJson()" style="color: white; background-color: #f75353 !important;" class="btn btn-primary modal-btn" data-dismiss="modal">Διαγραφή</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-container *ngIf="!isFetching">
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <div class="container my-table">
+          <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 my-header">
+            <div class="col">
+              <strong>ΣΤΟΙΧΕΙΑ</strong>
+            </div>
+            <div class="col">
+              <strong>ΕΙΚΟΝΑ</strong>
+            </div>
+            <div class="col d-sm-none d-md-block d-none d-sm-block">
+              <strong>ΗΜΕΡΟΜΗΝΙΑ ΚΑΤΑΧΩΡΗΣΗΣ</strong>
+            </div>
+            <div class="col d-none d-sm-block">
+              <strong>ΛΕΠΤΟΜΕΡΕΙΕΣ</strong>
+            </div>
+          </div>
+          <hr>
+          <ng-container *ngFor="let item of imagesData">
+            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 all-data" data-id="{{item.id}}">
+              <div class="col">
+                <span><span (click)="viewEntryDetails(item.id)" class="patient-name">{{item.name}}</span><br><span class="patient-amka">AMKA: <strong>  {{item.amka}}</strong></span></span>
+              </div>
+              <div class="col">
+                <span><img class="patient-image" width="100" height="80" [src]="item.finalImage">
+                  <div class="d-block d-sm-none" style="text-align: right;float: right;">
+                    <button title="Προβολή" style="display: block;margin-top: 3px;" (click)="viewEntryDetails(item.id)"><i style="font-size: 14px;" class="fa fa-eye"></i></button>
+                    <button title="Επεξεργασία" style="display: block;margin-top: 2px;" (click)="editEntryDetails(item.id)"><i style="font-size: 14px;" class="far fa-edit"></i></button>
+                    <a href="#exampleModal" style="margin-top: 2px;" title="Διαγραφή" role="button" (click)="getEntryId($event)" class="btn delete-entry" data-toggle="modal"><i style="font-size: 14px;" class="far fa-trash-alt"></i></a>
+                  </div>
+                </span>
+              </div>
+              <div class="col d-sm-none d-md-block d-none d-sm-block">
+                <span><i class="far fa-calendar-alt" style="font-size:20px"></i>    {{item.dateNow}}</span>
+              </div>
+              <div class="col d-none d-sm-block">
+                <span>
+                  <div class="d-none d-none d-sm-block d-md-none"><span><i class="far fa-calendar-alt" style="font-size:20px"></i>    {{item.dateNow}}</span></div>
+                  <div style="margin-top: 8px;">
+                    <button title="Προβολή" (click)="viewEntryDetails(item.id)"><i class="fa fa-eye"></i></button>
+                    <button title="Επεξεργασία" (click)="editEntryDetails(item.id)"><i class="far fa-edit"></i></button>
+                    <a href="#exampleModal" title="Διαγραφή" style="margin-top: -4px;" role="button" (click)="getEntryId($event)" class="btn delete-entry" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
+                  </div>
+                </span>
+              </div>
+            </div>
+            <hr class="line">
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
   </div>
 </div>
   

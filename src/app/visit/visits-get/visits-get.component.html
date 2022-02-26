@@ -4,16 +4,16 @@
     <div id="content">
       <nav class="navbar navbar-default">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                    <i class="fa fa-bars"></i>
-                </button>
-            </div>
+          <div class="navbar-header">
+            <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn list-page">
+              <i class="fa fa-bars"></i>
+            </button>
+          </div>
         </div>
       </nav>
 
     <h2 class="page-title">Λίστα Επισκέψεων</h2>
-    <button (click)="createVisit()" class="btn add" id="visit-create"><i class="fas fa-plus"></i> Δημιουργία Επίσκεψης</button>
+    <button (click)="createVisit()" class="btn add" id="visit-create"><i class="fas fa-plus"></i><span>   Δημιουργία Επίσκεψης</span></button>
     
     <div class="form desktop"><i class="fa fa-search"></i><input id="myInputDesk" type="number" class="form-control form-input" (keyup)="searchDesktop($event)" placeholder="Αναζήτηση επίσκεψης βάση αριθμού ΑΜΚΑ.."> </div>
     <div class="form medium"><i class="fa fa-search"></i><input id="myInputMed" type="number" class="form-control form-input" (keyup)="searchMedium($event)" placeholder="Αναζήτηση επίσκεψης βάση αριθμού ΑΜΚΑ.."> </div>
@@ -22,12 +22,12 @@
     <div class="table-responsive col-sm-12 col-md-12 col-lg-12 col-xl-12">
       <table id="desktop-table" class="table table-hover table-nowrap">
         <thead id="desk-head" class="thead-light">
-            <tr>
-                <th scope="col">ΑΜΚΑ Ασθενή</th>
-                <th scope="col">Ονοματεπώνυμο</th>
-                <th scope="col">Κατάσταση</th>
-                <th scope="col">Λεπτομέρειες</th>
-            </tr>
+          <tr>
+            <th scope="col">ΑΜΚΑ Ασθενη</th>
+            <th scope="col">Ονοματεπωνυμο</th>
+            <th scope="col">Κατασταση</th>
+            <th scope="col">Λεπτομερειες</th>
+          </tr>
         </thead>
         <tbody id="myDeskTable">
           <ng-container *ngIf="!isFetching && visits.item.length >= 0">
@@ -61,9 +61,9 @@
       <table id="mid-table" class="table table-hover table-nowrap">
         <thead id="mid-head" class="thead-light">
             <tr>
-              <th scope="col">Στοιχεία Ασθενή</th>
-              <th scope="col">Κατάσταση</th>
-              <th scope="col">Λεπτομέρειες</th>
+              <th scope="col">Στοιχεια Ασθενη</th>
+              <th scope="col">Κατασταση</th>
+              <th scope="col">Λεπτομερειες</th>
             </tr>
         </thead>
         <tbody id="myMedTable">
@@ -99,8 +99,8 @@
       <table id="mobile-table" class="table table-hover table-nowrap">
         <thead id="mob-head" class="thead-light">
           <tr>
-              <th scope="col">Στοιχεία</th>
-              <th scope="col">Λεπτομέρειες</th>
+              <th scope="col">Στοιχεια</th>
+              <th scope="col">Λεπτομερειες</th>
           </tr>
       </thead>
         <tbody id="myMobTable">
