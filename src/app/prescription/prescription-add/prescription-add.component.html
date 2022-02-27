@@ -141,7 +141,7 @@
                     Αναζήτηση ICD-10
                   </button>
                 </li>
-                <li *ngIf="icd10s !== null && icd10s !== undefined && icd10s.item[0].code != null" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <li *ngIf="icd10s != null && icd10s != undefined && icd10s.item[0].code != null" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                   <div ngbDropdown class="d-inline-block">
                     <h6>Επιλέξτε ICD-10: </h6>
                     <button class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>
@@ -172,9 +172,7 @@
                     Αναζήτηση Ασθένειας
                   </button>
                 </li>
-                <li
-                  *ngIf="searchedDiseases !== null && searchedDiseases !== undefined && searchedDiseases[0].id != null"
-                  class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <li *ngIf="searchedDiseases != null && searchedDiseases != undefined && searchedDiseases[0].id != null" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                   <div ngbDropdown class="d-inline-block">
                     <h6>Επιλέξτε Ασθένεια: </h6>
                     <button class="btn btn-outline-primary" id="dropdownBasic6" ngbDropdownToggle>
@@ -337,7 +335,7 @@
         <div class="btn-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <button routerLink="/prescriptions" class="back"><i class="fas fa-angle-left"></i></button>
           <button (click)="createPrescription()" type="button" class="edit-submit"
-            [disabled]="!f.valid">Δημιουργία<br>Επίσκεψης</button>
+            [disabled]="!f.valid">Δημιουργία<br>Συνταγής</button>
         </div>
       </form>
     </div>
