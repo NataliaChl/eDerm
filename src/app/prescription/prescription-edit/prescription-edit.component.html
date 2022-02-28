@@ -2,22 +2,23 @@
   <app-header></app-header>
   <!-- Page Content Holder -->
   <div id="content">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
-            <i class="fa fa-bars"></i>
-          </button>
+    <div class="head-container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
+              <i class="fa fa-bars"></i>
+            </button>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
 
-    <div class="btn-group col-sm-12 col-md-12 col-lg-12 col-xl-10 offset-xl-1">
-      <ng-container *ngIf="!isFetching && prescription.status != 'cancelled'">
-        <button (click)="openConfirmDeleteModal(prescription.id)" class="btn delete"><i class="fa fa-trash"></i><span> Ακύρωση</span></button>
-        <button (click)="editPrescription(prescription.id)" class="btn edit"><i class="fas fa-pencil-alt"></i><span> Επεξεργασία</span></button>
-        <button (click)="downloadPrescriptionAsPDF(prescription.id)" class="btn add"><i class="fas fa-download"></i><span> Λήψη</span></button>
-      </ng-container>
+      <div class="btn-group">
+        <ng-container *ngIf="!isFetching && prescription.status != 'cancelled'">
+          <button (click)="openConfirmDeleteModal(prescription.id)" class="btn delete"><i class="fa fa-trash"></i><span> Ακύρωση</span></button>
+          <button (click)="downloadPrescriptionAsPDF(prescription.id)" class="btn add"><i class="fas fa-download"></i><span> Λήψη</span></button>
+        </ng-container>
+      </div>
     </div>
 
     <ng-container *ngIf="!isFetching">
@@ -122,8 +123,11 @@
                     <div style="color: red; font-size: 13px;" *ngIf="!r2.valid && r2.touched">Παρακαλώ συμπληρώστε αυτό το
                       πεδίο!
                     </div>
+                    <button (click)="searchICD10s()" type="button" class="btn btn-secondary">
+                      Αναζήτηση ICD-10
+                    </button>
                   </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <!-- <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <ng-container *ngIf="prescription.icd10.diagnosis !== null && prescription.icd10.diagnosis.toString().trim() !== ''">
                       <div class="form-group">
                         <h6 style="color: #107dd0;">Αναζητήστε ICD-10 Βάσει της Περιγραφής
@@ -136,7 +140,7 @@
                     <button (click)="searchICD10s()" type="button" class="btn btn-secondary">
                       Αναζήτηση ICD-10
                     </button>
-                  </li>
+                  </li> -->
                   <li  *ngIf="icd10s !== null && icd10s !== undefined && icd10s.item[0].code != null" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <div ngbDropdown class="d-inline-block">
                       <h6>Επιλέξτε ICD-10: </h6>

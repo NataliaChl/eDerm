@@ -2,22 +2,23 @@
   <app-header></app-header>
   <!-- Page Content Holder -->
   <div id="content">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
-            <i class="fa fa-bars"></i>
-          </button>
+    <div class="head-container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
+              <i class="fa fa-bars"></i>
+            </button>
+          </div>
         </div>
+      </nav>
+
+      <div class="btn-group">
+        <ng-container *ngIf="!isFetching && visit.status != 'cancelled' && visit.status != 'completed'">
+          <button (click)="openConfirmDeleteModal(visit.id)" class="btn delete"><i class="fa fa-trash"></i> Ακύρωση</button>
+        </ng-container>
       </div>
-    </nav>
-
-    <div class="btn-group col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2">
-      <ng-container *ngIf="!isFetching && visit.status != 'cancelled' && visit.status != 'completed'">
-        <button (click)="openConfirmDeleteModal(visit.id)" class="btn delete"><i class="fa fa-trash"></i> Ακύρωση</button>
-      </ng-container>
     </div>
-
     <ng-container *ngIf="!isFetching">
       <form #f="ngForm">
         <div class="card col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2" *ngIf="!isFetching">
@@ -99,7 +100,7 @@
           </div>
           <div class="btn-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <button routerLink="/visits" class="back"><i class="fas fa-angle-left"></i></button>
-            <button (click)="editVisit()" type="button" class="edit-submit" [disabled]="!f.valid">Υποβολή</button>
+            <button (click)="editVisit()" type="button" class="edit-submit" [disabled]="!f.valid">Αποθήκευση</button>
           </div>
         </div>
       </form>

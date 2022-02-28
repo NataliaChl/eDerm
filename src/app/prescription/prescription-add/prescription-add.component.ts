@@ -166,6 +166,7 @@ export class PrescriptionAddComponent implements OnInit {
     } else {
       this.rest.getICD10sList(this.prescriptionData.icd10title, this.prescriptionData.icd10description).subscribe((data: any) => {
         this.icd10s = data;
+        console.log(this.icd10s);
         this.selectICD10(this.icd10s.item[0].code);
       });
     }
@@ -221,8 +222,10 @@ export class PrescriptionAddComponent implements OnInit {
     } else {
       this.searchedDiseases = [];
       const badDiseaseIds = [1];
+      console.log(this.diseases)
       for (const disease of this.diseases) {
         if (!badDiseaseIds.includes(disease.id) && disease.name.toString().includes(this.prescriptionData.diseaseName)) {
+          console.log(disease);
           this.searchedDiseases.push(disease);
         }
       }

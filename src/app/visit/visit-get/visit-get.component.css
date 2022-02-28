@@ -47,7 +47,6 @@ h6:not(.mb-0) {
   }
   .btn-group {
       display: block !important;
-      padding-bottom: 20px;
   }
   /* Clear floats (clearfix hack) */
   .btn-group:after {
