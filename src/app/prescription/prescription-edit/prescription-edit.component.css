@@ -1,3 +1,4 @@
+@import url(../prescription-add/prescription-add.component.css);
 hr { 
     border : 0;
     height: 2px;
@@ -154,6 +155,10 @@ h5 {
     width: 100% !important;
     max-height: 200px !important;
     overflow: scroll;
+}
+.dropdown-toggle {
+    overflow: hidden;
+    width: 100%;
 }
 
 .head-container {

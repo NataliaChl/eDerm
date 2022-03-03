@@ -125,7 +125,6 @@ h6:not(.mb-0) {
   }
   .btn-group {
       display: block !important;
-      padding-bottom: 20px;
   }
   /* Clear floats (clearfix hack) */
   .btn-group:after {
@@ -187,6 +186,9 @@ h6:not(.mb-0) {
   .edit span,
   .add span {
     display: none;
+  }
+  .btn-group {
+    margin-top: 16px;
   }
 }
 @media (max-width: 500px) { 

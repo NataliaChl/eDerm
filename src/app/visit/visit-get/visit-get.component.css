@@ -47,6 +47,9 @@ h6:not(.mb-0) {
   }
   .btn-group {
       display: block !important;
+      width: 74%;
+      float: right;
+      margin-top: 14px;
   }
   /* Clear floats (clearfix hack) */
   .btn-group:after {
@@ -64,6 +67,9 @@ h6:not(.mb-0) {
     background-color: hsl(115deg 18% 63%);
   }
   .edit {
+    background-color: #3c352b
+  }
+  .close {
     background-color: #5d84a1;
   }
   .back {
@@ -79,17 +85,19 @@ h6:not(.mb-0) {
       padding-bottom: 0;
   }
   .navbar.navbar-default {
-    width: 30%;
+    width: fit-content;
     float: left;
   }
-  .btn-group {
-    width: 70%;
-    float: right;
-  }
-  @media (max-width: 493px) {
+  @media (max-width: 736px) {
     .delete span,
     .edit span,
-    .add span {
+    .add span,
+    .close span {
+      display: none;
+    }
+  }
+  @media (min-width: 737px) and (max-width: 888px) {
+    .delete span {
       display: none;
     }
   }
