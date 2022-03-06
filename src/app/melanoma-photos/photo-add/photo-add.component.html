@@ -109,17 +109,17 @@
                         </div>                                
                       </li>
                       <li *ngIf="!loading && examinedImageResponse" class="list-group-item col">
-                        <div class="card bg-light mb-3" style="max-width: 18rem;margin-top: 27px;">
+                        <div class="card bg-light mb-3" style="margin-top: 27px;">
                           <div class="card-body image-response">
                             <span class="card-text">Το αποτέλεσμα της αξιολόγησης είναι: <strong>{{examinedImageResponse}}</strong></span>
                           </div>
                         </div>                               
                       </li>
                     </ul>
-                    <div class="btn-group" style="width: 92%; margin-top: 18px;">
-                      <button id="photo-review" class="btn btn-primary spacing" [hidden]="!examinedImageResponse || dlPredictResponse" [disabled] = "dlPredictLoading || removeHairLoading" type="submit" (click) = dlPredict()>Οριοθέτηση εικόνας</button>
-                      <button id="photo-review" class="btn btn-primary spacing" [hidden]="!examinedImageResponse || removeHairResponse" [disabled] = "dlPredictLoading || removeHairLoading" type="submit" (click) = removeHairImage()>Αφαίρεση τριχών</button>
+                    <div class="btn-group" style="width: 97%; margin-top: 18px;">
                       <button id="photo-review" class="btn btn-primary spacing" [hidden]="examinedImageResponse" [disabled] = "loading" type="submit" (click) = submit()>Αξιολόγηση εικόνας</button>
+                      <button id="photo-review" class="btn btn-primary spacing" [hidden]="dlPredictResponse" [disabled] = "dlPredictLoading || removeHairLoading" type="submit" (click) = dlPredict()>Οριοθέτηση εικόνας</button>
+                      <button id="photo-review" class="btn btn-primary spacing" [hidden]="removeHairResponse" [disabled] = "dlPredictLoading || removeHairLoading" type="submit" (click) = removeHairImage()>Αφαίρεση τριχών</button>
                       <button class="btn draw" data-toggle="modal" data-target="#paintedImageModal"><i class="fa fa-edit"></i><span> Σημείωση στο σώμα</span></button>
                       <a id="photo-delete" class="btn btn-danger" (click)="removeImage()">Αφαίρεση</a>
                     </div>
@@ -228,7 +228,7 @@
             </div>
           </div>
         </div>
-        <div class="btn-group" style="width: 92%; margin-top: 18px;">
+        <div class="btn-group bottom-btn">
           <button routerLink="/photos-get" class="back"><i class="fas fa-angle-left"></i></button>
           <button (click)="postDataToJson(entry)" type="submit" class="edit-submit" [disabled]="!f.valid">Αποθήκευση</button>
         </div>

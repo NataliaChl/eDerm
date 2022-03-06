@@ -340,6 +340,9 @@ hr:not(.line) {
   .add span {
     display: none;
   }
+  .bottom-btn {
+    width: 96%;
+  }
 }
 @media (max-width: 500px) { 
     .card-body {
@@ -350,11 +353,17 @@ hr:not(.line) {
         width: 35px;
         height: 35px;
     }
+    .bottom-btn {
+      width: 96%;
+    }
 }
 @media (min-width: 501px) and (max-width: 749px) {
     .back {
         width: 35px;
         height: 35px;
+    }
+    .bottom-btn {
+      width: 96%;
     }
 }
 @media (min-width: 750px) {
@@ -375,5 +384,9 @@ hr:not(.line) {
     .visit-reason {
         padding-bottom: 35px;
         padding-top: 15px;
+    }
+    .bottom-btn {
+      width: 96%;
+      margin-top: 12px;
     }
 }
