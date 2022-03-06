@@ -118,7 +118,7 @@
                     </ul>
                     <div class="btn-group" style="width: 97%; margin-top: 18px;">
                       <button id="photo-review" class="btn btn-primary spacing" [hidden]="examinedImageResponse" [disabled] = "loading" type="submit" (click) = submit()>Αξιολόγηση εικόνας</button>
-                      <button id="photo-review" class="btn btn-primary spacing" [hidden]="dlPredictResponse" [disabled] = "dlPredictLoading || removeHairLoading" type="submit" (click) = dlPredict()>Οριοθέτηση εικόνας</button>
+                      <button id="photo-review" class="btn btn-primary spacing" [hidden]="dlPredictResponse" [disabled] = "dlPredictLoading || removeHairLoading" type="submit" (click) = dlPredict()>Οριοθέτηση σπίλου</button>
                       <button id="photo-review" class="btn btn-primary spacing" [hidden]="removeHairResponse" [disabled] = "dlPredictLoading || removeHairLoading" type="submit" (click) = removeHairImage()>Αφαίρεση τριχών</button>
                       <button class="btn draw" data-toggle="modal" data-target="#paintedImageModal"><i class="fa fa-edit"></i><span> Σημείωση στο σώμα</span></button>
                       <a id="photo-delete" class="btn btn-danger" (click)="removeImage()">Αφαίρεση</a>
