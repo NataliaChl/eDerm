@@ -46,7 +46,6 @@ h6:not(.mb-0) {
   }
   .btn-group {
       display: block !important;
-      padding-bottom: 20px;
   }
   /* Clear floats (clearfix hack) */
   .btn-group:after {
@@ -87,7 +86,16 @@ h6:not(.mb-0) {
   .main-list {
     border-bottom: 1px solid #5984a373;
   }
-
+  .head-container {
+    display: flex;
+}
+.head-container nav {
+    width: 30%;
+}
+.head-container .btn-group {
+    width: 70%;
+    float: right;
+}
 @media (max-width: 500px) { 
     .card-body {
         padding-left: 0;

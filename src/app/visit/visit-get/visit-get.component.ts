@@ -59,6 +59,14 @@ export class VisitGetComponent implements OnInit {
     });
   }
 
+  closeVisit(id): void {
+    this.rest.closeVisit(id).subscribe((result) => {
+      console.log(result);
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
   getDoctorMe(): void {
     this.rest.getDoctorInfoMe().subscribe((data: any) => {
       this.visit.doctor = data;

@@ -476,4 +476,29 @@ export class XmlTemplates {
 
     return finalAddOrEditPrescriptionXML;
   }
+
+  static closePrescribedVisit(): void {
+    '<!-- Περίπτωση: Υπέρβασης / εξαίρεσης στην επίσκεψη με "Included In Quota"  -->'
+    '<Collection>'
+    '<!-- Περίπτωση: Επίσκεψη Ασθενή στην ίδια ειδικότητα -->'
+      // '<item>'
+      //     '<!-- Αιτιολογία υπέρβασης / εξαίρεσης-->'
+      //     '<reason>αιτιολογία 5</reason>'
+      //     '<!-- Id υπέρβασης / εξαίρεσης στην περίπτωση "Επίσκεψη Ασθενή στην ίδια ειδικότητα"  -->'
+      //     '<overrideType>'
+      //         '<id>5</id>'
+      //     '</overrideType>'
+      //     '<!-- Παράμετρος ενεργοποίησης/απενεργοποίησης του ελέγχου -->'
+      // '<isChecked>true</isChecked>'
+      // '</item>'
+      // '<!-- Περίπτωση: Επίσκεψη Ασθενή σε διαφορετικές ειδικότητες -->'
+      '<item>'
+          '<reason>αιτιολογία 6</reason>'
+          '<overrideType>'
+              '<id>6</id>'
+          '</overrideType>'
+          '<isChecked>false</isChecked>'
+      '</item>'
+    '</Collection>'
+  }
 }

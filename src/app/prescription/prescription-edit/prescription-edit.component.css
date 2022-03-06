@@ -1,3 +1,4 @@
+@import url(../prescription-add/prescription-add.component.css);
 hr { 
     border : 0;
     height: 2px;
@@ -40,7 +41,6 @@ h6:not(.mb-0) {
 }
 .btn-group {
     display: block !important;
-    padding-bottom: 20px;
 }
 /* Clear floats (clearfix hack) */
 .btn-group:after {
@@ -149,6 +149,29 @@ h5 {
     background-color: #566089c4;
     color: white;
 }
+.dropdown-menu.show {
+    transform: translate(0px, 0px) !important;
+    min-height: fit-content !important;
+    width: 100% !important;
+    max-height: 200px !important;
+    overflow: scroll;
+}
+.dropdown-toggle {
+    overflow: hidden;
+    width: 100%;
+}
+
+.head-container {
+    display: flex;
+}
+.head-container nav {
+    width: 30%;
+}
+.head-container .btn-group {
+    width: 70%;
+    float: right;
+}
+
 @media (max-width: 493px) {
     .delete span,
     .edit span,

@@ -2,22 +2,23 @@
   <app-header></app-header>
   <!-- Page Content Holder -->
   <div id="content">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
-            <i class="fa fa-bars"></i>
-          </button>
+    <div class="head-container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" (click)="handleClick($event)" id="sidebarCollapse" class="btn btn-info navbar-btn">
+              <i class="fa fa-bars"></i>
+            </button>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
 
-    <div class="btn-group col-sm-12 col-md-12 col-lg-12 col-xl-10 offset-xl-1">
-      <ng-container *ngIf="!isFetching && prescription.status != 'cancelled'">
-        <button (click)="openConfirmDeleteModal(prescription.id)" class="btn delete"><i class="fa fa-trash"></i><span> Ακύρωση</span></button>
-        <button (click)="editPrescription(prescription.id)" class="btn edit"><i class="fas fa-pencil-alt"></i><span> Επεξεργασία</span></button>
-        <button (click)="downloadPrescriptionAsPDF(prescription.id)" class="btn add"><i class="fas fa-download"></i><span> Λήψη</span></button>
-      </ng-container>
+      <div class="btn-group">
+        <ng-container *ngIf="!isFetching && prescription.status != 'cancelled'">
+          <button (click)="openConfirmDeleteModal(prescription.id)" class="btn delete"><i class="fa fa-trash"></i><span> Ακύρωση</span></button>
+          <button (click)="downloadPrescriptionAsPDF(prescription.id)" class="btn add"><i class="fas fa-download"></i><span> Λήψη</span></button>
+        </ng-container>
+      </div>
     </div>
 
     <ng-container *ngIf="!isFetching">
@@ -64,19 +65,19 @@
                     <textarea [(ngModel)]="prescription.comments" name="name" id="prescription-comments" class="form-control" type="text" rows="3" placeholder="Σχόλια Συνταγής"></textarea>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6>Αναζητήστε Φάρμακα Βάσει του Ονόματος Φαρμάκου: </h6>
+                    <h6 style="width: 100%;">Αναζήτηση φαρμάκου βάση του ονόματος του: </h6>
                     <input [(ngModel)]="prescription.medicine.name" name="medicine-name" id="medicine-name"
                    class="form-control" type="text" placeholder="Όνομα Φαρμάκου" required #r1="ngModel"/>
+                    <button (click)="searchMedicines()" type="button" class="btn btn-secondary">
+                      Αναζήτηση
+                    </button>
                     <div style="color: red; font-size: 13px;" *ngIf="!r1.valid && r1.touched">Παρακαλώ συμπληρώστε αυτό το
                       πεδίο!
                     </div>
-                    <button (click)="searchMedicines()" type="button" class="btn btn-secondary">
-                      Αναζήτηση Φαρμάκου
-                    </button>
                   </li>
                   <li *ngIf="medicines !== null && medicines !== undefined && medicines.item[0].barcode != null" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <div ngbDropdown class="d-inline-block">
-                      <h6 style="color: #107dd0;">Επιλέξτε Φάρμακο: </h6>
+                      <h6 class="med-title">Επιλέξτε Φάρμακο: </h6>
                       <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
                         <ng-container *ngIf="selectedMedicineName == null">
                           Επιλογή Φαρμάκου
@@ -122,19 +123,8 @@
                     <div style="color: red; font-size: 13px;" *ngIf="!r2.valid && r2.touched">Παρακαλώ συμπληρώστε αυτό το
                       πεδίο!
                     </div>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <ng-container *ngIf="prescription.icd10.diagnosis !== null && prescription.icd10.diagnosis.toString().trim() !== ''">
-                      <div class="form-group">
-                        <h6 style="color: #107dd0;">Αναζητήστε ICD-10 Βάσει της Περιγραφής
-                          ICD-10: </h6>
-                        <input [(ngModel)]="prescriptionData.icd10description" name="icd10-description" id="icd10-description"
-                              class="form-control" type="text" placeholder="ICD-10 Περιγραφή"/>
-                      </div>
-                    </ng-container>
-                
                     <button (click)="searchICD10s()" type="button" class="btn btn-secondary">
-                      Αναζήτηση ICD-10
+                      Αναζήτηση
                     </button>
                   </li>
                   <li  *ngIf="icd10s !== null && icd10s !== undefined && icd10s.item[0].code != null" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -158,14 +148,14 @@
                     </div>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6>Αναζητήστε Ασθένεια: </h6>
+                    <h6 style="width: 100%;">Αναζήτηση ασθένειας: </h6>
                     <input [(ngModel)]="prescription.disease.name" name="disease-name" id="disease-name" class="form-control"
-                          type="text" placeholder="Ασθένεια" required #r4="ngModel"/>
+                          type="text" placeholder="Όνομα ασθένειας" required #r4="ngModel"/>
                     <div style="color: red; font-size: 13px;" *ngIf="!r4.valid && r4.touched">Παρακαλώ συμπληρώστε αυτό το
                       πεδίο!
                     </div>
                     <button (click)="searchDiseases()" type="button" class="btn btn-secondary">
-                      Αναζήτηση Ασθένειας
+                      Αναζήτηση
                     </button>            
                   </li>
                   <li *ngIf="searchedDiseases !== null && searchedDiseases !== undefined && searchedDiseases[0].id != null" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -190,7 +180,7 @@
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <div ngbDropdown class="d-inline-block">
-                      <h6>Επιλογή Ποσοστού συμμετοχής ασφαλισμένου (%): </h6>
+                      <h6 class="long-title">Ποσοστό συμμετοχής ασφαλισμένου (%):  </h6>
                       <button class="btn btn-outline-primary" id="dropdownBasic3" ngbDropdownToggle>
                         <ng-container *ngIf="selectedParticipationPercentage == null">
                           Επιλέξτε Ποσοστό (%)
@@ -305,7 +295,7 @@
           </div>
           <div class="btn-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <button routerLink="/prescriptions" class="back"><i class="fas fa-angle-left"></i></button>
-            <button (click)="editPrescription()" type="button" class="edit-submit" [disabled]="!f.valid">Επεξεργασία<br>Επίσκεψης</button>
+            <button (click)="editPrescription()" type="button" class="edit-submit">Αποθήκευση</button>
           </div>
         </form>
       </div>

@@ -29,6 +29,13 @@ export class RestService {
     'api-key': properties.apiKey
   });
 
+  httpHeadersForXHLResponse = new HttpHeaders({
+    Authorization: this.authService.doctor.value.authentication.toString(),
+    Accept: 'application/x-hl7, application/xml',
+    'Content-Type': 'application/xml',
+    'api-key': properties.apiKey
+  });
+
   httpHeadersForXHL7Response = new HttpHeaders({
     Authorization: this.authService.doctor.value.authentication.toString(),
     Accept: 'application/x-hl7',
@@ -200,6 +207,29 @@ export class RestService {
         console.error(error);
         console.log(`deleteVisit failed: ${error.message}`);
         this.openCreateVisitResultModal('Η επίσκεψη δεν ακυρώθηκε!<br>Κωδικός Σφάλματος:<br>' + error.error);
+        return of(null);
+      })
+    );
+  }
+
+  closeVisit(id): Observable<any> {
+    const urlParams = new HttpParams();
+    const xmlData = XmlTemplates.closePrescribedVisit();
+    const httpOptions = {
+      headers: this.httpHeadersForXHLResponse,
+      params: urlParams,
+      responseType: 'text' as 'text'
+    };
+    // @ts-ignore
+    return this.http.put<any>(this.endpoint + 'me/visits/' + id + '/close', xmlData, httpOptions, httpOptions).pipe(
+      tap(() => {
+        console.log(`visit was closed`);
+        this.openCreateVisitResultModal('Η επίσκεψη ολοκληρώθηκε με επιτυχία!');
+      }),
+      catchError((error: any) => {
+        console.error(error);
+        console.log(`deleteVisit failed: ${error.message}`);
+        this.openCreateVisitResultModal('Η επίσκεψη δεν ολοκληρώθηκε!<br>Κωδικός Σφάλματος:<br>' + error.error);
         return of(null);
       })
     );

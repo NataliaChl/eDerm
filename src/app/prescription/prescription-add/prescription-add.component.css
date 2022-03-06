@@ -1,3 +1,5 @@
+@import url(../prescription-edit/prescription-edit.component.css);
+
 hr { 
     border : 0;
     height: 2px;
@@ -104,13 +106,48 @@ h5 {
     float: right;
 }
 
-.btn-group-toggle label,
-.dropdown button {
+.btn-group-toggle label {
     background-color: #566089c4;
     color: white;
 }
+#medicine-name,
+#icd10-title,
+#disease-name {
+    width: 70%;
+    margin-top: 5px;
+}
+.medicine-name,
+.icd10-title,
+.disease-name {
+    width: 25%;
+    padding: 3px;
+}
+.long-title {
+    width: 70%;
+    display: inline;
+    float: left;
+}
+#dropdownBasic7,
+#dropdownBasic3,
+#dropdownBasic4 {
+    width: 20%;
+    float: right;
+}
+.med-title {
+    width: 40%;
+    display: inline;
+    float: left;
+}
+#dropdownBasic1 {
+    width: 60%;
+    float: right;
+}
 
   @media (max-width: 500px) { 
+      li.list-group-item {
+          padding-left: 1px;
+          padding-right: 1px;
+      }
     h5 {
         font-size: 22px;
     }
@@ -130,6 +167,10 @@ h5 {
     }
     h6.mb-0 {
         font-size: 16px;
+    }
+    .card {
+        height: 607px;
+        overflow: auto;
     }
   }
   @media (min-width: 501px) and (max-width: 749px) {
@@ -166,5 +207,9 @@ h5 {
       }
       .text-center > .mt-3 {
         width: 90%;
+    }
+    .card {
+        height: 800px;
+        overflow: auto;
     }
   }
