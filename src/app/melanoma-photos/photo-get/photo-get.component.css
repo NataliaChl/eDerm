@@ -31,7 +31,7 @@ h6:not(.mb-0) {
     background: #d3c4be2b;
 }
 /* buttons */
-.btn-group button {
+.btn-group button:not(.back) {
     color: white; /* White text */
     padding: 10px 14px; /* Some padding */
     cursor: pointer; /* Pointer/hand icon */
@@ -42,7 +42,7 @@ h6:not(.mb-0) {
     border-top-right-radius: 30px !important;
     border-bottom-right-radius: 30px !important;
   }
-  .btn-group button * {
+  .btn-group button:not(.back) * {
       color: white;
   }
   .btn-group {
@@ -78,6 +78,19 @@ h6:not(.mb-0) {
   }
   .card-body {
       padding-bottom: 0;
+  }
+  .card-title {
+    font-weight: 400;
+    font-size: 20px;
+  }
+  .card-text {
+    font-size: 19px;
+    font-weight: 600;
+    text-decoration: underline;
+    color: #4c728f;
+  }
+  .mt-3 {
+    width: 95% !important;
   }
   .navbar.navbar-default {
     width: 30%;
@@ -163,6 +176,10 @@ hr:not(.line) {
     .add span {
       display: none;
     }
+    .photo-card {
+      margin-top: 10px; 
+      width: 100%;
+    }
   }
 @media (max-width: 500px) { 
     .card-body {
@@ -173,11 +190,19 @@ hr:not(.line) {
         width: 35px;
         height: 35px;
     }
+    .photo-card {
+      margin-top: 10px; 
+      width: 100%;
+    }
 }
 @media (min-width: 501px) and (max-width: 749px) {
     .back {
         width: 35px;
         height: 35px;
+    }
+    .photo-card {
+      margin-top: 10px; 
+      width: 100%;
     }
 }
 @media (min-width: 750px) {
@@ -193,5 +218,9 @@ hr:not(.line) {
     .back {
         width: 40px;
         height: 40px;
+    }
+    .photo-card {
+      margin-top: 20px; 
+      width: 48%;
     }
 }

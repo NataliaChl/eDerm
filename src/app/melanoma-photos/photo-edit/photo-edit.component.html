@@ -34,17 +34,52 @@
         </div>
       </div>
 
-      <!-- modal for full-size image -->
-      <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+       <!-- modal for full-size image -->
+       <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document" style="max-width: 100% !important;width: fit-content;">
           <div class="modal-content">
             <div class="modal-header">
+              <h6>Προβολή εικόνας</h6>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <img style="width:100% !important;" class="card-img-top" [src]="result.finalImage" alt="pop up image"> 
+              <img style="width:100% !important;min-width: 361px;" class="card-img-top" [src]="result.finalImage" alt="pop up image"> 
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- modal for full-size dlpredict image -->
+      <div class="modal fade" id="dlImageModal" tabindex="-1" role="dialog" aria-labelledby="imageDlModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="max-width: 100% !important;width: fit-content;">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h6>Οριοθέτηση σπίλου</h6>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <img style="width:100% !important;min-width: 361px;" class="card-img-top" [src]="result.dlPredict" alt="pop up image"> 
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- modal for full-size rmhair image -->
+      <div class="modal fade" id="rmHairImageModal" tabindex="-1" role="dialog" aria-labelledby="imageRmHairModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="max-width: 100% !important;width: fit-content;">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h6>Αφαίρεση τριχών</h6>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <img style="width:100% !important;min-width: 361px;" class="card-img-top" [src]="result.rmhair" alt="pop up image"> 
             </div>
           </div>
         </div>
@@ -55,26 +90,25 @@
         <div class="modal-dialog" role="document" style="max-width: 100% !important;width: fit-content;">
           <div class="modal-content">
             <div class="modal-header">
+              <h6>Σημείωση στο σώμα</h6>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <img style="width:100% !important;" class="card-img-top" [src]="result.paintedImage" alt="pop up image"> 
+              <img style="width:100% !important;min-width: 361px;" class="card-img-top" [src]="result.paintedImage" alt="pop up image"> 
             </div>
           </div>
         </div>
       </div>
     </ng-container>
-
-
     <div class="btn-group col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2">
       <ng-container *ngIf="!isFetching">
         <button data-toggle="modal" data-target="#exampleModal" class="btn delete"><i class="fa fa-trash"></i><span> Διαγραφή</span></button>
       </ng-container>
     </div>
 
-    <div class="card col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2" *ngIf="!loading">
+    <div class="card col-sm-12 col-md-12 col-lg-12 col-xl-10 offset-xl-1" *ngIf="!loading">
       <div class="card-body">
         <ng-container *ngIf="!isFetching">
             <h5>Κωδικός καταχώρησης:  {{result.id}}</h5>
@@ -98,11 +132,7 @@
                     </ng-container>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                  <div class="card col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8 offset-sm-2 offset-md-2 offset-lg-2 offset-xl-2">
-                    <ng-container *ngIf="result.paintedImage">
-                      <div style="width: 100%;"><button style="width: fit-content; float:right;border: 1px solid black;border-radius: 7px;" data-toggle="modal" data-target="#paintedImageModal"><i class="fas fa-expand-alt"></i><span></span></button></div>
-                      <img style="width: 100%; max-height: 200px;" class="card-img-top" [src]="result.paintedImage" alt="Card image cap">
-                    </ng-container>
+                  <div class="card photo-card">
                     <div style="width: 100%;"><button style="width: fit-content; float:right;border: 1px solid black;border-radius: 7px;" data-toggle="modal" data-target="#imageModal"><i class="fas fa-expand-alt"></i><span></span></button></div>
                     <img style="width: 100%; max-height: 200px;" class="card-img-top" [src]="result.finalImage" alt="Card image cap">
                     <div class="card-body">
@@ -112,12 +142,28 @@
                       </ng-container>
                     </div>
                   </div>
-                  
+                  <ng-container *ngIf="result.rmhair">
+                    <div class="card photo-card">
+                      <div style="width: 100%;"><h6 style="display: inline;">Αφαίρεση τριχών</h6><button style="width: fit-content; float:right;border: 1px solid black;border-radius: 7px;" data-toggle="modal" data-target="#rmHairImageModal"><i class="fas fa-expand-alt"></i><span></span></button></div>
+                      <img style="width: 100%; max-height: 200px;" class="card-img-top" [src]="result.rmhair" alt="Card image cap">
+                    </div>
+                  </ng-container>
+                  <ng-container *ngIf="result.dlPredict">
+                    <div class="card photo-card">
+                      <div style="width: 100%;"><button style="width: fit-content; float:right;border: 1px solid black;border-radius: 7px;" data-toggle="modal" data-target="#dlImageModal"><i class="fas fa-expand-alt"></i><span></span></button></div>
+                      <img style="width: 100%; max-height: 200px;" class="card-img-top" [src]="result.dlPredict" alt="Card image cap">
+                    </div>
+                    </ng-container>
+                  <ng-container *ngIf="result.paintedImage">
+                    <div class="card photo-card">
+                      <div style="width: 100%;"><button style="width: fit-content; float:right;border: 1px solid black;border-radius: 7px;" data-toggle="modal" data-target="#paintedImageModal"><i class="fas fa-expand-alt"></i><span></span></button></div>
+                      <img style="width: 100%; max-height: 200px;" class="card-img-top" [src]="result.paintedImage" alt="Card image cap">
+                    </div>
+                  </ng-container>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6>Σχόλια Επίσκεψης: </h6>
                     <textarea [(ngModel)]="result.comments" name="entry-comments" id="entry-comments" class="form-control" type="text" rows="3" placeholder="Σχόλια Καταχώρησης"></textarea>
-                    <!-- {{result.comments}} -->
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                   <h6><i class="far fa-calendar-check"></i><span>   Ημερομηνία Λήψης Εικόνας:</span></h6>
@@ -128,6 +174,7 @@
                     <span class="span-text">{{result.dateNow}}</span>
                 </li>
                 <div class="btn-group" style="width: 100%; margin-top: 18px;">
+                  <button routerLink="/photos-get" class="back"><i class="fas fa-angle-left"></i></button>
                   <button (click)="updateDataOnJson()" type="button" class="edit-submit">Αποθήκευση</button>
                 </div>
                 </ul>
@@ -138,7 +185,6 @@
         <app-spinner class="main-loader"></app-spinner>
         </ng-container>
         </div>
-        <button routerLink="/photos-get" class="back"><i class="fas fa-angle-left"></i></button>
     </div>
   </div>
 </div>

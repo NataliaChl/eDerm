@@ -31,7 +31,7 @@ h6:not(.mb-0) {
     background: #d3c4be2b;
 }
 /* buttons */
-.btn-group button {
+.btn-group button:not(.back) {
     color: white; /* White text */
     padding: 10px 14px; /* Some padding */
     cursor: pointer; /* Pointer/hand icon */
@@ -42,7 +42,7 @@ h6:not(.mb-0) {
     border-top-right-radius: 30px !important;
     border-bottom-right-radius: 30px !important;
   }
-  .btn-group button * {
+  .btn-group button:not(.back) * {
       color: white;
   }
   .btn-group {
@@ -68,16 +68,28 @@ h6:not(.mb-0) {
     background-color: #5d84a1;
   }
   .back {
-    margin-top: 15px;
-    color: #33556c;
-    float: left;
-    border: 1px solid #33556c9e;
+    color: #33556c !important;
+    float: left !important;
+    border: 1px solid #33556c9e !important;
     border-radius: 50%;
-    box-shadow: 0px 0px 3px 2px #587a9385;
+    box-shadow: 0px 0px 3px 2px #587a9385 !important;
     margin-bottom: 10px;
   }
   .card-body {
       padding-bottom: 0;
+  }
+  .card-title {
+    font-weight: 400;
+    font-size: 20px;
+  }
+  .card-text {
+    font-size: 19px;
+    font-weight: 600;
+    text-decoration: underline;
+    color: #4c728f;
+  }
+  .mt-3 {
+    width: 95% !important;
   }
   .navbar.navbar-default {
     width: 30%;
@@ -103,6 +115,10 @@ h6:not(.mb-0) {
     .add span {
       display: none;
     }
+    .photo-card {
+      margin-top: 10px; 
+      width: 100%;
+    }
   }
 @media (max-width: 500px) { 
     .card-body {
@@ -113,26 +129,38 @@ h6:not(.mb-0) {
         width: 35px;
         height: 35px;
     }
+    .photo-card {
+      margin-top: 10px; 
+      width: 100%;
+    }
 }
 @media (min-width: 501px) and (max-width: 749px) {
     .back {
-        width: 35px;
-        height: 35px;
+      width: 35px;
+      height: 35px;
+    }
+    .photo-card {
+      margin-top: 10px; 
+      width: 100%;
     }
 }
 @media (min-width: 750px) {
     h5 {
-        font-size: 25px;
+      font-size: 25px;
     }
     h6:not(.mb-0) {
-        font-size: 20px;
+      font-size: 20px;
     }
     h6.mb-0 {
-        font-size: 18px;
+      font-size: 18px;
     }
     .back {
-        width: 40px;
-        height: 40px;
+      width: 40px;
+      height: 40px;
+    }
+    .photo-card {
+      margin-top: 20px; 
+      width: 48%;
     }
 }
 

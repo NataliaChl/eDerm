@@ -23,10 +23,10 @@
                 </button>
               </div>
               <div class="modal-body">
-                <div class="body-drawing"><image-drawing
-                  src="../../../assets/men-s-body-anatomy-vector-illustration-man-front-back-side-views-outline-144613383.jpg"
-                  outputMimeType="'image/png'" showCancelButton="false">
-              </image-drawing></div>
+                <div class="body-drawing">
+                  <image-drawing src="../../../assets/nogender.jpg" outputMimeType="'image/png'" showCancelButton="false"></image-drawing>
+                </div>
+                <span style="font-size: 12px;"><strong>image:  </strong><span style="color: blue;">  https://www.dreamstime.com/human-body-outline-front-back-side-vector-file-set-human-body-outline-front-back-side-posture-vector-file-set-image192851805</span></span>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Ακύρωση</button>
@@ -36,7 +36,6 @@
           </div>
         </div>
       </ng-container>
-      
 
       <div class="card col-sm-12 col-md-10 col-lg-10 col-xl-10 offset-xl-1 offset-md-1">  
         <form #f="ngForm">
@@ -55,7 +54,7 @@
                             type="text" placeholder="Αριθμός ΑΜΚΑ" (keyup)="getPatient(amka); getDataFromJson(amka)" required
                             #r1="ngModel"/>
                             <!-- <ng-container *ngIf="loading"> -->
-                            <i *ngIf="!invalidError" class="fa fa-check"></i><i *ngIf="invalidError" class="fas fa-exclamation-circle"></i>
+                            <!-- <i *ngIf="!invalidError" class="fa fa-check"></i><i *ngIf="invalidError" class="fas fa-exclamation-circle"></i> -->
                           <!-- </ng-container> -->
                       <div style="color: #ff0000bf; font-size: 13px;" *ngIf="!r1.valid && r1.touched">Παρακαλώ συμπληρώστε αυτό το
                         πεδίο!
@@ -101,7 +100,7 @@
                   <ng-template #elseTemplate>
                     <ul class="list-group list-group-horizontal-sm">
                       <li class="list-group-item col">
-                        <img width="200px" height="150px" [src]="cardImageBase64" class="img-responsive image-added">
+                        <img width="200px" height="150px" style="min-height: 230px;min-width: 230px;" [src]="cardImageBase64" class="img-responsive image-added">
                       </li>
                       <li *ngIf="loading" class="list-group-item col">
                         <div class="spinner-border" role="status">
@@ -116,43 +115,40 @@
                         </div>                               
                       </li>
                     </ul>
-                    <div class="btn-group" style="width: 97%; margin-top: 18px;">
+                    <div class="btn-group" style="width: 97%; margin-top: 18px;padding-bottom: 0 !important;">
                       <button id="photo-review" class="btn btn-primary spacing" [hidden]="examinedImageResponse" [disabled] = "loading" type="submit" (click) = submit()>Αξιολόγηση εικόνας</button>
                       <button id="photo-review" class="btn btn-primary spacing" [hidden]="dlPredictResponse" [disabled] = "dlPredictLoading || removeHairLoading" type="submit" (click) = dlPredict()>Οριοθέτηση σπίλου</button>
                       <button id="photo-review" class="btn btn-primary spacing" [hidden]="removeHairResponse" [disabled] = "dlPredictLoading || removeHairLoading" type="submit" (click) = removeHairImage()>Αφαίρεση τριχών</button>
                       <button class="btn draw" data-toggle="modal" data-target="#paintedImageModal"><i class="fa fa-edit"></i><span> Σημείωση στο σώμα</span></button>
-                      <a id="photo-delete" class="btn btn-danger" (click)="removeImage()">Αφαίρεση</a>
+                      <a id="photo-delete" class="btn btn-danger" [disabled] = "dlPredictLoading || removeHairLoading" (click)="removeImage()">Αφαίρεση</a>
                     </div>
                   </ng-template>
                 </li>
                 <li *ngIf="dlPredictClicked || removeHairClicked" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                  <ul class="list-group list-group-horizontal-sm">
-                    <li *ngIf="dlPredictClicked" class="list-group-item col" style="min-height: 150px;">
-                      <h6>Οριοθέτηση σπίλου</h6>
-                      <ng-container *ngIf="dlPredictLoading; else DlResponse">
-                        <div class="spinner-border" role="status">
-                          <span class="sr-only">Loading...</span>
-                        </div>
-                      </ng-container>
-                      <ng-template #DlResponse>
-                        <span *ngIf="!dlPredictResponse" style="color:red;">Δεν βρέθηκε αποτέλεσμα.<br>Παρακαλώ προσπαθήστε με νέα εικόνα.</span>
-                        <img *ngIf="dlPredictResponse" width="200px" height="150px" [src]="dlURL" class="img-responsive image-added">
-                      </ng-template>
-                    </li>
-
-                    <li *ngIf="removeHairClicked" class="list-group-item col" style="min-height: 150px;">
-                      <h6>Αφαίρεση τριχών</h6>
-                      <ng-container *ngIf="removeHairLoading; else RemHairResponse">
-                        <div class="spinner-border" role="status">
-                          <span class="sr-only">Loading...</span>
-                        </div>
-                      </ng-container>
-                      <ng-template #RemHairResponse>
-                        <span *ngIf="!removeHairResponse" style="color:red;">Δεν βρέθηκε αποτέλεσμα.<br>Παρακαλώ προσπαθήστε με νέα εικόνα.</span>
-                        <img *ngIf="removeHairResponse" width="200px" height="150px" [src]="remHairURL" class="img-responsive image-added">
-                      </ng-template>
-                    </li>
-                  </ul>
+                  <div class="card photo-card">
+                    <h6 style="text-align: center; padding: 2px;">Οριοθέτηση σπίλου</h6>
+                    <ng-container *ngIf="dlPredictLoading; else DlResponse">
+                      <div class="spinner-border" role="status" style="margin-top: 20%;">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                    </ng-container>
+                    <ng-template #DlResponse>
+                      <span *ngIf="!dlPredictResponse" style="color:red;">Δεν βρέθηκε αποτέλεσμα.<br>Παρακαλώ προσπαθήστε με νέα εικόνα.</span>
+                      <img *ngIf="dlPredictResponse" width="200px" height="150px" style="min-width: 230px; min-height: 230px;" [src]="dlURL" class="img-responsive image-added">
+                    </ng-template>
+                  </div>
+                  <div *ngIf="removeHairClicked" class="card photo-card">
+                    <h6 style="text-align: center; padding: 2px;">Αφαίρεση τριχών</h6>
+                    <ng-container *ngIf="removeHairLoading; else RemHairResponse">
+                      <div class="spinner-border" role="status" style="margin-top: 20%;">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                    </ng-container>
+                    <ng-template #RemHairResponse>
+                      <span *ngIf="!removeHairResponse" style="color:red;">Δεν βρέθηκε αποτέλεσμα.<br>Παρακαλώ προσπαθήστε με νέα εικόνα.</span>
+                      <img *ngIf="removeHairResponse" width="200px" height="150px" style="min-width: 230px; min-height: 230px;" [src]="remHairURL" class="img-responsive image-added">
+                    </ng-template>
+                  </div>
                 </li>
                 
                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">

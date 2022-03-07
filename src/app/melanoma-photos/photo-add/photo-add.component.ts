@@ -16,7 +16,7 @@ export class PhotoAddComponent implements OnInit {
   fileToUpload: File = null;
   private imageService: ImageService;
   public examinedImageResponse: any;
-  public dlPredictResponse: any;
+  public dlPredictResponse: any = null;
   public removeHairResponse: any;
   public loading: boolean = false;
   public removeHairLoading: boolean = false;
@@ -27,7 +27,7 @@ export class PhotoAddComponent implements OnInit {
   public entries : any = [];
   public entriesFetching: boolean = false;
   remHairURL: string;
-  dlURL: string;
+  dlURL: string = null;
   imageError: string;
   isImageSaved: boolean;
   cardImageBase64: string;
@@ -40,14 +40,13 @@ export class PhotoAddComponent implements OnInit {
   comments: any;
   name: any;
   public invalidError: boolean;
-  public entry = {"amka": "","name": "","comments": "","finalImage": "", "result": "", "date": "", "dateNow": "", "paintedImage":""};
+  public entry = {"amka": "","name": "","comments": "","finalImage": "", "result": "", "date": "", "dateNow": "", "paintedImage":"", "dlPredict": "", "rmhair": ""};
   paintedImage: any;
   constructor(imageService: ImageService, 
     public rest: RestService,
     private router: Router) {
     this.imageService = imageService;
   }
-
 
   ngOnInit(): void {
     this.getDateNow();
@@ -61,7 +60,7 @@ export class PhotoAddComponent implements OnInit {
     //console.log(this.entry);
     console.log(this.amka);
     this.amka = this.amka.toString().trim();
-    this.entry = {"amka": this.amka,"name": this.name,"comments": entry.comments,"finalImage": this.cardImageBase64, "result" : this.examinedImageResponse, "date" : entry.date, "dateNow": this.dateNow, "paintedImage": this.paintedImage};
+    this.entry = {"amka": this.amka,"name": this.name,"comments": entry.comments,"finalImage": this.cardImageBase64, "result" : this.examinedImageResponse, "date" : entry.date, "dateNow": this.dateNow, "paintedImage": this.paintedImage, "dlPredict": this.dlURL, "rmhair": this.remHairURL};
     this.rest.postDataToJson(this.entry).subscribe((result) => {
       console.log(result);
       this.router.navigate(['/photos-get']);
