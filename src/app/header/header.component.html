@@ -3,7 +3,8 @@
   <!-- Sidebar Holder -->
   <nav id="sidebar" class="color-two">
       <div class="color-one sidebar-header">
-          <h3>Καλώς ήρθατε {{doctor.name.firstname}}!</h3>
+          <span class="user"><i class="far fa-user-circle"></i>   {{doctor.name.firstname}}</span>
+          <div style="text-align: center;"><img class="image-logo" src="../../assets/eDerm-logos_black.png"></div>
       </div>
       <ul class="list-unstyled components">
           <p></p>
@@ -23,7 +24,7 @@
               <a (click)="handleMenu($event)" href="#" routerLink="/me">Τα στοιχεία μου</a>
           </li>
           <li>
-              <a href="#" (click)="onLogout()" id="logout">Αποσύνδεση</a>
+              <a style="color: red;" href="#" (click)="onLogout()" id="logout">Αποσύνδεση</a>
           </li>
       </ul>
   </nav>
